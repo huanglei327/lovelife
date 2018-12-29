@@ -1,0 +1,17 @@
+
+html
+{
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+body {
+  overflow-x: hidden;
+  background: white;
+  -webkit-overflow-scrolling: touch;
+  font-size:14px;
+  font-family:'Microsoft YaHei';
+}
+.c-84{
+  color: #848484;
+}
