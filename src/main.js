@@ -72,11 +72,14 @@ router.afterEach((to, from, next) => {
     to.query.access_token = to.query.remindtype
     to.query.remindtype = ""
   }
+  console.log(to)
   if (to.path === '/') {
-    store.commit('getNavList', { 'navtitle': to.meta.title, 'left_text': '', 'left_arrow': false })
+    store.commit('getNavList', 
+    { 'navtitle': to.meta.title, 'left_text': '', 'left_arrow': false,'bshow':to.meta.bshow,'tshow':to.meta.tshow })
   }
   else {
-    store.commit('getNavList', { 'navtitle': to.meta.title, 'left_text': '返回', 'left_arrow': true })
+    store.commit('getNavList',
+    { 'navtitle': to.meta.title, 'left_text': '', 'left_arrow': true ,'bshow':to.meta.bshow,'tshow':to.meta.tshow})
   }
 
 })

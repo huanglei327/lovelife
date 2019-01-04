@@ -1,15 +1,16 @@
 <template>
   <div id="app">
-    <!-- <van-nav-bar
+    <van-nav-bar
+      v-show="tshow"
       :title="navtitle"
       :left-text="left_text"
       :left-arrow="left_arrow"
       fixed
       @click-left="onClickLeft"
       @click-right="onClickRight"
-    /> -->
+    />
     <router-view/>
-    <van-tabbar v-model="active">
+    <van-tabbar v-model="active" @change="tabChange" v-show="bshow">
       <van-tabbar-item>
         <span slot-scope="props" :class="props.active ? 'tabColor' : 'tabColorh'">首页</span>
         <img slot="icon" slot-scope="props" :src="props.active ? icon.home1 : icon.home">
@@ -28,15 +29,17 @@
       </van-tabbar-item>
       <van-tabbar-item>
         <span slot-scope="props" :class="props.active ? 'tabColor' : 'tabColorh'">人脉</span>
-        <img slot="icon" slot-scope="props" :src="props.active ? icon.connections1 : icon.connections">
+        <img
+          slot="icon"
+          slot-scope="props"
+          :src="props.active ? icon.connections1 : icon.connections"
+        >
       </van-tabbar-item>
       <van-tabbar-item>
         <span slot-scope="props" :class="props.active ? 'tabColor' : 'tabColorh'">我的</span>
         <img slot="icon" slot-scope="props" :src="props.active ? icon.my1 : icon.my">
       </van-tabbar-item>
     </van-tabbar>
-
-    
   </div>
 </template>
 
@@ -74,39 +77,116 @@ export default {
         release1: release1,
         connections: connections,
         connections1: connections1
-      }
+      },
+      activeShow: true,
+      titleShow: false
     };
   },
-  created() {},
-  mounted: function() {},
-  computed: { ...mapGetters(["navtitle", "left_arrow", "left_text"]) },
+  created() {
+    this.tabActive();
+  },
+  mounted() {},
+  computed: {
+    ...mapGetters(["navtitle", "left_arrow", "left_text", "tshow", "bshow"])
+  },
   methods: {
     onClickLeft: function() {
       this.$router.go(-1);
     },
     onClickRight: function() {
       console.log("onClickRight-");
+    },
+    tabActive() {
+      const that = this;
+      let v = that.$route.path;
+
+      switch (v) {
+        case "/":
+          that.active = 0;
+          break;
+        case "/ReleaseIndex":
+          that.active = 1;
+          break;
+        case "/UserIndex":
+          that.active = 5;
+          break;
+      }
+    },
+    tabChange(event) {
+      let url = "";
+      switch (event) {
+        case 0:
+          url = "/";
+          break;
+        case 1:
+          url = "/ReleaseIndex";
+          break;
+        case 5:
+          url = "/UserIndex";
+          break;
+      }
+      this.$router.push({
+        //你需要接受路由的参数再跳转
+        path: url
+      });
     }
   }
 };
 </script>
 
-<style>
+<style lang="less">
 #app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  font-family: "Microsoft YaHei", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 10px;
+  color: rgb(50, 50, 50);
 }
-.van-tabbar-item__icon img{
+.main {
+  position: relative;
+  margin-bottom: 50px;
+  margin-top: 10px;
+  height: calc(100vh - 56px);
+  .van-popup {
+    background-color: transparent;
+  }
+  .van-popup--left {
+    top: 51.5%;
+  }
+}
+.main2 {
+  margin-top: 46px;
+  position: relative;
+  height: calc(100vh - 46px);
+}
+.van-tabbar-item__icon img {
   height: 20px;
 }
 .tabColor {
   color: #a08755;
 }
+.color40 {
+  color: rgb(40, 40, 40);
+}
+.color206 {
+  color: rgb(206, 168, 96);
+}
 .tabColorH {
   color: #323232;
+}
+.textRight {
+  text-align: right;
+}
+.div-btn {
+  margin: 0 20px;
+}
+.van-button--login {
+  color: #fff;
+  background-color: rgb(206, 168, 96);
+  border: 1px solid rgb(206, 168, 96);
+  letter-spacing: 2px;
+}
+.van-nav-bar .van-icon {
+  color: rgb(40, 40, 40);
 }
 </style>

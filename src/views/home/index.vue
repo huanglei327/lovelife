@@ -64,22 +64,12 @@
           {{item.name}}
         </div>
       </div>
- 
     </van-popup>
   </div>
 </template>
 
 
 <style lang="less">
-.main {
-  margin-bottom: 50px;
-  .van-popup{
-      background-color:transparent; 
-  }
-  .van-popup--left{
-    top:51.5%;
-  }
-}
 .h-t-content {
   font-size: 12px;
   .h-t-img {
