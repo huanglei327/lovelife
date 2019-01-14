@@ -8,56 +8,57 @@ export default {
   data() {
     return {
       msg: '224324',
+      popheight:60,
       active: 0,
       leftShow: true,
-      menuList:[
+      menuList: [
         {
-          name:'最新新闻'
+          name: '最新新闻'
         },
         {
-          name:'餐厅娱乐'
+          name: '餐厅娱乐'
         },
         {
-          name:'轻松购物'
+          name: '轻松购物'
         },
         {
-          name:'轻松购物'
+          name: '轻松购物'
         },
         {
-          name:'轻松购物'
+          name: '轻松购物'
         },
         {
-          name:'轻松购物'
+          name: '轻松购物'
         },
         {
-          name:'轻松购物'
+          name: '轻松购物'
         },
         {
-          name:'轻松购物'
+          name: '轻松购物'
         },
         {
-          name:'轻松购物'
+          name: '轻松购物'
         },
         {
-          name:'轻松购物'
+          name: '轻松购物'
         },
         {
-          name:'轻松购物'
+          name: '轻松购物'
         },
         {
-          name:'轻松购物'
+          name: '轻松购物'
         },
         {
-          name:'轻松购物'
+          name: '轻松购物'
         },
         {
-          name:'轻松购物'
+          name: '轻松购物'
         },
         {
-          name:'轻松购物'
+          name: '轻松购物'
         },
         {
-          name:'轻松购物'
+          name: '轻松购物'
         },
       ],
       imgList: [
@@ -104,9 +105,25 @@ export default {
       ]
     }
   },
+  mounted() {
+    const that = this
+    window.onscroll = function() {
+      console.log(that.getScrollTop())
+      that.popheight = 60 - that.getScrollTop()
+    }
+  },
   methods: {
     onChange(index) {
       this.current = index;
+    },
+    getScrollTop() {
+      var scrollTop = 0;
+      if (document.documentElement && document.documentElement.scrollTop) {
+        scrollTop = document.documentElement.scrollTop;
+      } else if (document.body) {
+        scrollTop = document.body.scrollTop;
+      }
+      return scrollTop;
     }
   }
 }

@@ -23,6 +23,8 @@ export function DateClculate(time) {
     return ds + '天' + xs + '小时' + fz + '分钟' + mz + '秒';
 }
 
+
+
 //传 时分秒 计算出时间
 export function DateClculateA(times) {
     var datalist = times.split(':');
@@ -156,6 +158,13 @@ export function getUserInfo(key) {
     }
 }
 
+export function Skip(that,url){
+  that.$router.push({
+    //你需要接受路由的参数再跳转
+    path: url
+  })
+}
+
 export function getMyDateByStr(str, type) {
     var oDate = new Date(str)
     oYear = oDate.getFullYear()
@@ -188,3 +197,6 @@ export function statusById(index) {
 function p(s) {
     return s < 10 ? '0' + s : s;
 }
+
+
+

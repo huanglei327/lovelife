@@ -1,12 +1,12 @@
 <template>
-  <div class="main">
+  <div class="main m-t-10" id="main">
     <div class="h-top">
       <van-row>
-        <van-col span="3" class="h-t-content c-84">
+        <van-col span="3" class="h-t-content c-84" >
           <div class="h-t-img" @click="leftShow = true">
             <img src="../../assets/images/classification.png">
           </div>
-          <div>分类</div>
+          <div @click="leftShow = true">分类</div>
         </van-col>
         <van-col span="15" class="h-t-content">
           <div class="h-t-s">
@@ -56,14 +56,15 @@
         </div>
       </div>
     </div>
-
+    <div style="height:50px;width:100%;"></div>
     <van-popup v-model="leftShow" position="left" overlay-class="menu-overlay">
- 
+      <div :style="{ height: popheight+'px' }"></div>
       <div class="h-menu">
         <div  :class="index===0 ?'item active':'item'" v-for="(item,index) in menuList" :key="index">
           {{item.name}}
         </div>
       </div>
+      <div style="height:50px;"></div>
     </van-popup>
   </div>
 </template>
@@ -164,7 +165,7 @@
 .h-menu {
   width: 100px;
   height: calc(100vh - 110px);
-  
+  overflow-x: hidden;
   .item{
     height: 32px;
     line-height: 32px;

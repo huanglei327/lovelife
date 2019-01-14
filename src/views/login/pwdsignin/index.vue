@@ -1,49 +1,53 @@
 <template>
   <div class="main2">
     <van-nav-bar
-  title="手机号登陆"
-  left-text=""
-  right-text="注册"
-  left-arrow
-  fixed
-  @click-left="onClickLeft"
-  @click-right="onClickRight"
-/>
-     <div class="t-1 color40">
+      title="密码登陆"
+      left-text
+      right-text="注册"
+      left-arrow
+      fixed
+      @click-left="onClickLeft"
+      @click-right="onClickRight"
+    />
+    <div class="t-1 color40">
       <img src="../../../assets/images/huaqiao.png">
       <div>花桥爱生活</div>
     </div>
     <div class="t-2">
-       <div class="t-flex">
+      <div class="t-flex">
         <div class="flex-1">&nbsp;&nbsp;+86&nbsp;请输入您的手机号</div>
         <div class="flex-img">
           <img src="../../../assets/images/del.png">
         </div>
       </div>
       <div class="t-2-i">
-        <input type="text" class="van-field__control">
+        <div>
+          <input type="text" class="van-field__control">
+        </div>
       </div>
     </div>
     <div class="t-2">
-      <van-row>
-        <van-col span="12">&nbsp;&nbsp;请输入短信验证码</van-col>
-        <van-col span="12" class="textRight">
-          <div class="t-yz">获取验证码</div>
-        </van-col>
-      </van-row>
+      <div class="t-flex">
+        <div class="flex-1">&nbsp;&nbsp;请输入密码</div>
+        <div class="flex-img" @click="setPwdType">
+          <img :src="pwdImg">
+        </div>
+      </div>
       <div class="t-2-i">
-        <input type="text" class="van-field__control">
+        <div>
+          <input type="password" id="inputPwd" class="van-field__control">
+        </div>
+        <div></div>
       </div>
-      <div class="t-2-a" @click="goPwdSignin">
-       使用密码登陆
-      </div>
+      <div class="t-2-a" @click="goMsgSignin">使用短信验证码登陆</div>
     </div>
+
     <div class="div-btn">
       <van-button size="large" type="login">登陆</van-button>
     </div>
     <div class="t-wx-login" id="wxlogin">
       <div>
-          <div>遇到问题？</div>
+        <div>遇到问题？</div>
       </div>
     </div>
   </div>

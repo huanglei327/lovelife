@@ -45,6 +45,7 @@
 
 <script>
 import "./assets/css/common.css";
+import "./assets/css/login.css";
 import my from "./assets/images/my.png";
 import my1 from "./assets/images/my1.png";
 import home from "./assets/images/home.png";
@@ -145,22 +146,38 @@ export default {
 .main {
   position: relative;
   margin-bottom: 50px;
-  margin-top: 10px;
-  height: calc(100vh - 56px);
+  height: calc(100vh - 50px);
   .van-popup {
     background-color: transparent;
   }
-  .van-popup--left {
-    top: 51.5%;
-  }
+  // .van-popup--left {
+  //   top: 51.5%;
+  // }
+}
+.pline{
+  height: 12px;
+  width: 100%;
 }
 .main2 {
   margin-top: 46px;
   position: relative;
   height: calc(100vh - 46px);
 }
+.main3 {
+  position: relative;
+  height: calc(100vh - 46px);
+}
+.bgf5{
+  background: #f5f5f5;
+}
+.bgwhite{
+  background: white;
+}
 .van-tabbar-item__icon img {
   height: 20px;
+}
+.font16{
+  font-size: 16px;
 }
 .tabColor {
   color: #a08755;
@@ -168,8 +185,17 @@ export default {
 .color40 {
   color: rgb(40, 40, 40);
 }
+.color45 {
+  color: rgb(45, 45, 45);
+}
+.color86 {
+  color: rgb(86, 86, 86);
+}
 .color206 {
   color: rgb(206, 168, 96);
+}
+.color109{
+  color: rgb(109, 109, 109);
 }
 .tabColorH {
   color: #323232;
@@ -180,10 +206,37 @@ export default {
 .div-btn {
   margin: 0 20px;
 }
+.div-btn1 {
+  margin: 0 15px;
+}
+.m-l-5{
+  margin-left: 5px;
+}
+.m-t-20{
+  margin-top:20px;
+}
+.m-t-10{
+  margin-top:10px;
+}
+.van-button--large{
+  height: 45px;
+  line-height: 43px;
+}
 .van-button--login {
   color: #fff;
   background-color: rgb(206, 168, 96);
   border: 1px solid rgb(206, 168, 96);
+  letter-spacing: 2px;
+}
+.van-button--yzm {
+  border: 1px solid rgb(195, 195, 195);
+  color: rgb(86, 86, 86);
+  background: white;
+}
+.van-button--save{
+  color: #fff;
+  background-color: #ee5e3f;
+  border: 1px solid #ee5e3f;
   letter-spacing: 2px;
 }
 .van-nav-bar .van-icon {

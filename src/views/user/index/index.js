@@ -10,6 +10,9 @@ export default {
         //你需要接受路由的参数再跳转
         path: '/SignIn'
       })
+    },
+    goPerSional(){
+      this.$common.Skip(this, '/Personal')
     }
   }
 }

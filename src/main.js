@@ -48,7 +48,8 @@ import {
   Tabbar,
   TabbarItem,
   Swipe, 
-  SwipeItem 
+  SwipeItem,
+  DatetimePicker
 } from 'vant'
 
 Vue.use(Button).use(Collapse).use(CollapseItem).use(Cell).use(CellGroup).use(
@@ -56,7 +57,7 @@ Vue.use(Button).use(Collapse).use(CollapseItem).use(Cell).use(CellGroup).use(
     Actionsheet).use(popup).use(Uploader).use(Row).use(Col).use(Toast).use(List)
   .use(Panel).use(Dialog).use(RadioGroup).use(Radio).use(Checkbox).use(CheckboxGroup)
   .use(Area).use(Popup).use(Search).use(Tab).use(Tabs).use(ImagePreview).use(PullRefresh).use(Rate)
-  .use(Badge).use(BadgeGroup).use(Tabbar).use(TabbarItem).use(Swipe).use(SwipeItem)
+  .use(Badge).use(BadgeGroup).use(Tabbar).use(TabbarItem).use(Swipe).use(SwipeItem).use(DatetimePicker)
 
 
 Vue.config.productionTip = false

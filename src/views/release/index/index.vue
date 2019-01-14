@@ -1,17 +1,17 @@
 <template>
   <div class="main">
     <div class="r-list">
-      <div class="left">
+      <div class="left" @click="goPublish">
         <div>
           <img src="../../../assets/images/release_history.png">
         </div>
         <div class="title">发布信息</div>
       </div>
-      <div class="right">
+      <div class="right" @click="goHistory">
         <div>
           <img src="../../../assets/images/release-information.png">
         </div>
-        <div class="title">发布历史</div>
+        <div class="title" >发布历史</div>
       </div>
     </div>
   </div>
