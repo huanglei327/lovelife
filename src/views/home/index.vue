@@ -2,7 +2,7 @@
   <div class="main m-t-10" id="main">
     <div class="h-top">
       <van-row>
-        <van-col span="3" class="h-t-content c-84" >
+        <van-col span="3" class="h-t-content c-84">
           <div class="h-t-img" @click="leftShow = true">
             <img src="../../assets/images/classification.png">
           </div>
@@ -36,8 +36,12 @@
         </van-swipe-item>
         <!-- <div class="custom-indicator" slot="indicator">{{ current + 1 }}/4</div> -->
         <div class="van-swipe__indicators" slot="indicator">
-          <div class="indicator" v-for="(item,index) in imgList" :key="index">
-            <div :class="current===index?'active':''"></div>
+          <div
+            :class="current===index?'indicator active':'indicator'"
+            v-for="(item,index) in imgList"
+            :key="index"
+          >
+            <!-- <div :class="current===index?'active':''"></div> -->
             <!-- <i  :class=" current===index?'van-swipe__indicator van-swipe__indicator--active':'van-swipe__indicator'" >
             </i>-->
           </div>
@@ -60,9 +64,11 @@
     <van-popup v-model="leftShow" position="left" overlay-class="menu-overlay">
       <div :style="{ height: popheight+'px' }"></div>
       <div class="h-menu">
-        <div  :class="index===0 ?'item active':'item'" v-for="(item,index) in menuList" :key="index">
-          {{item.name}}
-        </div>
+        <div
+          :class="index===0 ?'item active':'item'"
+          v-for="(item,index) in menuList"
+          :key="index"
+        >{{item.name}}</div>
       </div>
       <div style="height:50px;"></div>
     </van-popup>
@@ -95,8 +101,9 @@
       margin: 0 auto;
     }
     img {
-      width: 23px;
-      height: 23px;
+          width: 16px;
+    height: 16px;
+    margin-right: 10px;
     }
   }
 }
@@ -110,19 +117,20 @@
   .van-swipe__indicators {
     left: 80%;
     .indicator {
-      width: 12px;
-      height: 12px;
+      width: 8px;
+      height: 8px;
       border-radius: 100%;
       margin-left: 10px;
-      background: white;
+      border: 2px solid white;
       div {
         width: 12px;
         height: 12px;
         border-radius: 100%;
       }
-      .active {
-        background: #e33125;
-      }
+    }
+    .active {
+      background: #e33125;
+      border: 2px solid #e33125;
     }
   }
 }
@@ -166,18 +174,18 @@
   width: 100px;
   height: calc(100vh - 110px);
   overflow-x: hidden;
-  .item{
+  .item {
     height: 32px;
     line-height: 32px;
     padding: 8px 0;
-    background-color: rgba(255,255,255,0.95);
+    background-color: rgba(255, 255, 255, 0.95);
   }
-  .active{
+  .active {
     border-left: 3px solid #a08755;
     color: #a08755;
   }
 }
-.menu-overlay{
+.menu-overlay {
   background-color: rgba(0, 0, 0, 0);
 }
 </style>

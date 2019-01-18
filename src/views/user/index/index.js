@@ -13,6 +13,9 @@ export default {
     },
     goPerSional(){
       this.$common.Skip(this, '/Personal')
+    },
+    GoSignin(){
+      this.$common.Skip(this, '/Signin')
     }
   }
 }

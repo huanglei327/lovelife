@@ -240,6 +240,9 @@ export default {
   letter-spacing: 2px;
 }
 .van-nav-bar .van-icon {
-  color: rgb(40, 40, 40);
+  color: #656565;
+}
+.van-nav-bar__arrow{
+  font-size: 20px;
 }
 </style>

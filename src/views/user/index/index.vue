@@ -11,7 +11,10 @@
       <div class="u-title">
         <div class="u-name">上海市嘉定区早教益智远洋中心馆</div>
         <div>
-          <div class="u-qd">每日签到></div>
+          <div class="u-qd">每日签到>
+
+            <span style="margin-left:20px;" @click="GoSignin">点我登陆</span>
+          </div>
         </div>
       </div>
     </div>

@@ -32,8 +32,18 @@ import authentication from '../views/user/authentication/index.vue'
 Vue.use(Router)
 
 export default new Router({
-  mode:'history',
+  mode:'hash',
   routes: [
+    {
+      path: '/index',
+      name: 'Home',
+      component: Home,
+      meta:{
+        title:'首页',
+        tshow:false,
+        bshow:true,
+      }
+    },
     {
       path: '/',
       name: 'Home',

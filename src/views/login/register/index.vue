@@ -1,6 +1,6 @@
 <template>
   <div class="main2">
-    <div class="t-1 color40"></div>
+    <div class="t-1-1 color40"></div>
     <div class="t-2">
       <div>&nbsp;&nbsp;+86&nbsp;请输入您的手机号</div>
       <div class="t-2-i">
@@ -56,7 +56,7 @@
       height: 40px;
     }
   }
-  .t-1 {
+  .t-1-1 {
     height: 30px;
     width: 100%;
     line-height: 30px;
@@ -117,7 +117,7 @@
 }
 @media (max-height: 480px) {
   .main2 {
-    .t-1 {
+    .t-1-1 {
       display: none;
     }
     .t-wx-login {
