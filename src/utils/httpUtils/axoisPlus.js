@@ -9,7 +9,7 @@ axios.defaults.timeout = 1000 * 60;
 axios.defaults.withCredentials = false
 import { Toast } from 'vant';
 
-axios.defaults.baseURL = `http://merit.dsunyun.com/`
+axios.defaults.baseURL = `http://172.17.209.7:9991/`
 //axios.defaults.baseURL = 'api'
 //axios.defaults.baseURL = ''
 // http request 拦截器

@@ -13,10 +13,10 @@ export default {
       leftShow: true,
       menuList: [
         {
-          name: '最新新闻'
+          name: '最新新闻12'
         },
         {
-          name: '餐厅娱乐'
+          name: '餐厅娱乐12'
         },
         {
           name: '轻松购物'

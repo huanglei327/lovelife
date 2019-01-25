@@ -6,7 +6,7 @@
           <div class="h-t-img" @click="leftShow = true">
             <img src="../../assets/images/classification.png">
           </div>
-          <div @click="leftShow = true">分类</div>
+          <div @click="leftShow = true">分类12</div>
         </van-col>
         <van-col span="15" class="h-t-content">
           <div class="h-t-s">
