@@ -1,3 +1,4 @@
+import { Toast } from "vant";
 
 export function dateFormat(dateObj) {
     var year = dateObj.getFullYear();
@@ -81,4 +82,44 @@ function checkArray(obj, domObj) {
         obj[domObj.domId + '_err'] = ''
     }
     return true
+}
+
+export function getUserInfo(value){
+   let userInfo = JSON.parse( localStorage.getItem("userInfo") )
+   if(userInfo!=null){
+       return userInfo[value] 
+   }
+   else
+    return ''
+}
+
+export function checkPhone(value,callback){
+  if(value === ''){
+    Toast.fail('请输入手机号');
+    return false
+  }
+  else{
+    var reg=/^1[3456789]\d{9}$/;
+    if(!reg.test(value)){
+      Toast.fail('请输入正确的手机号');
+      return false
+    }
+     return true
+  }
+}
+
+export function checkAuthCode(value){
+  if(value === '' || value.length !==6){
+    Toast.fail('验证码有误');
+    return false
+  }
+  return true
+}
+
+export function checkNull(value,text){
+  if(value===''){
+    Toast.fail(text);
+    return false  
+  }
+  return true
 }

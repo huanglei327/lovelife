@@ -58,6 +58,7 @@ import release from "./assets/images/release.png";
 import release1 from "./assets/images/release1.png";
 import connections from "./assets/images/connections.png";
 import connections1 from "./assets/images/connections1.png";
+import iconright from './assets/images/icon-right.png'
 
 import { mapGetters, mapActions } from "vuex";
 export default {
@@ -114,6 +115,7 @@ export default {
       }
     },
     tabChange(event) {
+      console.log('2243')
       let url = "";
       switch (event) {
         case 0:
@@ -154,6 +156,17 @@ export default {
   //   top: 51.5%;
   // }
 }
+.van-overlay{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,.1); 
+}
+.icon-title{
+  width: 20px;
+}
 .pline{
   height: 12px;
   width: 100%;
@@ -176,6 +189,9 @@ export default {
 .van-tabbar-item__icon img {
   height: 20px;
 }
+.errmsg{
+  text-align: right;
+}
 .font16{
   font-size: 16px;
 }
@@ -196,6 +212,9 @@ export default {
 }
 .color109{
   color: rgb(109, 109, 109);
+}
+.color195{
+  color: rgb(195, 195, 195);
 }
 .tabColorH {
   color: #323232;
@@ -221,6 +240,9 @@ export default {
 .van-button--large{
   height: 45px;
   line-height: 43px;
+}
+.icon-arrow{
+   background-image: url('./assets/images/icon-left.png');
 }
 .van-button--login {
   color: #fff;

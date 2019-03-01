@@ -2,10 +2,11 @@
   <div class="main2 bgf5">
     <div class="bgwhite">
       <div class="d-input b-t-f5">
-        <input type="text" placeholder="标题  请描述内容" class="van-field__control">
+        <input type="text" placeholder="标题  请描述内容" v-model="status.proName" maxlength="8" class="van-field__control">
       </div>
       <div class="d-input">
-        <textarea placeholder="描述一下发布产品详情" rows="1" class="van-field__control textheight"></textarea>
+        <textarea placeholder="描述一下发布产品详情" maxlength="100" v-model="status.proDesc" rows="1" class="van-field__control textheight"></textarea>
+        
       </div>
       <div class="img-list">
         <ul class="up-img-ul">
@@ -37,7 +38,56 @@
     </div>
     <div class="pline"></div>
     <div class="list-content">
-      <van-cell-group>
+      <div class="list-input">
+        <van-row>
+          <van-col span="8">价格</van-col>
+          <van-col span="14">
+            <input
+              type="text"
+              v-model="status.proPrice"
+              placeholder="请输入价格"
+              class="van-field__control"
+            >
+          </van-col>
+          <van-col span="2">
+            <van-icon name="arrow" class="m-t-2" size="16px"/>
+          </van-col>
+        </van-row>
+        <van-row>
+          <van-col span="8">分类</van-col>
+          <van-col span="14" >
+            <div @click="showMenu">
+            <input
+              type="text"
+               v-model="status.proTypeName"
+              disabled
+              placeholder="请选择分类"
+              class="van-field__control"
+            >
+            </div>
+          </van-col>
+          <van-col span="2">
+            <van-icon name="arrow" class="m-t-2" size="16px"/>
+          </van-col>
+        </van-row>
+         <van-row>
+          <van-col span="8">交易方式</van-col>
+          <van-col span="14">
+                <div v-if="status.dealType === 1">
+                  <img src="../../../assets/images/release-pay.png" class="btn-type" @click="protypeClick(1)">
+                  <img src="../../../assets/images/release-self.png" class="btn-type" @click="protypeClick(2)">
+                </div>
+                <div v-else>
+                  <img src="../../../assets/images/release-pay1.png" class="btn-type" @click="protypeClick(1)">
+                  <img src="../../../assets/images/release-self1.png" class="btn-type" @click="protypeClick(2)">
+              </div>
+          </van-col>
+          <van-col span="2">
+            <van-icon name="arrow" class="m-t-2" size="16px"/>
+          </van-col>
+        </van-row>
+      </div>
+      <!-- <van-cell-group>
         <van-cell is-link>
           <template slot="title">
             <span class="custom-text">价格</span>
@@ -57,14 +107,35 @@
             <img src="../../../assets/images/release-self.png" class="btn-type">
           </template>
         </van-cell>
-      </van-cell-group>
+      </van-cell-group> -->
     </div>
-      <div class="div-btn1 m-t-20">
-        <van-button size="large" type="save">确定发布</van-button>
-      </div>
+    <div class="div-btn1 m-t-20">
+      <van-button size="large" type="save" @click="savePublish">确定发布</van-button>
+    </div>
+    <van-popup v-model="typeShow" position="bottom">
+      <van-picker
+        show-toolbar
+        title="分类"
+        :columns="columns"
+        @cancel="onCancel"
+        @confirm="onConfirm"
+      />
+    </van-popup>
   </div>
 </template>
 <style lang="less">
+.list-input{
+  background: white;
+  padding: 0 15px;
+  .van-row{
+    padding:10px 0;
+    line-height: 24px;
+    border-bottom: 1px solid #f5f5f5;
+  }
+   .m-t-2{
+    margin: 5px;
+   }
+}
 .list-content {
   text-align: left;
   .custom-text {

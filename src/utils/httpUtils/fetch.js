@@ -12,6 +12,21 @@ export function post(apiname, parameters) {
             })
     })
 }
+
+//用于上传图片
+export function post2(apiname, parameters) {
+  return new Promise((resolve, reject) => {
+      axios.post(apiname, parameters)
+          .then(res => {
+              resolve(res.data);
+          }).catch(err => {
+              console.log(err);
+              reject(err)
+          })
+  })
+}
+
+
 export function get(apiname) {
     return new Promise((resolve, reject) => {
         axios.get(apiname)

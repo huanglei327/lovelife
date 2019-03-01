@@ -32,7 +32,7 @@
         </div>
         <div class="d-content">
           <div class="left">联系电话</div>
-          <div class="right">18825205555</div>
+          <div class="right"> 18825205555</div>
         </div>
       </div>
       <div class="pline"></div>
@@ -86,6 +86,7 @@
     .right {
       color: rgb(101, 101, 101);
       flex: 1;
+      line-height: 22px;
       .remark {
         font-size: 12px;
         color: rgb(181, 181, 181);

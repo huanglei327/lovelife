@@ -4,28 +4,30 @@
     <div class="t-2">
       <div>&nbsp;&nbsp;+86&nbsp;请输入您的手机号</div>
       <div class="t-2-i">
-        <input type="text" class="van-field__control">
+        <input type="text" maxlength="11" v-model="status.phoneNo" class="van-field__control">
       </div>
     </div>
     <div class="t-2">
       <van-row>
         <van-col span="12">&nbsp;&nbsp;请输入短信验证码</van-col>
-        <van-col span="12" class="textRight">
-          <div class="t-yz">获取验证码</div>
+         <van-col span="12" class="textRight">
+         <div 
+          :class="phone.code === true ?'t-yz color195':'t-yz color109'"
+           @click="checkAccess">{{phone.name}}</div>
         </van-col>
       </van-row>
       <div class="t-2-i">
-        <input type="text" class="van-field__control">
+        <input type="text" maxlength="6" v-model="status.authCode" class="van-field__control">
       </div>
     </div>
     <div class="t-2">
-      <div>&nbsp;&nbsp;+86&nbsp;请设置密码</div>
+      <div>&nbsp;&nbsp;请设置密码</div>
       <div class="t-2-i">
-        <input type="text" class="van-field__control">
+        <input type="text" maxlength="13" v-model="status.password"   class="van-field__control">
       </div>
     </div>
     <div class="div-btn">
-      <van-button size="large" type="login">登陆</van-button>
+      <van-button size="large" @click="goRegister" type="login">注册</van-button>
     </div>
     <div class="t-bz">
       用户注册代表同意
@@ -98,8 +100,6 @@
       font-size: 12px;
       border: 1px solid rgb(195, 195, 195);
       padding: 0 8px;
-      width: 60px;
-      color: rgb(195, 195, 195);
       border-radius: 5px;
       right: 20px;
       position: absolute;

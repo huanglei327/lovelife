@@ -22,7 +22,7 @@
       </div>
       <div class="t-2-i">
         <div>
-          <input type="text" class="van-field__control">
+          <input type="text" v-model="status.phoneNo" class="van-field__control">
         </div>
       </div>
     </div>
@@ -35,7 +35,7 @@
       </div>
       <div class="t-2-i">
         <div>
-          <input type="password" id="inputPwd" class="van-field__control">
+          <input type="password" v-model="status.password" id="inputPwd" class="van-field__control">
         </div>
         <div></div>
       </div>
@@ -43,7 +43,7 @@
     </div>
 
     <div class="div-btn">
-      <van-button size="large" type="login">登陆</van-button>
+      <van-button size="large" @click="pwdSignin" type="login">登陆</van-button>
     </div>
     <div class="t-wx-login" id="wxlogin">
       <div>
@@ -118,7 +118,6 @@
       border: 1px solid rgb(195, 195, 195);
       padding: 0 8px;
       width: 60px;
-      color: rgb(195, 195, 195);
       border-radius: 5px;
       right: 20px;
       position: absolute;

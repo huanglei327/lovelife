@@ -21,25 +21,27 @@
         </div>
       </div>
       <div class="t-2-i">
-        <input type="text" class="van-field__control">
+        <input type="text" class="van-field__control" v-model="status.phoneNo" @input="inputFoucs" maxlength="11">
       </div>
     </div>
     <div class="t-2">
       <van-row>
         <van-col span="12">&nbsp;&nbsp;请输入短信验证码</van-col>
         <van-col span="12" class="textRight">
-          <div class="t-yz">获取验证码</div>
+          <div 
+          :class="phone.code === true ?'t-yz color195':'t-yz color109'"
+           @click="checkAccess">{{phone.name}}</div>
         </van-col>
       </van-row>
       <div class="t-2-i">
-        <input type="text" class="van-field__control">
+        <input type="text"  maxlength="6" v-model="status.code" class="van-field__control">
       </div>
       <div class="t-2-a" @click="goPwdSignin">
        使用密码登陆
       </div>
     </div>
     <div class="div-btn">
-      <van-button size="large" type="login">登陆</van-button>
+      <van-button size="large" type="login" @click="goLogin">登陆</van-button>
     </div>
     <div class="t-wx-login" id="wxlogin">
       <div>
@@ -113,12 +115,12 @@
       font-size: 12px;
       border: 1px solid rgb(195, 195, 195);
       padding: 0 8px;
-      width: 60px;
-      color: rgb(195, 195, 195);
       border-radius: 5px;
       right: 20px;
       position: absolute;
+      text-align: center;
     }
+    
     div {
       height: 30px;
       line-height: 30px;

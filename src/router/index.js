@@ -42,6 +42,7 @@ export default new Router({
         title:'首页',
         tshow:false,
         bshow:true,
+        requireAuth:true
       }
     },
     {
@@ -52,6 +53,7 @@ export default new Router({
         title:'首页',
         tshow:false,
         bshow:true,
+        requireAuth:true
       }
     },
     {
@@ -62,6 +64,7 @@ export default new Router({
         title:'个人信息',
         tshow:false,
         bshow:true,
+        requireAuth:true
       }
     },
     {
@@ -102,6 +105,7 @@ export default new Router({
         title:'发布',
         tshow:false,
         bshow:true,
+        requireAuth:true
       }
     },
     {
@@ -112,6 +116,7 @@ export default new Router({
         title:'发布历史',
         tshow:true,
         bshow:false,
+        requireAuth:true
       }
     },
     {
@@ -122,6 +127,7 @@ export default new Router({
         title:'发布历史',
         tshow:true,
         bshow:false,
+        requireAuth:true
       }
     },
     {
@@ -132,6 +138,7 @@ export default new Router({
         title:'发布详情',
         tshow:false,
         bshow:false,
+        requireAuth:true
       }
     },
     {
@@ -142,6 +149,7 @@ export default new Router({
         title:'个人信息',
         tshow:false,
         bshow:false,
+        requireAuth:true
       }
     },
     {
@@ -152,6 +160,7 @@ export default new Router({
         title:'个人中心',
         tshow:true,
         bshow:false,
+        requireAuth:true
       }
     },
     {
@@ -162,6 +171,7 @@ export default new Router({
         title:'修改密码',
         tshow:true,
         bshow:false,
+        requireAuth:true
       }
     },
     {
@@ -172,6 +182,7 @@ export default new Router({
         title:'账户安全',
         tshow:true,
         bshow:false,
+        requireAuth:true
       }
     },
     {
@@ -182,6 +193,7 @@ export default new Router({
         title:'验证身份',
         tshow:true,
         bshow:false,
+        requireAuth:true
       }
     }
   ]

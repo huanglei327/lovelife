@@ -6,7 +6,7 @@
           <div class="h-t-img" @click="leftShow = true">
             <img src="../../assets/images/classification.png">
           </div>
-          <div @click="leftShow = true">分类12</div>
+          <div @click="leftShow = true">分类</div>
         </van-col>
         <van-col span="15" class="h-t-content">
           <div class="h-t-s">
@@ -34,17 +34,12 @@
         <van-swipe-item v-for="(item,index) in imgList" :key="index">
           <img :src="item.name">
         </van-swipe-item>
-        <!-- <div class="custom-indicator" slot="indicator">{{ current + 1 }}/4</div> -->
         <div class="van-swipe__indicators" slot="indicator">
           <div
             :class="current===index?'indicator active':'indicator'"
             v-for="(item,index) in imgList"
             :key="index"
-          >
-            <!-- <div :class="current===index?'active':''"></div> -->
-            <!-- <i  :class=" current===index?'van-swipe__indicator van-swipe__indicator--active':'van-swipe__indicator'" >
-            </i>-->
-          </div>
+          ></div>
         </div>
       </van-swipe>
     </div>
@@ -68,9 +63,29 @@
           :class="index===0 ?'item active':'item'"
           v-for="(item,index) in menuList"
           :key="index"
-        >{{item.name}}</div>
+        >{{item.dicDesc}}</div>
       </div>
       <div style="height:50px;"></div>
+    </van-popup>
+    <van-popup v-model="upShow" style="width:100%;">
+      <div class="up-popup">
+        <div class="up-title">版本更新</div>
+        <div class="up-content">
+          <div class="u1">版本:3.3.6</div>
+          <div class="u1">更新时间:2019-01-17</div>
+          <div class="u1">更新说明:</div>
+          <div class="u2">优化推送消息展示行数问题。请点击更新体验</div>
+        </div>
+        <div class="up-slider">
+          <van-progress :percentage="downList.sliderValue" />
+        </div>
+        <div class="up-btn"  v-if="downList.downBtn">
+           
+            <div id="nextbtn" @click="nextbtn">下次再说</div>
+            <div id="downloadA" @click="downloadA">安装</div>
+          
+        </div>
+      </div>
     </van-popup>
   </div>
 </template>
@@ -101,9 +116,9 @@
       margin: 0 auto;
     }
     img {
-          width: 16px;
-    height: 16px;
-    margin-right: 10px;
+      width: 16px;
+      height: 16px;
+      margin-right: 10px;
     }
   }
 }
@@ -187,6 +202,59 @@
 }
 .menu-overlay {
   background-color: rgba(0, 0, 0, 0);
+}
+.up-popup {
+  width: 60%;
+  margin: 0 auto;
+  background: white;
+  text-align: left;
+  padding: 0 20px;
+  .up-title {
+    font-size: 18px;
+    padding: 5px 0;
+    border-bottom: 1px solid #333;
+  }
+  .up-content {
+    div {
+      font-size: 12px;
+    }
+    .u1 {
+      height: 20px;
+      line-height: 20px;
+    }
+    .u2 {
+      line-height: 20px;
+    }
+  }
+  .up-slider{
+    padding: 10px 0 15px 0;
+    .van-progress{
+      height: 10px;
+    }
+    .van-progress__pivot{
+      right:10px;
+    }
+    .van-slider__bar{
+      background-color:brown;
+    }
+    .van-slider--disabled{
+      opacity:0.9
+    }
+  }
+  .up-btn {
+    display: flex;
+    width: 100%;
+    padding: 10px 0 15px 0;
+    div {
+      flex: 1;
+      border: 1px solid #999;
+      text-align: center;
+      margin: 0 10px 0 0;
+      padding: 3px;
+      font-size: 13px;
+      border-radius: 2px;
+    }
+  }
 }
 </style>
 <script src="./index.js"></script>
