@@ -1,23 +1,26 @@
 <template>
   <div class="main2 bgf5">
-    <div class="m-list">
+    <div class="m-list" v-if="historyList.length>0">
       <div class="m-content" v-for="(item,index) in historyList" :key="index" @click="goDetails(item)">
         <div class="m-left">
-          <img src="../../../assets/sucai/release_history_pic.png">
+          <img :src="item.proImgAddr">
         </div>
         <div class="m-right">
-          <div class="r-1 color45">{{item.title}}</div>
-          <div class="r-2"><img src="../../../assets/images/release_history_select.png"><span class="m-l-5">{{item.type}}</span></div>
+          <div class="r-1 color45">{{item.proName}}</div>
+          <div class="r-2"><img src="../../../assets/images/release_history_select.png"><span class="m-l-5">到店</span></div>
           <div class="r-3">
             <span>免费预约</span>
           </div>
           <div class="r-4">
             <div class="r-4-1">商户</div>
-            <div class="r-4-2">{{item.address}}</div>
+            <div class="r-4-2">{{item.proAddr}}</div>
             <div class="r-4-3">{{item.distance}}</div>
           </div>
         </div>
       </div>
+    </div>
+    <div v-else>
+      暂无发布历史
     </div>
   </div>
 </template>

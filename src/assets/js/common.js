@@ -1,4 +1,10 @@
 
+
+export function applicationUrl(){
+    return `http://slls-img.dsunyun.com`
+}
+
+
 //time1开始时间，time2结束时间
 export function count_time(time1, time2) {
     time1 = Date.parse(new Date(time1));

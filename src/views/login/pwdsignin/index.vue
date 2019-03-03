@@ -16,7 +16,7 @@
     <div class="t-2">
       <div class="t-flex">
         <div class="flex-1">&nbsp;&nbsp;+86&nbsp;请输入您的手机号</div>
-        <div class="flex-img">
+        <div class="flex-img"  @click="delInput()">
           <img src="../../../assets/images/del.png">
         </div>
       </div>
@@ -117,7 +117,6 @@
       font-size: 12px;
       border: 1px solid rgb(195, 195, 195);
       padding: 0 8px;
-      width: 60px;
       border-radius: 5px;
       right: 20px;
       position: absolute;

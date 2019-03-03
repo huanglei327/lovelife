@@ -27,6 +27,9 @@ export default {
     }
   },
   methods: {
+    delInput(){
+      this.status.phoneNo = ''
+   },
     onClickLeft() {
       this.$router.go(-1);
     },
@@ -41,7 +44,7 @@ export default {
       if (!that.$checkVal.checkPhone(that.status.phoneNo)) {
         return
       }
-      if (!that.$checkVal.checkNull(that.status.password,'请输入密码')) {
+      if (!that.$checkVal.checkValueNull(that.status.password,'请输入密码')) {
         return
       }
       const c = res=>{

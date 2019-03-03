@@ -4,7 +4,7 @@ import bj1 from '../../assets/images/bj1.jpg'
 import bj2 from '../../assets/images/bj2.jpg'
 import bj3 from '../../assets/images/bj3.jpg'
 
-import { dictionariesListApi } from '@/utils/httpUtils/api.js'
+import { dictionariesListApi,productHomeListApi,getLocationValueApi } from '@/utils/httpUtils/api.js'
 
 export default {
   data() {
@@ -12,64 +12,19 @@ export default {
       msg: '224324',
       popheight: 60,
       active: 0,
-      leftShow: false,
+      leftShow: true,
       upShow: false,
       downList: {
-        sliderValue: 50,
+        sliderValue: 0,
         size: 0,
         downBtn: true
       },
+      status:{
+        offset:1,
+        limit:20
+      },
       templist: "",
-      menuList: [
-        {
-          name: '最新新闻'
-        },
-        {
-          name: '餐厅娱乐'
-        },
-        {
-          name: '轻松购物'
-        },
-        {
-          name: '轻松购物'
-        },
-        {
-          name: '轻松购物'
-        },
-        {
-          name: '轻松购物'
-        },
-        {
-          name: '轻松购物'
-        },
-        {
-          name: '轻松购物'
-        },
-        {
-          name: '轻松购物'
-        },
-        {
-          name: '轻松购物'
-        },
-        {
-          name: '轻松购物'
-        },
-        {
-          name: '轻松购物'
-        },
-        {
-          name: '轻松购物'
-        },
-        {
-          name: '轻松购物'
-        },
-        {
-          name: '轻松购物'
-        },
-        {
-          name: '轻松购物'
-        },
-      ],
+      menuList: [],
       imgList: [
         {
           id: 1,
@@ -121,16 +76,62 @@ export default {
     const that = this
     that.init()
     window.onscroll = function () {
-      console.log(that.getScrollTop())
       that.popheight = 60 - that.getScrollTop()
     }
     setTimeout(() => {
       this.judgeDown()
+      this.getLocation()
     }, 3000);
   },
   methods: {
     init(){
       this.getMenuList()
+      this.productHomeList()
+    },
+    goHistory(item){
+     
+      this.$router.push({
+        path: '/history',
+        query:{
+          proTypeNo:item.dicNo
+        }
+      })
+    },
+    goDetails(item){
+      this.$router.push({
+        //你需要接受路由的参数再跳转
+        path: '/Details',
+        query:{
+          prdId:item.id
+        }
+      })
+    },
+    productHomeList(){
+      const that = this
+      const c = res =>{
+        if(that.status.offset==1){
+          that.imgList = []
+          that.bxList=[]
+        }
+        //轮播图
+        res.dataObj.advertTop.list.forEach(item => {
+            let imgArr = item.proImgAddr.split(',')
+            item.proImgAddr = imgArr[0]
+            that.imgList.push(item)
+        });
+        //广告产品
+        res.dataObj.commonTop.list.forEach(item => {
+          let imgArr = item.proImgAddr.split(',')
+          item.proImgAddr = imgArr[0]
+          that.bxList.push(item)
+      });
+        console.log(that.bxList)
+      }
+      const param = {
+        offset:that.status.offset,
+        limit:that.status.limit
+      }
+      productHomeListApi(param).then(c)
     },
     getMenuList(){
       const that =this
@@ -155,6 +156,24 @@ export default {
       }
       return scrollTop;
     },
+    getLocation(){
+      document.addEventListener('deviceready', () => {
+        navigator.geolocation.getCurrentPosition((position)=>{
+          // alert('纬度: '          + position.coords.latitude          + '\n' +
+          // '经度: '         + position.coords.longitude         + '\n' +
+          // '海拔: '          + position.coords.altitude          + '\n' +
+          // '水平精度: '          + position.coords.accuracy          + '\n' +
+          // '垂直精度: ' + position.coords.altitudeAccuracy  + '\n' +
+          // '方向: '           + position.coords.heading           + '\n' +
+          // '速度: '             + position.coords.speed             + '\n' +
+          // '时间戳: '         + position.timestamp                + '\n');
+
+        }, (error)=>{
+          // alert('code: '    + error.code    + '\n' +
+          // 'message: ' + error.message + '\n');
+        });
+      });
+    },
     judgeDown() {
       const that = this
       document.addEventListener('deviceready', () => {
@@ -162,7 +181,7 @@ export default {
         // 检测更新
         chcp.fetchUpdate((error, data) => {
           if (error) {
-            alert(JSON.stringify(error))
+            //alert(JSON.stringify(error))
             if (error && error.code == chcp.error.APPLICATION_BUILD_VERSION_TOO_LOW) {
               that.upShow = true
               // var isTrue = window.confirm('有新的包，是否更新')

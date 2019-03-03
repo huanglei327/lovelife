@@ -55,8 +55,15 @@ export function dictionariesListApi(param){
   return post(apiName,param)
 }
 
-//产品列表
+//个人产品列表
 export function productListApi(param){
+  const apiName='/prdInfo/mylist'
+  return post(apiName,param)
+}
+
+
+//首页产品列表
+export function productHomeListApi(param){
   const apiName='/prdInfo/list'
   return post(apiName,param)
 }
@@ -77,4 +84,17 @@ export function saveProductApi(param){
 export function saveFileApi(param){
   const apiName = '/prdInfo/upload'
   return post2(apiName,param)
+}
+
+//退出
+export function ExitApi(param)
+{
+  const apiName = '/memberInfo/logout'
+  return post(apiName,param)
+}
+
+export function getLocationValueApi(param){
+  const apiName = 'https://restapi.amap.com/v3/geocode/regeo?output=json&location=114.119903,22.61149&key=ef011dd089124f523b3f61d76d7efde2&radius=1000&extensions=base'
+  //const apiName = 'https://restapi.amap.com/v3/geocode/regeo?output=json&location='+param+'&key=ef011dd089124f523b3f61d76d7efde2&radius=1000&extensions=base'
+  return get(apiName)
 }

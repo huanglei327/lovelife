@@ -12,7 +12,7 @@
         <ul class="up-img-ul">
           <li>
             <div>
-              <van-uploader :after-read="onRead" accept :disabled="imgdisabled">
+              <van-uploader :after-read="onRead" accept multiple :disabled="imgdisabled">
                 <img src="../../../assets/images/release-add.png" class="img-item">
               </van-uploader>
             </div>
@@ -31,19 +31,36 @@
           <van-icon name="location" class="d-icon"/>
         </div>
         <div>
-          <span>上海</span>
-          <span>嘉定</span>
+          <span>{{status.city}}</span>
+          <span>{{status.district}}</span>
         </div>
       </div>
     </div>
     <div class="pline"></div>
     <div class="list-content">
       <div class="list-input">
+         <van-row>
+          <van-col span="8">时间</van-col>
+          <van-col span="14">
+            <div @click="showTime">
+              <input
+              type="text"
+              disabled
+              v-model="status.proOpenTime"
+              placeholder="请选择时间"
+              class="van-field__control"
+            >
+            </div>
+          </van-col>
+          <van-col span="2">
+            <van-icon name="arrow" class="m-t-2" size="16px"/>
+          </van-col>
+        </van-row>
         <van-row>
           <van-col span="8">价格</van-col>
           <van-col span="14">
             <input
-              type="text"
+              type="number"
               v-model="status.proPrice"
               placeholder="请输入价格"
               class="van-field__control"
@@ -73,13 +90,13 @@
          <van-row>
           <van-col span="8">交易方式</van-col>
           <van-col span="14">
-                <div v-if="status.dealType === 1">
-                  <img src="../../../assets/images/release-pay.png" class="btn-type" @click="protypeClick(1)">
-                  <img src="../../../assets/images/release-self.png" class="btn-type" @click="protypeClick(2)">
+                <div v-if="status.dealType === '19000026'">
+                  <img src="../../../assets/images/release-pay.png" class="btn-type" @click="protypeClick('19000026')">
+                  <img src="../../../assets/images/release-self.png" class="btn-type" @click="protypeClick('19000023')">
                 </div>
                 <div v-else>
-                  <img src="../../../assets/images/release-pay1.png" class="btn-type" @click="protypeClick(1)">
-                  <img src="../../../assets/images/release-self1.png" class="btn-type" @click="protypeClick(2)">
+                  <img src="../../../assets/images/release-pay1.png" class="btn-type" @click="protypeClick('19000026')">
+                  <img src="../../../assets/images/release-self1.png" class="btn-type" @click="protypeClick('19000023')">
               </div>
           </van-col>
           <van-col span="2">
@@ -119,6 +136,15 @@
         :columns="columns"
         @cancel="onCancel"
         @confirm="onConfirm"
+      />
+    </van-popup>
+    <van-popup v-model="timeShow" position="bottom">
+      <van-picker
+        show-toolbar
+        title="时间"
+        :columns="columnsTime"
+        @cancel="onTimeCancel"
+        @confirm="onTimeConfirm"
       />
     </van-popup>
   </div>

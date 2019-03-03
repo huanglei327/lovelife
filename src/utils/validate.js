@@ -11,13 +11,13 @@ export function DateClculate(date) {
     var t = new Date(date);//你已知的时间
     var t_s = t.getTime();//转化为时间戳毫秒数
     t.setTime(t_s - 1000);
-    
+
     var housr = t.getHours()
-    var minutes= t.getMinutes()
+    var minutes = t.getMinutes()
     var second = ("0" + (t.getSeconds())).slice(-2);
     var minutes = ("0" + (t.getMinutes())).slice(-2)
-    
-    return housr + "-" + minutes + "-" + second; 
+
+    return housr + "-" + minutes + "-" + second;
 }
 
 /**
@@ -25,12 +25,11 @@ export function DateClculate(date) {
  * checkList =[{domId:'item_name',msg:'请填写商品类型',valiType:''}]
  */
 export function validateNull(obj, checkList) {
-    console.log(obj)
     let errArr = []
     for (let i = 0; i < checkList.length; i++) {
         switch (checkList[i].valiType) {
             case '':
-                if (!checkNull(obj, checkList[i])) {
+                if (!checkNullA(obj, checkList[i])) {
                     errArr.push(checkList[i])
                 }
                 break;
@@ -55,7 +54,7 @@ export function validateNull(obj, checkList) {
     return errArr.length > 0 ? false : true
 }
 
-function checkNull(obj, domObj) {
+function checkNullA(obj, domObj) {
     if (obj[domObj.domId] === '') {
         obj[domObj.domId + '_err'] = domObj.msg
         return false
@@ -84,42 +83,51 @@ function checkArray(obj, domObj) {
     return true
 }
 
-export function getUserInfo(value){
-   let userInfo = JSON.parse( localStorage.getItem("userInfo") )
-   if(userInfo!=null){
-       return userInfo[value] 
-   }
-   else
-    return ''
-}
-
-export function checkPhone(value,callback){
-  if(value === ''){
-    Toast.fail('请输入手机号');
-    return false
-  }
-  else{
-    var reg=/^1[3456789]\d{9}$/;
-    if(!reg.test(value)){
-      Toast.fail('请输入正确的手机号');
-      return false
+export function getUserInfo(value) {
+    let userInfo = JSON.parse(localStorage.getItem("userInfo"))
+    if (userInfo != null) {
+        return userInfo[value]
     }
-     return true
-  }
+    else
+        return ''
 }
 
-export function checkAuthCode(value){
-  if(value === '' || value.length !==6){
-    Toast.fail('验证码有误');
-    return false
-  }
-  return true
+export function checkPhone(value, callback) {
+    if (value === '') {
+        Toast.fail('请输入手机号');
+        return false
+    }
+    else {
+        var reg = /^1[3456789]\d{9}$/;
+        if (!reg.test(value)) {
+            Toast.fail('请输入正确的手机号');
+            return false
+        }
+        return true
+    }
 }
 
-export function checkNull(value,text){
-  if(value===''){
-    Toast.fail(text);
-    return false  
-  }
-  return true
+export function checkAuthCode(value) {
+    if (value === '' || value.length !== 6) {
+        Toast.fail('验证码有误');
+        return false
+    }
+    return true
+}
+
+export function checkValueNull(value, text) {
+    if (value === '') {
+        Toast.fail(text);
+        return false
+    }
+    return true
+}
+
+export function checkRate(value) {
+    　　var re = /^[0-9]+.?[0-9]*$/; //判断字符串是否为数字 //判断正整数 /^[1-9]+[0-9]*]*$/ 
+    　　if (!re.test(value)) {
+            Toast.fail("请输入正确的数字");
+    　　　　return false;
+    　　}
+    return true
 }

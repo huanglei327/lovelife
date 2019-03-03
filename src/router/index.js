@@ -124,7 +124,7 @@ export default new Router({
       name: 'Publish',
       component: Publish,
       meta:{
-        title:'发布历史',
+        title:'发布',
         tshow:true,
         bshow:false,
         requireAuth:true

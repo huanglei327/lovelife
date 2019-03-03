@@ -16,26 +16,28 @@ axios.defaults.baseURL = `http://120.77.251.176:3080/`
 // http request 拦截器
 axios.interceptors.request.use(
   config => {
-   
+
     const userInfo = JSON.parse(localStorage.getItem("userInfo"))
-    if (userInfo) {
-      config.headers.Authorization = userInfo.Authorization
-      config.headers.slls_login_user = userInfo.slls_login_user
-      //config.headers.
-     // config.headers["Content-Type"]='application/json; charset=utf-8'
-      if(config.url.indexOf('upload')>-1){
-        config.headers = {
-          'Content-Type':'multipart/form-data',
-          'Authorization':userInfo.Authorization,
-          'slls_login_user': userInfo.slls_login_user
+    if (config.method === 'post') {
+      if (userInfo) {
+        config.headers.Authorization = userInfo.Authorization
+        config.headers.slls_login_user = userInfo.slls_login_user
+        //config.headers.
+        // config.headers["Content-Type"]='application/json; charset=utf-8'
+        if (config.url.indexOf('upload') > -1) {
+          config.headers = {
+            'Content-Type': 'multipart/form-data',
+            'Authorization': userInfo.Authorization,
+            'slls_login_user': userInfo.slls_login_user
+          }
         }
       }
+      else {
+        config.headers.Authorization = ''
+        config.headers.slls_login_user = ''
+      }
     }
-    else{
-      config.headers.Authorization =''
-      config.headers.slls_login_user = ''
-    }
-    console.log(config)
+
     Toast.loading({
       mask: true,
       message: '加载中...'

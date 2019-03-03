@@ -115,7 +115,7 @@ export default {
       }
     },
     tabChange(event) {
-      console.log('2243')
+      console.log(event)
       let url = "";
       switch (event) {
         case 0:

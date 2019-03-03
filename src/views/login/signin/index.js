@@ -11,6 +11,9 @@ export default {
       status: {
         phoneNo: '',
         code: ''
+      },
+      authObj:{
+
       }
     }
   },
@@ -24,10 +27,8 @@ export default {
     }
   },
   methods: {
-    inputFoucs(e) {
-      if (this.status.phoneNo.length === 11) {
-
-      }
+    delInput(){
+       this.status.phoneNo = ''
     },
     onClickLeft() {
       this.$router.go(-1);
@@ -51,6 +52,7 @@ export default {
 
       const c = res => {
         if(res.resCode == 1){
+          localStorage.setItem("userInfo",JSON.stringify(res.dataObj))
           this.$common.Skip(this, '/')
         }
         else{
@@ -104,6 +106,8 @@ export default {
                 that.phone.name = '获取验证码'
               }
             }, 1000);
+            //that.authObj = res.dataObj
+            localStorage.setItem("userInfo",JSON.stringify(res.dataObj))
           }
           else {
             that.phone.code = false

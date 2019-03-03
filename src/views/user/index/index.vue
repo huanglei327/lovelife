@@ -1,10 +1,6 @@
 <template>
   <div class="main bgf5">
-    <div class="uhead">
-      <!-- <div class="u-top">
-        <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1546580930154&di=8c897bbb21adb6337759aa66adaf9ce0&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F0117825857a100a801219c778d2554.jpg"/>
-        <div style="color:blue;" @click="goLogin">登陆</div>
-      </div>-->
+    <div class="uhead" v-if="userInfo.Authorization">
       <div class="u-top" @click="goPerSional">
         <img src="../../../assets/images/myhead.png">
       </div>
@@ -12,8 +8,6 @@
         <div class="u-name">上海市嘉定区早教益智远洋中心馆</div>
         <div>
           <div class="u-qd">每日签到>
-
-            <span style="margin-left:20px;" @click="GoSignin">点我登陆</span>
           </div>
         </div>
       </div>

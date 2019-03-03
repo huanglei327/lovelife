@@ -31,8 +31,8 @@
     </div>
     <div class="h-swiper">
       <van-swipe indicator-color="#e33125" :loop="false" @change="onChange">
-        <van-swipe-item v-for="(item,index) in imgList" :key="index">
-          <img :src="item.name">
+        <van-swipe-item v-for="(item,index) in imgList" :key="index" >
+          <img :src="item.proImgAddr" @click="goDetails(item)" v-lazy="item.proImgAddr">
         </van-swipe-item>
         <div class="van-swipe__indicators" slot="indicator">
           <div
@@ -44,14 +44,14 @@
       </van-swipe>
     </div>
     <div class="h-list">
-      <div class="l-content" v-for="(item,index) in bxList" :key="index">
+      <div class="l-content" v-for="(item,index) in bxList" :key="index" @click="goDetails(item)">
         <div class="left">
-          <img :src="item.img">
+          <img :src="item.proImgAddr" v-lazy="item.proImgAddr">
         </div>
         <div class="right">
-          <div class="r-1">{{item.title}}</div>
-          <div class="r-2">{{item.remark}}</div>
-          <div class="r-3">{{item.time}}</div>
+          <div class="r-1">{{item.proName}}</div>
+          <div class="r-2">{{item.proDesc}}</div>
+          <div class="r-3">{{item.createTime}}</div>
         </div>
       </div>
     </div>
@@ -63,6 +63,7 @@
           :class="index===0 ?'item active':'item'"
           v-for="(item,index) in menuList"
           :key="index"
+          @click="goHistory(item)"
         >{{item.dicDesc}}</div>
       </div>
       <div style="height:50px;"></div>
@@ -156,7 +157,7 @@
     display: flex;
     margin-bottom: 20px;
     .left {
-      width: 65%;
+      width: 50%;
       height: 110px;
       margin-left: 10px;
       img {
@@ -165,6 +166,7 @@
       }
     }
     .right {
+      width: 50%;
       margin-left: 10px;
       text-align: left;
       .r-1 {
@@ -176,6 +178,7 @@
       .r-2 {
         color: #9e9e9e;
         height: 55px;
+        overflow: hidden;
       }
       .r-3 {
         color: #9e9e9e;

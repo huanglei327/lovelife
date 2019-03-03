@@ -11,10 +11,14 @@
       </van-cell>
       <van-cell title="账户安全" is-link  @click="goSafety"/>
       <van-cell title="积分中心" is-link />
+      <!-- <van-cell title="清空缓存" is-link  @click="clearLocal"/> -->
     </van-cell-group>
+    <div class="btn-tc" @click="btnExit">
+       退出
+    </div>
   </div>
 </template>
- 
+
 
 <style lang="less">
 .main2 {
@@ -30,6 +34,12 @@
         padding: 3px 5px;
         border-radius: 5px;
         margin-left: 10px;
+  }
+  .btn-tc{
+    margin-top: 20px;
+    background: white;
+    padding: 13px;
+    color: red;
   }
 }
 </style>

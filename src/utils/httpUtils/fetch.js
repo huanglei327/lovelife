@@ -26,6 +26,18 @@ export function post2(apiname, parameters) {
   })
 }
 
+export function getByNoUrl(parameters){
+    return new Promise((resolve, reject) => {
+        axios.get(apiname)
+            .then(res => {
+                resolve(res.data);
+            }).catch(err => {
+                console.log(err);
+                reject(err)
+            })
+    })
+}
+
 
 export function get(apiname) {
     return new Promise((resolve, reject) => {

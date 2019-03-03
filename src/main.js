@@ -51,7 +51,8 @@ import {
   SwipeItem,
   DatetimePicker,
   Slider,
-  Progress
+  Progress,
+  Lazyload 
 } from 'vant'
 
 Vue.use(Button).use(Collapse).use(CollapseItem).use(Cell).use(CellGroup).use(
@@ -60,7 +61,7 @@ Vue.use(Button).use(Collapse).use(CollapseItem).use(Cell).use(CellGroup).use(
   .use(Panel).use(Dialog).use(RadioGroup).use(Radio).use(Checkbox).use(CheckboxGroup)
   .use(Area).use(Popup).use(Search).use(Tab).use(Tabs).use(ImagePreview).use(PullRefresh).use(Rate)
   .use(Badge).use(BadgeGroup).use(Tabbar).use(TabbarItem).use(Swipe).use(SwipeItem).use(DatetimePicker)
-  .use(Slider).use(Progress)
+  .use(Slider).use(Progress).use(Lazyload)
 
 
 Vue.config.productionTip = false

@@ -21,9 +21,14 @@
       </div>
     </div>
     <div class="t-2">
-      <div>&nbsp;&nbsp;请设置密码</div>
+      <div class="t-flex">
+        <div class="flex-1">&nbsp;&nbsp;请设置密码</div>
+        <div class="flex-img" @click="setPwdType">
+          <img :src="pwdImg">
+        </div>
+      </div>
       <div class="t-2-i">
-        <input type="text" maxlength="13" v-model="status.password"   class="van-field__control">
+        <input type="text" maxlength="13" v-model="status.password" id="inputPwd"  class="van-field__control">
       </div>
     </div>
     <div class="div-btn">

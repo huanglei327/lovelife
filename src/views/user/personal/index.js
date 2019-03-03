@@ -1,17 +1,35 @@
 
 import tou from '../../../assets/images/myself.png'
+import { ExitApi } from '@/utils/httpUtils/api.js'
 export default {
-  data(){
+  data() {
     return {
-       tou:tou
+      tou: tou
     }
   },
-  methods:{
-    goMySelf(){
+  methods: {
+    goMySelf() {
       this.$common.Skip(this, '/MySelf')
     },
-    goSafety(){
-      this.$common.Skip(this,'/Safety')
+    goSafety() {
+      this.$common.Skip(this, '/Safety')
+    },
+    clearLocal(){
+      localStorage.clear();
+      this.$common.Skip(this, '/')
+    },
+    btnExit() {
+      const c = res => {
+        console.log(res)
+        if (res.resCode == 1) {
+          localStorage.clear()
+          this.$common.Skip(this, '/')
+        }
+      }
+      const param = {
+
+      }
+      ExitApi(param).then(c)
     }
   }
 }

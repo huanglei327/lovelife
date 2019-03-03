@@ -16,12 +16,12 @@
     <div class="t-2">
        <div class="t-flex">
         <div class="flex-1">&nbsp;&nbsp;+86&nbsp;请输入您的手机号</div>
-        <div class="flex-img">
+        <div class="flex-img" @click="delInput()">
           <img src="../../../assets/images/del.png">
         </div>
       </div>
       <div class="t-2-i">
-        <input type="text" class="van-field__control" v-model="status.phoneNo" @input="inputFoucs" maxlength="11">
+        <input type="text" class="van-field__control" v-model="status.phoneNo"  maxlength="11">
       </div>
     </div>
     <div class="t-2">

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <van-nav-bar title="标题" fixed left-arrow @click-left="onClickLeft" @click-right="onClickRight">
+    <van-nav-bar title="发布详情" fixed left-arrow @click-left="onClickLeft" >
       <template slot="right">
         <div class="right-list">
           <div @click="goEnshrine">
@@ -15,19 +15,19 @@
 
     <div class="main2 bgf5">
       <div class="head-img">
-        <img src="../../../assets/images/product details_pic.png">
+        <img :src="obj.proImgAddr">
       </div>
       <div class="d-list">
-        <div class="menu-title font16">乐智课</div>
+        <div class="menu-title font16">{{obj.proName}}</div>
         <div class="d-content">
           <div class="left">工作时间</div>
-          <div class="right">周一至周日08:00-20:00</div>
+          <div class="right">{{obj.proOpenTime}}</div>
         </div>
         <div class="d-content">
           <div class="left">工作地址</div>
-          <div class="right">上海市嘉定区光明路963号
+          <div class="right">{{obj.proAddr}}
             <br>
-            <span class="remark">(距您步行1120米需要12分钟)</span>
+            <!-- <span class="remark">(距您步行1120米需要12分钟)</span> -->
           </div>
         </div>
         <div class="d-content">
@@ -42,7 +42,7 @@
           <div class="left">课程介绍</div>
           <div
             class="right"
-          >对于宝宝的自信心培养和独立性锻炼，情感与亲子依恋，社会性培养，专注性培养，感觉统合训练，运动企划，音乐启蒙，综合认知八大主题，让宝宝早体验和搜索中学习</div>
+          >{{obj.proDesc}}</div>
         </div>
       </div>
     </div>
@@ -65,6 +65,7 @@
   background: white;
   img {
     width: 100%;
+    height: 260px;
   }
 }
 .d-list {
