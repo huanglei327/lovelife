@@ -30,13 +30,13 @@
       </van-row>
     </div>
     <div class="h-swiper">
-      <van-swipe indicator-color="#e33125" :loop="false" @change="onChange">
+      <van-swipe indicator-color="#e33125" :loop="true" :autoplay="3000" @change="onChange">
         <van-swipe-item v-for="(item,index) in imgList" :key="index" >
           <img :src="item.proImgAddr" @click="goDetails(item)" v-lazy="item.proImgAddr">
         </van-swipe-item>
         <div class="van-swipe__indicators" slot="indicator">
           <div
-            :class="current===index?'indicator active':'indicator'"
+            :class="current === index?'indicator active':'indicator'"
             v-for="(item,index) in imgList"
             :key="index"
           ></div>
@@ -58,12 +58,12 @@
     <div style="height:50px;width:100%;"></div>
     <van-popup v-model="leftShow" position="left" overlay-class="menu-overlay">
       <div :style="{ height: popheight+'px' }"></div>
-      <div class="h-menu">
+      <div class="h-menu" :style="{ height:'calc(100vh - '+ menuHeight +'px)' }">
         <div
-          :class="index===0 ?'item active':'item'"
+          :class="item.dicNo===status.dicNo ?'item active':'item'"
           v-for="(item,index) in menuList"
           :key="index"
-          @click="goHistory(item)"
+          @click="goHomeType(item,index)"
         >{{item.dicDesc}}</div>
       </div>
       <div style="height:50px;"></div>
@@ -161,8 +161,8 @@
       height: 110px;
       margin-left: 10px;
       img {
-        width: 100%;
-        height: 110px;
+        max-width: 100%;
+        max-height: 110px;
       }
     }
     .right {
@@ -190,7 +190,7 @@
 }
 .h-menu {
   width: 100px;
-  height: calc(100vh - 110px);
+  // height: calc(100vh - 110px);
   overflow-x: hidden;
   .item {
     height: 32px;

@@ -4,13 +4,21 @@ import bj1 from '../../assets/images/bj1.jpg'
 import bj2 from '../../assets/images/bj2.jpg'
 import bj3 from '../../assets/images/bj3.jpg'
 
-import { dictionariesListApi,productHomeListApi,getLocationValueApi } from '@/utils/httpUtils/api.js'
+import {
+  dictionariesListApi,
+  productHomeListApi,
+  getLocationValueApi,
+  honeMainApi,
+  getConfigApi
+} from '@/utils/httpUtils/api.js'
+
 
 export default {
   data() {
     return {
       msg: '224324',
       popheight: 60,
+      menuHeight: 110,
       active: 0,
       leftShow: true,
       upShow: false,
@@ -19,128 +27,187 @@ export default {
         size: 0,
         downBtn: true
       },
-      status:{
-        offset:1,
-        limit:20
+      status: {
+        offset: 1,
+        limit: 20,
+        dicNo: ''
       },
       templist: "",
       menuList: [],
       imgList: [
-        {
-          id: 1,
-          name: bj
-        },
-        {
-          id: 2,
-          name: bj1
-        },
-        {
-          id: 3,
-          name: bj2
-        },
-        {
-          id: 4,
-          name: bj3
-        },
+        // {
+        //   id: 1,
+        //   name: bj
+        // },
+        // {
+        //   id: 2,
+        //   name: bj1
+        // },
+        // {
+        //   id: 3,
+        //   name: bj2
+        // },
+        // {
+        //   id: 4,
+        //   name: bj3
+        // },
       ],
       current: 0,
       bxList: [
-        {
-          id: 1,
-          img: bj,
-          title: '涉水险',
-          remark: '全国范围故障车辆免费救援。学的险种配搭',
-          time: '2018-12-05 12:02:12'
-        },
-        {
-          id: 1,
-          img: bj1,
-          title: '涉水险',
-          remark: '全国范围故障车辆免费救援。学的险种配搭',
-          time: '2018-12-05 12:02:12'
-        },
-        {
-          id: 1,
-          img: bj2,
-          title: '涉水险',
-          remark: '全国范围故障车辆免费救援。学的险种配搭',
-          time: '2018-12-05 12:02:12'
-        }
+        // {
+        //   id: 1,
+        //   img: bj,
+        //   title: '涉水险',
+        //   remark: '全国范围故障车辆免费救援。学的险种配搭',
+        //   time: '2018-12-05 12:02:12'
+        // },
+        // {
+        //   id: 1,
+        //   img: bj1,
+        //   title: '涉水险',
+        //   remark: '全国范围故障车辆免费救援。学的险种配搭',
+        //   time: '2018-12-05 12:02:12'
+        // },
+        // {
+        //   id: 1,
+        //   img: bj2,
+        //   title: '涉水险',
+        //   remark: '全国范围故障车辆免费救援。学的险种配搭',
+        //   time: '2018-12-05 12:02:12'
+        // }
       ]
     }
   },
-  created(){
-    
+  created() {
+
   },
   mounted() {
     const that = this
     that.init()
     window.onscroll = function () {
       that.popheight = 60 - that.getScrollTop()
+      that.menuHeight = 110 - (60 - that.popheight)
     }
     setTimeout(() => {
       this.judgeDown()
       this.getLocation()
+      //this.getConfigApi()
     }, 3000);
   },
   methods: {
-    init(){
+    init() {
       this.getMenuList()
       this.productHomeList()
     },
-    goHistory(item){
-     
+    getConfigApi() {
+      document.addEventListener('deviceready', () => {
+        const c = res => {
+          let confirmObj = res
+          alert(JSON.stringify(confirmObj))
+          chcp.getVersionInfo((err, data) => {
+            alert(confirmObj.version_a + '-------' + data.appVersion)
+            alert(confirmObj.release + '-------' + data.currentWebVersion)
+            //如果版本号不一样直接下载更新
+            if (confirmObj.version_a !== data.appVersion) {
+              that.downloadA()
+            }
+            else {
+              //如果不相等 说明当前网页版本有更新
+              if (confirmObj.release !== data.currentWebVersion) {
+                var options = {
+                  "auto-download": true,
+                  "auto-install": true,
+                  'config-file': confirmObj.content_url + '/chcp.json'
+                };
+                let chcp = window.chcp;
+                chcp.configure(options, function (error) {
+                  alert(JSON.stringify(error))
+                  if (error) {
+                  } else {
+                    chcp.fetchUpdate((error, data) => {
+                      alert(1)
+                      alert(JSON.stringify(error))
+                      if (error) {
+                        alert('no update')
+                        //document.getElementById("divis").style.background='blue'
+                      }
+                      else {
+                        //document.getElementById("divis").style.background='green'
+                        alert("update is")
+                      }
+                    });
+                  }
+                });
+              }
+              else {
+                alert("没有更新")
+              }
+            }
+          });
+        }
+        getConfigApi().then(c)
+      });
+    },
+    goHistory(item) {
+
       this.$router.push({
         path: '/history',
-        query:{
-          proTypeNo:item.dicNo
+        query: {
+          proTypeNo: item.dicNo
         }
       })
     },
-    goDetails(item){
+    goDetails(item) {
       this.$router.push({
         //你需要接受路由的参数再跳转
         path: '/Details',
-        query:{
-          prdId:item.id
+        query: {
+          prdId: item.id
         }
       })
     },
-    productHomeList(){
+    goHomeType(item) {
+      this.status.dicNo = item.dicNo
+      this.leftShow = false
+      this.productHomeList()
+    },
+    productHomeList() {
       const that = this
-      const c = res =>{
-        if(that.status.offset==1){
+      const c = res => {
+        if (that.status.offset == 1) {
           that.imgList = []
-          that.bxList=[]
+          that.bxList = []
         }
         //轮播图
-        res.dataObj.advertTop.list.forEach(item => {
-            let imgArr = item.proImgAddr.split(',')
-            item.proImgAddr = imgArr[0]
-            that.imgList.push(item)
+        res.dataObj.paramCarousel.forEach(item => {
+          let imgArr = item.proImgAddr.split(',')
+          item.proImgAddr = imgArr[0]
+          that.imgList.push(item)
         });
         //广告产品
-        res.dataObj.commonTop.list.forEach(item => {
+        res.dataObj.paramTop.forEach(item => {
           let imgArr = item.proImgAddr.split(',')
           item.proImgAddr = imgArr[0]
           that.bxList.push(item)
-      });
+        });
         console.log(that.bxList)
       }
       const param = {
-        offset:that.status.offset,
-        limit:that.status.limit
+        offset: that.status.offset,
+        limit: that.status.limit,
+        dicNo: that.status.dicNo
       }
-      productHomeListApi(param).then(c)
+
+      honeMainApi(param).then(c)
     },
-    getMenuList(){
-      const that =this
-      const c = res=>{
-          console.log(res)
-          that.menuList= res.dataObj
+    getMenuList() {
+      const that = this
+      const c = res => {
+        console.log(res)
+        that.menuList = res.dataObj
       }
       const param = {
-        parentDicNo:'19000002'
+        parentDicNo: '19000002'
       }
       dictionariesListApi(param).then(c)
     },
@@ -156,9 +223,9 @@ export default {
       }
       return scrollTop;
     },
-    getLocation(){
+    getLocation() {
       document.addEventListener('deviceready', () => {
-        navigator.geolocation.getCurrentPosition((position)=>{
+        navigator.geolocation.getCurrentPosition((position) => {
           // alert('纬度: '          + position.coords.latitude          + '\n' +
           // '经度: '         + position.coords.longitude         + '\n' +
           // '海拔: '          + position.coords.altitude          + '\n' +
@@ -168,7 +235,7 @@ export default {
           // '速度: '             + position.coords.speed             + '\n' +
           // '时间戳: '         + position.timestamp                + '\n');
 
-        }, (error)=>{
+        }, (error) => {
           // alert('code: '    + error.code    + '\n' +
           // 'message: ' + error.message + '\n');
         });

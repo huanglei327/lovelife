@@ -72,9 +72,8 @@ Vue.prototype.HOST = '/api'
 //Toast.allowMultiple()
 router.beforeEach((to, from, next) => {
   if (to.meta.requireAuth) {  // 判断该路由是否需要登录权限
-    let userinfo = JSON.parse( localStorage.getItem("userInfo"))
-    console.log(userinfo)
-    if (userinfo &&  userinfo.Authorization) {  // 通过vuex state获取当前的token是否存在
+    let userinfo = JSON.parse(localStorage.getItem("userInfo"))
+    if (userinfo &&  userinfo.Authorization && userinfo.slls_login_user !== '88888888888') {  // 通过vuex state获取当前的token是否存在
       next();
     }
     else {
@@ -85,6 +84,7 @@ router.beforeEach((to, from, next) => {
     }
   }
   else {
+    console.log('222222222222222222222')
     next();
   }
 

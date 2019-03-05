@@ -1,6 +1,6 @@
 
 
-import { get, post,post2 } from '@/utils/httpUtils/fetch.js'
+import { get, post, post2 } from '@/utils/httpUtils/fetch.js'
 
 
 // 注册：
@@ -27,74 +27,84 @@ export function getAuthCodeApi(param) {
 
 //验证码注册
 export function RegisterApi(param) {
-  const apiName ='/memberInfo/register'
+  const apiName = '/memberInfo/register'
   return post(apiName, param)
 }
 
 //使用验证码登陆
-export function LoginApi(param){
-  const apiName =  '/memberInfo/login'
+export function LoginApi(param) {
+  const apiName = '/memberInfo/login'
   return post(apiName, param)
 }
 
 //验证是否注册
-export function validateAccessApi(param){
-  const apiName =  '/memberInfo/validate'
+export function validateAccessApi(param) {
+  const apiName = '/memberInfo/validate'
   return post(apiName, param)
 }
 
 //字典详情
-export function dictionariesApi(param){
+export function dictionariesApi(param) {
   const apiName = '/sysDic/detail'
-  return post(apiName,param)
+  return post(apiName, param)
 }
 
 //字典list
-export function dictionariesListApi(param){
+export function dictionariesListApi(param) {
   const apiName = '/sysDic/list'
-  return post(apiName,param)
+  return post(apiName, param)
 }
 
 //个人产品列表
-export function productListApi(param){
-  const apiName='/prdInfo/mylist'
-  return post(apiName,param)
+export function productListApi(param) {
+  const apiName = '/prdInfo/mylist'
+  return post(apiName, param)
 }
 
 
+//首页接口
+export function honeMainApi(param) {
+  const apiName = '/memberInfo/main'
+  return post(apiName, param)
+}
+
 //首页产品列表
-export function productHomeListApi(param){
-  const apiName='/prdInfo/list'
-  return post(apiName,param)
+export function productHomeListApi(param) {
+  const apiName = '/prdInfo/list'
+  return post(apiName, param)
 }
 
 //产品详情
-export function productDetailsApi(param){
+export function productDetailsApi(param) {
   const apiName = '/prdInfo/detail'
-  return post(apiName,param)
+  return post(apiName, param)
 }
 
 //产品发布
-export function saveProductApi(param){
+export function saveProductApi(param) {
   const apiName = '/prdInfo/issue'
-  return post(apiName,param)
+  return post(apiName, param)
 }
 
- //图片上传
-export function saveFileApi(param){
+//图片上传
+export function saveFileApi(param) {
   const apiName = '/prdInfo/upload'
-  return post2(apiName,param)
+  return post2(apiName, param)
 }
 
 //退出
-export function ExitApi(param)
-{
+export function ExitApi(param) {
   const apiName = '/memberInfo/logout'
-  return post(apiName,param)
+  return post(apiName, param)
 }
 
-export function getLocationValueApi(param){
+export function getLocationValueApi(param) {
   const apiName = 'https://restapi.amap.com/v3/geocode/regeo?output=json&location=114.119903,22.61149&key=ef011dd089124f523b3f61d76d7efde2&radius=1000&extensions=base'
   //const apiName = 'https://restapi.amap.com/v3/geocode/regeo?output=json&location='+param+'&key=ef011dd089124f523b3f61d76d7efde2&radius=1000&extensions=base'
+  return get(apiName)
+}
+
+export function getConfigApi() {
+  const apiName = 'http://dsunyun.com/www/demo.json'
   return get(apiName)
 }

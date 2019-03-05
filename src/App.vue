@@ -86,6 +86,9 @@ export default {
   },
   created() {
     this.tabActive();
+    //恶心操作  存入一个临时用户
+    // let tempUser = {"Authorization":"129e7abf-410a-49bf-9f37-6b1cc690dc00","slls_login_user":"88888888888"}
+    // localStorage.setItem("userInfo",JSON.stringify(tempUser))
   },
   mounted() {},
   computed: {
@@ -148,7 +151,7 @@ export default {
 .main {
   position: relative;
   margin-bottom: 50px;
-  height: calc(100vh - 50px);
+  height: calc(100vh - 60px);
   .van-popup {
     background-color: transparent;
   }

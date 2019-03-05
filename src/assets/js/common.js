@@ -171,6 +171,20 @@ export function Skip(that,url){
   })
 }
 
+export function skipIsHome(that,url){
+    console.log()
+    if(url.indexOf('UserIndex')>-1 || url.indexOf('ReleaseIndex')>-1 || url==='/'){
+
+    }
+    else{
+       url = '/'
+    }
+    that.$router.push({
+        //你需要接受路由的参数再跳转
+        path: url
+    })
+}
+
 export function getMyDateByStr(str, type) {
     var oDate = new Date(str)
     oYear = oDate.getFullYear()

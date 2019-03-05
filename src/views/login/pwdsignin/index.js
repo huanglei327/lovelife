@@ -11,6 +11,7 @@ export default {
       clientHeight: document.documentElement.clientHeight,
       pwdImg: zyImg,
       pwdIsTtrue: false,   //false 睁眼  true闭眼
+      redirect:'',
       status: {
         phoneNo: '',
         password: ''
@@ -25,6 +26,7 @@ export default {
         document.getElementById("wxlogin").style.display = "block";
       }
     }
+    this.redirect = this.$route.query.redirect
   },
   methods: {
     delInput(){
@@ -50,7 +52,12 @@ export default {
       const c = res=>{
         if(res.resCode == 1){
           localStorage.setItem("userInfo",JSON.stringify(res.dataObj))
-          this.$common.Skip(this, '/')
+          // if(that.redirect!==''){
+          //   this.$common.Skip(this, that.redirect)
+          // }
+          // else
+          //   this.$common.Skip(this, '/')
+          that.$common.skipIsHome(this,that.redirect)
         }
         else{
           that.$toast.fail('登陆失败,'+res.errorMsg)
