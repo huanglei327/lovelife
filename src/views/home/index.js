@@ -9,7 +9,8 @@ import {
   productHomeListApi,
   getLocationValueApi,
   honeMainApi,
-  getConfigApi
+  getConfigApi,
+  LoginApi
 } from '@/utils/httpUtils/api.js'
 
 
@@ -89,9 +90,9 @@ export default {
       that.menuHeight = 110 - (60 - that.popheight)
     }
     setTimeout(() => {
-      this.judgeDown()
+      //this.judgeDown()
       this.getLocation()
-      //this.getConfigApi()
+      this.getConfigApi()
     }, 3000);
   },
   methods: {
@@ -99,17 +100,27 @@ export default {
       this.getMenuList()
       this.productHomeList()
     },
+    pwdSignin(){
+      const c = res=>{
+        if(res.resCode == 1)
+          localStorage.setItem("userInfo",JSON.stringify(res.dataObj))
+      }
+      const param = {
+        loginAcct: '88888888888',
+        authCode: '',
+        password: 'sz19@pig)!' //用户登陆
+      }
+      LoginApi(param).then(c)
+    },
     getConfigApi() {
+      const that =this 
       document.addEventListener('deviceready', () => {
         const c = res => {
           let confirmObj = res
-          alert(JSON.stringify(confirmObj))
           chcp.getVersionInfo((err, data) => {
-            alert(confirmObj.version_a + '-------' + data.appVersion)
-            alert(confirmObj.release + '-------' + data.currentWebVersion)
             //如果版本号不一样直接下载更新
             if (confirmObj.version_a !== data.appVersion) {
-              that.downloadA()
+              that.upShow = true
             }
             else {
               //如果不相等 说明当前网页版本有更新
@@ -121,26 +132,18 @@ export default {
                 };
                 let chcp = window.chcp;
                 chcp.configure(options, function (error) {
-                  alert(JSON.stringify(error))
                   if (error) {
                   } else {
                     chcp.fetchUpdate((error, data) => {
-                      alert(1)
-                      alert(JSON.stringify(error))
                       if (error) {
-                        alert('no update')
-                        //document.getElementById("divis").style.background='blue'
+                        //alert('no update')
                       }
                       else {
-                        //document.getElementById("divis").style.background='green'
-                        alert("update is")
+                        //alert("update is")
                       }
                     });
                   }
                 });
-              }
-              else {
-                alert("没有更新")
               }
             }
           });

@@ -19,7 +19,11 @@ axios.interceptors.request.use(
 
     const userInfo = JSON.parse(localStorage.getItem("userInfo"))
     if (config.method === 'post') {
-      if (userInfo) {
+      Toast.loading({
+        mask: true,
+        message: '加载中...'
+      });
+      if (userInfo && config.url.indexOf('memberInfo/login') <= -1) {
         config.headers.Authorization = userInfo.Authorization
         config.headers.slls_login_user = userInfo.slls_login_user
         //config.headers.
@@ -37,11 +41,6 @@ axios.interceptors.request.use(
         config.headers.slls_login_user = ''
       }
     }
-
-    Toast.loading({
-      mask: true,
-      message: '加载中...'
-    });
     return config;
   },
   err => {
@@ -53,12 +52,6 @@ axios.interceptors.request.use(
 axios.interceptors.response.use(
   response => {
     Toast.clear()
-    console.log(response)
-    console.log('-----------------')
-    // if (response.data.resCode !== 1) {
-    //   Toast.fail(response.data.errorMsg);
-    //   return
-    // }
     return response;
   },
   err => {

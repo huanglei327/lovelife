@@ -93,18 +93,19 @@ export function getUserInfo(value) {
 }
 
 export function checkPhone(value, callback) {
-    if (value === '') {
-        Toast.fail('请输入手机号');
-        return false
-    }
-    else {
-        var reg = /^1[3456789]\d{9}$/;
-        if (!reg.test(value)) {
-            Toast.fail('请输入正确的手机号');
-            return false
-        }
-        return true
-    }
+    return true
+    // if (value === '') {
+    //     Toast.fail('请输入手机号');
+    //     return false
+    // }
+    // else {
+    //     var reg = /^1[3456789]\d{9}$/;
+    //     if (!reg.test(value)) {
+    //         Toast.fail('请输入正确的手机号');
+    //         return false
+    //     }
+    //     return true
+    // }
 }
 
 export function checkAuthCode(value) {

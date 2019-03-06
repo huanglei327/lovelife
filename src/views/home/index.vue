@@ -68,7 +68,7 @@
       </div>
       <div style="height:50px;"></div>
     </van-popup>
-    <van-popup v-model="upShow" style="width:100%;">
+    <van-popup v-model="upShow" style="width:100%;" :close-on-click-overlay="false">
       <div class="up-popup">
         <div class="up-title">版本更新</div>
         <div class="up-content">

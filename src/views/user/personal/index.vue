@@ -13,9 +13,9 @@
       <van-cell title="积分中心" is-link />
       <!-- <van-cell title="清空缓存" is-link  @click="clearLocal"/> -->
     </van-cell-group>
-    <div class="btn-tc" @click="btnExit">
+    <!-- <div class="btn-tc" @click="btnExit">
        退出
-    </div>
+    </div> -->
   </div>
 </template>
 

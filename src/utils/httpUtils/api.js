@@ -99,12 +99,12 @@ export function ExitApi(param) {
 }
 
 export function getLocationValueApi(param) {
-  const apiName = 'https://restapi.amap.com/v3/geocode/regeo?output=json&location=114.119903,22.61149&key=ef011dd089124f523b3f61d76d7efde2&radius=1000&extensions=base'
-  //const apiName = 'https://restapi.amap.com/v3/geocode/regeo?output=json&location='+param+'&key=ef011dd089124f523b3f61d76d7efde2&radius=1000&extensions=base'
+  //const apiName = 'https://restapi.amap.com/v3/geocode/regeo?output=json&location=114.119903,22.61149&key=ef011dd089124f523b3f61d76d7efde2&radius=1000&extensions=base'
+  const apiName = 'https://restapi.amap.com/v3/geocode/regeo?output=json&location='+param+'&key=ef011dd089124f523b3f61d76d7efde2&radius=1000&extensions=base'
   return get(apiName)
 }
 
 export function getConfigApi() {
-  const apiName = 'http://dsunyun.com/www/demo.json'
+  const apiName = 'http://dsunyun.com/www/chcp.json'
   return get(apiName)
 }
