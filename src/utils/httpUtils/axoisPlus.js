@@ -16,9 +16,12 @@ axios.defaults.baseURL = `http://120.77.251.176:3080/`
 // http request 拦截器
 axios.interceptors.request.use(
   config => {
-
     const userInfo = JSON.parse(localStorage.getItem("userInfo"))
     if (config.method === 'post') {
+      Toast.loading({
+        mask: true,
+        message: '加载中...'
+      });
       if (userInfo) {
         config.headers.Authorization = userInfo.Authorization
         config.headers.slls_login_user = userInfo.slls_login_user
@@ -37,15 +40,9 @@ axios.interceptors.request.use(
         config.headers.slls_login_user = ''
       }
     }
-
-    Toast.loading({
-      mask: true,
-      message: '加载中...'
-    });
     return config;
   },
   err => {
-
     return Promise.reject(err);
   });
 
@@ -53,12 +50,6 @@ axios.interceptors.request.use(
 axios.interceptors.response.use(
   response => {
     Toast.clear()
-    console.log(response)
-    console.log('-----------------')
-    // if (response.data.resCode !== 1) {
-    //   Toast.fail(response.data.errorMsg);
-    //   return
-    // }
     return response;
   },
   err => {
@@ -88,7 +79,6 @@ axios.interceptors.response.use(
             duration: 5000
           });
           break
-
         case 404:
           Toast.fail({
             message: `请求地址出错 ${err.response.config.url}`,

@@ -68,23 +68,19 @@
       </div>
       <div style="height:50px;"></div>
     </van-popup>
-    <van-popup v-model="upShow" style="width:100%;">
+    <van-popup v-model="upShow" style="width:100%;" :close-on-click-overlay="false">
       <div class="up-popup">
         <div class="up-title">版本更新</div>
         <div class="up-content">
-          <div class="u1">版本:3.3.6</div>
-          <div class="u1">更新时间:2019-01-17</div>
-          <div class="u1">更新说明:</div>
-          <div class="u2">优化推送消息展示行数问题。请点击更新体验</div>
+          <div class="u1">版本:{{configObj.version_a}}</div>
+          <div class="u1">更新时间:{{configObj.release}}</div>
         </div>
         <div class="up-slider">
           <van-progress :percentage="downList.sliderValue" />
         </div>
         <div class="up-btn"  v-if="downList.downBtn">
-           
             <div id="nextbtn" @click="nextbtn">下次再说</div>
             <div id="downloadA" @click="downloadA">安装</div>
-          
         </div>
       </div>
     </van-popup>
@@ -212,6 +208,7 @@
   background: white;
   text-align: left;
   padding: 0 20px;
+  background-image: url('../../assets/images/upgrade.png');
   .up-title {
     font-size: 18px;
     padding: 5px 0;

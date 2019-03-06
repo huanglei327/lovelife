@@ -20,7 +20,7 @@ export default {
       popheight: 60,
       menuHeight: 110,
       active: 0,
-      leftShow: true,
+      leftShow: false,
       upShow: false,
       downList: {
         sliderValue: 0,
@@ -32,6 +32,11 @@ export default {
         limit: 20,
         dicNo: ''
       },
+      versions:{
+        version:'',
+        time:''
+      },
+      configObj:{},
       templist: "",
       menuList: [],
       imgList: [
@@ -89,9 +94,9 @@ export default {
       that.menuHeight = 110 - (60 - that.popheight)
     }
     setTimeout(() => {
-      this.judgeDown()
+      //this.judgeDown()
       this.getLocation()
-      //this.getConfigApi()
+      this.getConfigApi()
     }, 3000);
   },
   methods: {
@@ -100,16 +105,15 @@ export default {
       this.productHomeList()
     },
     getConfigApi() {
+      const that =this
       document.addEventListener('deviceready', () => {
         const c = res => {
           let confirmObj = res
-          alert(JSON.stringify(confirmObj))
+          that.configObj = res
           chcp.getVersionInfo((err, data) => {
-            alert(confirmObj.version_a + '-------' + data.appVersion)
-            alert(confirmObj.release + '-------' + data.currentWebVersion)
             //如果版本号不一样直接下载更新
             if (confirmObj.version_a !== data.appVersion) {
-              that.downloadA()
+              that.upShow = true
             }
             else {
               //如果不相等 说明当前网页版本有更新
@@ -121,26 +125,18 @@ export default {
                 };
                 let chcp = window.chcp;
                 chcp.configure(options, function (error) {
-                  alert(JSON.stringify(error))
                   if (error) {
                   } else {
                     chcp.fetchUpdate((error, data) => {
-                      alert(1)
-                      alert(JSON.stringify(error))
                       if (error) {
                         alert('no update')
-                        //document.getElementById("divis").style.background='blue'
                       }
                       else {
-                        //document.getElementById("divis").style.background='green'
                         alert("update is")
                       }
                     });
                   }
                 });
-              }
-              else {
-                alert("没有更新")
               }
             }
           });
@@ -149,7 +145,6 @@ export default {
       });
     },
     goHistory(item) {
-
       this.$router.push({
         path: '/history',
         query: {
@@ -251,12 +246,6 @@ export default {
             //alert(JSON.stringify(error))
             if (error && error.code == chcp.error.APPLICATION_BUILD_VERSION_TOO_LOW) {
               that.upShow = true
-              // var isTrue = window.confirm('有新的包，是否更新')
-              // if (isTrue) {
-              //   that.downloadA()
-              // } else {
-              //   that.upShow = false
-              // }
             }
           }
           // 服务器版本信息
@@ -277,6 +266,7 @@ export default {
     downloadA() {
       const that = this
       that.downList.downBtn = false
+      alert('downloadA')
       var fileTransfer = new FileTransfer();
       fileTransfer.onprogress = function (e) {
         if (e.lengthComputable) {
