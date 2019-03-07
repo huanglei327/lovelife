@@ -1,5 +1,5 @@
 <template>
-  <div class="main m-t-10" id="main">
+  <div>
     <div class="h-top">
       <van-row>
         <van-col span="3" class="h-t-content c-84">
@@ -29,61 +29,64 @@
         </van-col>
       </van-row>
     </div>
-    <div class="h-swiper">
-      <van-swipe indicator-color="#e33125" :loop="true" :autoplay="3000" @change="onChange">
-        <van-swipe-item v-for="(item,index) in imgList" :key="index" >
-          <img :src="item.proImgAddr" @click="goDetails(item)" v-lazy="item.proImgAddr">
-        </van-swipe-item>
-        <div class="van-swipe__indicators" slot="indicator">
+    <div class="main" id="main">
+      <div style="width:100%;height:50px;"></div>
+      <div class="h-swiper">
+        <van-swipe indicator-color="#e33125" :loop="true" :autoplay="3000" @change="onChange">
+          <van-swipe-item v-for="(item,index) in imgList" :key="index">
+            <img :src="item.proImgAddr" @click="goDetails(item)" v-lazy="item.proImgAddr">
+          </van-swipe-item>
+          <div class="van-swipe__indicators" slot="indicator">
+            <div
+              :class="current === index?'indicator active':'indicator'"
+              v-for="(item,index) in imgList"
+              :key="index"
+            ></div>
+          </div>
+        </van-swipe>
+      </div>
+      <div class="h-list">
+        <div class="l-content" v-for="(item,index) in bxList" :key="index" @click="goDetails(item)">
+          <div class="left">
+            <img :src="item.proImgAddr" v-lazy="item.proImgAddr">
+          </div>
+          <div class="right">
+            <div class="r-1">{{item.proName}}</div>
+            <div class="r-2">{{item.proDesc}}</div>
+            <div class="r-3">{{item.createTime}}</div>
+          </div>
+        </div>
+      </div>
+      <div style="height:50px;width:100%;"></div>
+      <van-popup v-model="leftShow" position="left" overlay-class="menu-overlay">
+        <div :style="{ height: popheight+'px' }"></div>
+        <div class="h-menu" :style="{ height:'calc(100vh - '+ menuHeight +'px)' }">
           <div
-            :class="current === index?'indicator active':'indicator'"
-            v-for="(item,index) in imgList"
+            :class="item.dicNo === status.dicNo ?'item active':'item'"
+            v-for="(item,index) in menuList"
             :key="index"
-          ></div>
+            @click="goHomeType(item,index)"
+          >{{item.dicDesc}}</div>
         </div>
-      </van-swipe>
-    </div>
-    <div class="h-list">
-      <div class="l-content" v-for="(item,index) in bxList" :key="index" @click="goDetails(item)">
-        <div class="left">
-          <img :src="item.proImgAddr" v-lazy="item.proImgAddr">
-        </div>
-        <div class="right">
-          <div class="r-1">{{item.proName}}</div>
-          <div class="r-2">{{item.proDesc}}</div>
-          <div class="r-3">{{item.createTime}}</div>
-        </div>
-      </div>
-    </div>
-    <div style="height:50px;width:100%;"></div>
-    <van-popup v-model="leftShow" position="left" overlay-class="menu-overlay">
-      <div :style="{ height: popheight+'px' }"></div>
-      <div class="h-menu" :style="{ height:'calc(100vh - '+ menuHeight +'px)' }">
-        <div
-          :class="item.dicNo===status.dicNo ?'item active':'item'"
-          v-for="(item,index) in menuList"
-          :key="index"
-          @click="goHomeType(item,index)"
-        >{{item.dicDesc}}</div>
-      </div>
-      <div style="height:50px;"></div>
-    </van-popup>
-    <van-popup v-model="upShow" style="width:100%;" :close-on-click-overlay="false">
-      <div class="up-popup">
-        <div class="up-title">版本更新</div>
-        <div class="up-content">
-          <div class="u1">版本:{{configObj.version_a}}</div>
-          <div class="u1">更新时间:{{configObj.release}}</div>
-        </div>
-        <div class="up-slider">
-          <van-progress :percentage="downList.sliderValue" />
-        </div>
-        <div class="up-btn"  v-if="downList.downBtn">
+        <div style="height:50px;"></div>
+      </van-popup>
+      <van-popup v-model="upShow" style="width:100%;" :close-on-click-overlay="false">
+        <div class="up-popup">
+          <div class="up-title"></div>
+          <div class="up-content">
+            <div class="u1">版本:{{configObj.version_a}}</div>
+            <div class="u1">更新时间:{{configObj.release}}</div>
+          </div>
+          <div class="up-slider">
+            <van-progress :percentage="downList.sliderValue"/>
+          </div>
+          <div class="up-btn" v-if="downList.downBtn">
             <div id="nextbtn" @click="nextbtn">下次再说</div>
             <div id="downloadA" @click="downloadA">安装</div>
+          </div>
         </div>
-      </div>
-    </van-popup>
+      </van-popup>
+    </div>
   </div>
 </template>
 
@@ -118,6 +121,14 @@
       margin-right: 10px;
     }
   }
+}
+.h-top {
+    height: 50px;
+    position: fixed;
+    z-index: 99;
+    width: 100%;
+    background: white;
+    padding-top: 10px;
 }
 .h-swiper {
   margin-top: 8px;
@@ -208,11 +219,11 @@
   background: white;
   text-align: left;
   padding: 0 20px;
-  background-image: url('../../assets/images/upgrade.png');
+  background: url("../../assets/images/upgrade.png") no-repeat;
+  background-size: cover;
   .up-title {
-    font-size: 18px;
-    padding: 5px 0;
-    border-bottom: 1px solid #333;
+    width: 100%;
+    height: 160px;
   }
   .up-content {
     div {
@@ -226,19 +237,19 @@
       line-height: 20px;
     }
   }
-  .up-slider{
+  .up-slider {
     padding: 10px 0 15px 0;
-    .van-progress{
+    .van-progress {
       height: 10px;
     }
-    .van-progress__pivot{
-      right:10px;
+    .van-progress__pivot {
+      right: 10px;
     }
-    .van-slider__bar{
-      background-color:brown;
+    .van-slider__bar {
+      background-color: brown;
     }
-    .van-slider--disabled{
-      opacity:0.9
+    .van-slider--disabled {
+      opacity: 0.9;
     }
   }
   .up-btn {

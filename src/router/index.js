@@ -42,7 +42,7 @@ export default new Router({
         title:'首页',
         tshow:false,
         bshow:true,
-        requireAuth:true
+        requireAuth:false
       }
     },
     {
@@ -53,7 +53,7 @@ export default new Router({
         title:'首页',
         tshow:false,
         bshow:true,
-        requireAuth:true
+        requireAuth:false
       }
     },
     {

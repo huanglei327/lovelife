@@ -52,7 +52,7 @@ import {
   DatetimePicker,
   Slider,
   Progress,
-  Lazyload 
+  Lazyload
 } from 'vant'
 
 Vue.use(Button).use(Collapse).use(CollapseItem).use(Cell).use(CellGroup).use(
@@ -71,9 +71,9 @@ Vue.prototype.$TiXingStatus = false
 Vue.prototype.HOST = '/api'
 //Toast.allowMultiple()
 router.beforeEach((to, from, next) => {
+  let userinfo = JSON.parse(localStorage.getItem("userInfo"))
   if (to.meta.requireAuth) {  // 判断该路由是否需要登录权限
-    let userinfo = JSON.parse(localStorage.getItem("userInfo"))
-    if (userinfo &&  userinfo.Authorization && userinfo.slls_login_user !== '88888888888') {  // 通过vuex state获取当前的token是否存在
+    if (userinfo && userinfo.Authorization && userinfo.slls_login_user !== '88888888888') {  // 通过vuex state获取当前的token是否存在
       next();
     }
     else {
@@ -84,7 +84,11 @@ router.beforeEach((to, from, next) => {
     }
   }
   else {
-    console.log('222222222222222222222')
+    //恶心操作  存入一个临时用户
+    if (!userinfo) {
+      let tempUser = {"Authorization":"8794505d-c32a-4961-99ed-2e0805141064","slls_login_user":"88888888888"}
+      localStorage.setItem("userInfo", JSON.stringify(tempUser))
+    }
     next();
   }
 

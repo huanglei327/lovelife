@@ -22,7 +22,7 @@ axios.interceptors.request.use(
         mask: true,
         message: '加载中...'
       });
-      if (userInfo) {
+      if (userInfo && config.url.indexOf('memberInfo/login') <= -1) {
         config.headers.Authorization = userInfo.Authorization
         config.headers.slls_login_user = userInfo.slls_login_user
         //config.headers.

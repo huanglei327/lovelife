@@ -9,7 +9,8 @@ import {
   productHomeListApi,
   getLocationValueApi,
   honeMainApi,
-  getConfigApi
+  getConfigApi,
+  LoginApi
 } from '@/utils/httpUtils/api.js'
 
 
@@ -90,8 +91,8 @@ export default {
     const that = this
     that.init()
     window.onscroll = function () {
-      that.popheight = 60 - that.getScrollTop()
-      that.menuHeight = 110 - (60 - that.popheight)
+      // that.popheight = 60 - that.getScrollTop()
+      // that.menuHeight = 110 - (60 - that.popheight)
     }
     setTimeout(() => {
       //this.judgeDown()
@@ -104,12 +105,24 @@ export default {
       this.getMenuList()
       this.productHomeList()
     },
+    pwdSignin(){
+      const c = res=>{
+        if(res.resCode == 1)
+          localStorage.setItem("userInfo",JSON.stringify(res.dataObj))
+      }
+      const param = {
+        loginAcct: '88888888888',
+        authCode: '',
+        password: 'sz19@pig)!' //用户登陆
+      }
+      LoginApi(param).then(c)
+    },
     getConfigApi() {
       const that =this
       document.addEventListener('deviceready', () => {
         const c = res => {
           let confirmObj = res
-          that.configObj = res
+          that.configObj = res 
           chcp.getVersionInfo((err, data) => {
             //如果版本号不一样直接下载更新
             if (confirmObj.version_a !== data.appVersion) {
@@ -129,10 +142,10 @@ export default {
                   } else {
                     chcp.fetchUpdate((error, data) => {
                       if (error) {
-                        alert('no update')
+                        //alert('no update')
                       }
                       else {
-                        alert("update is")
+                        //alert("update is")
                       }
                     });
                   }
