@@ -1,6 +1,37 @@
 <template>
   <div class="main2 bgf5">
-    <div class="m-list" v-if="historyList.length>0">
+    <van-list
+        v-model="loading"
+        :finished="finished"
+        finished-text="没有更多了"
+        @load="onLoad"
+      >
+        <!-- <van-cell
+          v-for="item in list"
+          :key="item"
+          :title="item"
+        /> -->
+        <div class="m-list" v-if="historyList.length>0">
+      <div class="m-content" v-for="(item,index) in historyList" :key="index" @click="goDetails(item)">
+        <div class="m-left">
+          <img :src="item.proImgAddr">
+        </div>
+        <div class="m-right">
+          <div class="r-1 color45">{{item.proName}}</div>
+          <div class="r-2"><img src="../../../assets/images/release_history_select.png"><span class="m-l-5">到店</span></div>
+          <div class="r-3">
+            <span>免费预约</span>
+          </div>
+          <div class="r-4">
+            <div class="r-4-1">商户</div>
+            <div class="r-4-2">{{item.proAddr}}</div>
+            <div class="r-4-3">{{item.distance}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+      </van-list>
+    <!-- <div class="m-list" v-if="historyList.length>0">
       <div class="m-content" v-for="(item,index) in historyList" :key="index" @click="goDetails(item)">
         <div class="m-left">
           <img :src="item.proImgAddr">
@@ -21,7 +52,7 @@
     </div>
     <div v-else>
       暂无发布历史
-    </div>
+    </div> -->
   </div>
 </template>
  

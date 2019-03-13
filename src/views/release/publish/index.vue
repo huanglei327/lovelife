@@ -2,10 +2,10 @@
   <div class="main2 bgf5">
     <div class="bgwhite">
       <div class="d-input b-t-f5">
-        <input type="text" placeholder="标题  请描述内容" v-model="status.proName" maxlength="8" class="van-field__control">
+        <input type="text" placeholder="标题" v-model="status.proName" maxlength="8" class="van-field__control">
       </div>
       <div class="d-input">
-        <textarea placeholder="描述一下发布产品详情" maxlength="100" v-model="status.proDesc" rows="1" class="van-field__control textheight"></textarea>
+        <textarea placeholder="服务介绍" maxlength="100" v-model="status.proDesc" rows="1" class="van-field__control textheight"></textarea>
         
       </div>
       <div class="img-list">
@@ -27,9 +27,9 @@
         </ul>
       </div>
       <div class="d-localtion">
-        <div>
+        <!-- <div>
           <van-icon name="location" class="d-icon"/>
-        </div>
+        </div> -->
         <div>
           <span>{{status.city}}</span>
           <span>{{status.district}}</span>
@@ -39,7 +39,7 @@
     <div class="pline"></div>
     <div class="list-content">
       <div class="list-input">
-         <van-row>
+         <!-- <van-row>
           <van-col span="8">时间</van-col>
           <van-col span="14">
             <div @click="showTime">
@@ -55,8 +55,8 @@
           <van-col span="2">
             <van-icon name="arrow" class="m-t-2" size="16px"/>
           </van-col>
-        </van-row>
-        <van-row>
+        </van-row> -->
+        <!-- <van-row>
           <van-col span="8">价格</van-col>
           <van-col span="14">
             <input
@@ -69,8 +69,8 @@
           <van-col span="2">
             <van-icon name="arrow" class="m-t-2" size="16px"/>
           </van-col>
-        </van-row>
-        <van-row>
+        </van-row> -->
+         <van-row>
           <van-col span="8">分类</van-col>
           <van-col span="14" >
             <div @click="showMenu">
@@ -87,6 +87,49 @@
             <van-icon name="arrow" class="m-t-2" size="16px"/>
           </van-col>
         </van-row>
+        <van-row>
+          <van-col span="8">最新优惠</van-col>
+          <van-col span="14">
+            <input
+              type="text"
+              v-model="status.loveDiscounts"
+              placeholder="请输入最新优惠"
+              class="van-field__control"
+            >
+          </van-col>
+          <van-col span="2">
+            <van-icon name="arrow" class="m-t-2" size="16px"/>
+          </van-col>
+        </van-row>
+        <van-row>
+          <van-col span="8">地址</van-col>
+          <van-col span="14">
+            <input
+              type="text"
+              v-model="status.proAddr"
+              placeholder="请输入地址"
+              class="van-field__control"
+            >
+          </van-col>
+          <van-col span="2">
+            <van-icon name="arrow" class="m-t-2" size="16px"/>
+          </van-col>
+        </van-row>
+          <van-row>
+          <van-col span="8">电话</van-col>
+          <van-col span="14">
+            <input
+              type="text"
+              v-model="status.mobile"
+              placeholder="请输入电话"
+              class="van-field__control"
+            >
+          </van-col>
+          <van-col span="2">
+            <van-icon name="arrow" class="m-t-2" size="16px"/>
+          </van-col>
+        </van-row>
+       
          <van-row>
           <van-col span="8">交易方式</van-col>
           <van-col span="14">

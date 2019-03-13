@@ -28,6 +28,12 @@ import UpPwd  from '../views/user/uppwd/index.vue'
 import Safety  from '../views/user/safety/index.vue'
 //验证身份
 import authentication from '../views/user/authentication/index.vue'
+//朋友圈首页
+import friendCircleIndex from '../views/friendcircle/index/index.vue'
+//人脉首页
+import voiceIndex from '../views/voice/index/index.vue'
+//视频首页
+import videoIndex from '../views/video/index/index.vue'
 
 Vue.use(Router)
 
@@ -95,6 +101,39 @@ export default new Router({
         title:'手机号注册',
         tshow:true,
         bshow:false,
+      }
+    },
+    {
+      path: '/friendCircleIndex',
+      name: 'friendCircleIndex',
+      component: friendCircleIndex,
+      meta:{
+        title:'朋友圈',
+        tshow:false,
+        bshow:true,
+        requireAuth:true
+      }
+    },
+    {
+      path: '/videoIndex',
+      name: 'videoIndex',
+      component: videoIndex,
+      meta:{
+        title:'视频',
+        tshow:false,
+        bshow:true,
+        requireAuth:true
+      }
+    },
+    {
+      path: '/voiceIndex',
+      name: 'voiceIndex',
+      component: voiceIndex,
+      meta:{
+        title:'语音',
+        tshow:false,
+        bshow:true,
+        requireAuth:true
       }
     },
     {

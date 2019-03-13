@@ -19,10 +19,10 @@
       </div>
       <div class="d-list">
         <div class="menu-title font16">{{obj.proName}}</div>
-        <div class="d-content">
+        <!-- <div class="d-content">
           <div class="left">工作时间</div>
           <div class="right">{{obj.proOpenTime}}</div>
-        </div>
+        </div> -->
         <div class="d-content">
           <div class="left">工作地址</div>
           <div class="right">{{obj.proAddr}}
@@ -32,18 +32,31 @@
         </div>
         <div class="d-content">
           <div class="left">联系电话</div>
-          <div class="right"> 18825205555</div>
+          <div class="right"> {{obj.mobile}}</div>
         </div>
       </div>
       <div class="pline"></div>
       <div class="d-list">
-        <div class="menu-title font16">课程介绍</div>
+        <div class="menu-title font16">最新优惠</div>
         <div class="d-content">
-          <div class="left">课程介绍</div>
+          <div class="left">最新优惠</div>
+          <div
+            class="right"
+          >{{obj.loveDisCounts}}</div>
+        </div>
+      </div>
+      <div class="d-list">
+        <div class="menu-title font16">服务介绍</div>
+        <div class="d-content">
+          <div class="left">服务介绍</div>
           <div
             class="right"
           >{{obj.proDesc}}</div>
         </div>
+      </div>
+      
+      <div class="d-advertising">
+        <!-- <img src="../../../assets/images/advertising.jpg" height="100"/> -->
       </div>
     </div>
   </div>
@@ -67,6 +80,12 @@
     width: 100%;
     height: 260px;
   }
+}
+.d-advertising{
+  width: 100%;
+  height: 180px;
+  background: url(../../../assets/images/advertising.jpg) no-repeat;
+  background-size: cover;    
 }
 .d-list {
   text-align: left;

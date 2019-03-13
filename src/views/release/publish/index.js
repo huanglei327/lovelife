@@ -21,16 +21,16 @@ export default {
       status: {
         proName: '',
         proDesc: '',
-        proAddr: '上海',
+        proAddr: '',
+        loveDiscounts:'',
         city:'',  //城市
         district:'',   //地区
-        proOpenTime: '',
-        mobile: '18825205670',
+        proOpenTime: ' ',
+        mobile: '',
         proTypeNo: '',
         proTypeName: '',
-        dealType: '',
-        proPrice: '',
-        mobile: '18825205670',
+        dealType: '19000023',
+        proPrice: '0',
         filesPath: '',
       }
     }
@@ -70,7 +70,8 @@ export default {
           proPrice: that.status.proPrice,
           proTypeNo: that.status.proTypeNo,
           mobile: that.status.mobile,
-          filesPath: that.status.filesPath
+          filesPath: that.status.filesPath,
+          loveDisCounts:that.status.loveDiscounts
         }
         saveProductApi(param).then(c)
       }
@@ -82,23 +83,26 @@ export default {
         return false
       }
       else if (that.status.proDesc === '') {
-        that.$toast.fail('请输入详情')
+        that.$toast.fail('请输入服务介绍')
         return false
       }
       else if (that.status.filesPath === '') {
         that.$toast.fail('请至少上传一张图片')
         return false
       }
-      else if (that.status.proOpenTime === '') {
-        that.$toast.fail('请选择时间')
+      // else if (that.status.proOpenTime === '') {
+      //   that.$toast.fail('请选择时间')
+      //   return false
+      // }
+      // else if (!that.$checkVal.checkRate(that.status.proPrice)) {
+      //   //that.$toast.fail('请输入价格')
+      //   return false
+      // }
+      else if (that.status.proAddr === '') {
+        that.$toast.fail('请输入地址')
         return false
       }
-      else if (!that.$checkVal.checkRate(that.status.proPrice)) {
-        //that.$toast.fail('请输入价格')
-        return false
-      }
-      // else if (that.status.proAddr === '') {
-      //   that.$toast.fail('请选择地址')
+      // else if (that.$checkVal.checkPhone(that.status.mobile === '')) {
       //   return false
       // }
       else if (that.status.proTypeName === '') {
@@ -166,7 +170,7 @@ export default {
         });
         that.columns = menuArr
         //获取定位
-        that.getLocation()
+        //that.getLocation()
       }
       const param = {
         parentDicNo: '19000002'

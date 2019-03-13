@@ -58,7 +58,7 @@ import release from "./assets/images/release.png";
 import release1 from "./assets/images/release1.png";
 import connections from "./assets/images/connections.png";
 import connections1 from "./assets/images/connections1.png";
-import iconright from './assets/images/icon-right.png'
+import iconright from "./assets/images/icon-right.png";
 
 import { mapGetters, mapActions } from "vuex";
 export default {
@@ -115,7 +115,7 @@ export default {
       }
     },
     tabChange(event) {
-      console.log(event)
+      console.log(event);
       let url = "";
       switch (event) {
         case 0:
@@ -123,6 +123,15 @@ export default {
           break;
         case 1:
           url = "/ReleaseIndex";
+          break;
+        case 2:
+          url = "/videoIndex";
+          break;
+        case 3:
+          url = "/voiceIndex";
+          break;
+        case 4:
+          url = "/friendCircleIndex";
           break;
         case 5:
           url = "/UserIndex";
@@ -156,18 +165,18 @@ export default {
   //   top: 51.5%;
   // }
 }
-.van-overlay{
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,.1); 
+.van-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.1);
 }
-.icon-title{
+.icon-title {
   width: 20px;
 }
-.pline{
+.pline {
   height: 12px;
   width: 100%;
 }
@@ -180,19 +189,19 @@ export default {
   position: relative;
   height: calc(100vh - 46px);
 }
-.bgf5{
+.bgf5 {
   background: #f5f5f5;
 }
-.bgwhite{
+.bgwhite {
   background: white;
 }
 .van-tabbar-item__icon img {
   height: 20px;
 }
-.errmsg{
+.errmsg {
   text-align: right;
 }
-.font16{
+.font16 {
   font-size: 16px;
 }
 .tabColor {
@@ -210,10 +219,10 @@ export default {
 .color206 {
   color: rgb(206, 168, 96);
 }
-.color109{
+.color109 {
   color: rgb(109, 109, 109);
 }
-.color195{
+.color195 {
   color: rgb(195, 195, 195);
 }
 .tabColorH {
@@ -226,23 +235,23 @@ export default {
   margin: 0 20px;
 }
 .div-btn1 {
-  margin: 0 15px;
+  margin: 15px;
 }
-.m-l-5{
+.m-l-5 {
   margin-left: 5px;
 }
-.m-t-20{
-  margin-top:20px;
+.m-t-20 {
+  margin-top: 20px;
 }
-.m-t-10{
-  margin-top:10px;
+.m-t-10 {
+  margin-top: 10px;
 }
-.van-button--large{
+.van-button--large {
   height: 45px;
   line-height: 43px;
 }
-.icon-arrow{
-   background-image: url('./assets/images/icon-left.png');
+.icon-arrow {
+  background-image: url("./assets/images/icon-left.png");
 }
 .van-button--login {
   color: #fff;
@@ -255,7 +264,7 @@ export default {
   color: rgb(86, 86, 86);
   background: white;
 }
-.van-button--save{
+.van-button--save {
   color: #fff;
   background-color: #ee5e3f;
   border: 1px solid #ee5e3f;
@@ -264,7 +273,7 @@ export default {
 .van-nav-bar .van-icon {
   color: #656565;
 }
-.van-nav-bar__arrow{
+.van-nav-bar__arrow {
   font-size: 20px;
 }
 </style>
