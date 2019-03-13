@@ -276,4 +276,10 @@ export default {
 .van-nav-bar__arrow {
   font-size: 20px;
 }
+.van-swipe-cell__right{
+  background: rgb(97, 168, 250);
+  color: white;
+  line-height: 134px;
+  width: 65px;
+}
 </style>

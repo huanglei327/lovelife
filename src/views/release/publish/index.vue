@@ -2,11 +2,11 @@
   <div class="main2 bgf5">
     <div class="bgwhite">
       <div class="d-input b-t-f5">
-        <input type="text" placeholder="标题" v-model="status.proName" maxlength="8" class="van-field__control">
+        <input type="text" placeholder="标题" v-model="status.proName" maxlength="20" class="van-field__control">
       </div>
       <div class="d-input">
         <textarea placeholder="服务介绍" maxlength="100" v-model="status.proDesc" rows="1" class="van-field__control textheight"></textarea>
-        
+
       </div>
       <div class="img-list">
         <ul class="up-img-ul">
@@ -39,7 +39,7 @@
     <div class="pline"></div>
     <div class="list-content">
       <div class="list-input">
-         <!-- <van-row>
+        <!-- <van-row>
           <van-col span="8">时间</van-col>
           <van-col span="14">
             <div @click="showTime">
@@ -70,80 +70,59 @@
             <van-icon name="arrow" class="m-t-2" size="16px"/>
           </van-col>
         </van-row> -->
-         <van-row>
+        <van-row>
           <van-col span="8">分类</van-col>
-          <van-col span="14" >
+          <van-col span="14">
             <div @click="showMenu">
-            <input
-              type="text"
-               v-model="status.proTypeName"
-              disabled
-              placeholder="请选择分类"
-              class="van-field__control"
-            >
+              <input type="text" v-model="status.proTypeName" disabled placeholder="请选择分类" class="van-field__control">
             </div>
           </van-col>
           <van-col span="2">
-            <van-icon name="arrow" class="m-t-2" size="16px"/>
+            <van-icon name="arrow" class="m-t-2" size="16px" />
           </van-col>
         </van-row>
         <van-row>
           <van-col span="8">最新优惠</van-col>
           <van-col span="14">
-            <input
-              type="text"
-              v-model="status.loveDiscounts"
-              placeholder="请输入最新优惠"
-              class="van-field__control"
-            >
+            <input type="text" v-model="status.loveDisCounts" placeholder="请输入最新优惠" class="van-field__control">
           </van-col>
           <van-col span="2">
-            <van-icon name="arrow" class="m-t-2" size="16px"/>
+            <van-icon name="arrow" class="m-t-2" size="16px" />
           </van-col>
         </van-row>
         <van-row>
           <van-col span="8">地址</van-col>
           <van-col span="14">
-            <input
-              type="text"
-              v-model="status.proAddr"
-              placeholder="请输入地址"
-              class="van-field__control"
-            >
+            <input type="text" v-model="status.proAddr" placeholder="请输入地址" class="van-field__control">
           </van-col>
           <van-col span="2">
-            <van-icon name="arrow" class="m-t-2" size="16px"/>
+            <van-icon name="arrow" class="m-t-2" size="16px" />
           </van-col>
         </van-row>
-          <van-row>
+        <van-row>
           <van-col span="8">电话</van-col>
           <van-col span="14">
-            <input
-              type="text"
-              v-model="status.mobile"
-              placeholder="请输入电话"
-              class="van-field__control"
-            >
+            <input type="text" v-model="status.mobile" maxlength="11" placeholder="请输入电话" class="van-field__control">
           </van-col>
           <van-col span="2">
-            <van-icon name="arrow" class="m-t-2" size="16px"/>
+            <van-icon name="arrow" class="m-t-2" size="16px" />
           </van-col>
         </van-row>
-       
-         <van-row>
+
+        <van-row>
           <van-col span="8">交易方式</van-col>
           <van-col span="14">
-                <div v-if="status.dealType === '19000026'">
-                  <img src="../../../assets/images/release-pay.png" class="btn-type" @click="protypeClick('19000026')">
-                  <img src="../../../assets/images/release-self.png" class="btn-type" @click="protypeClick('19000023')">
-                </div>
-                <div v-else>
-                  <img src="../../../assets/images/release-pay1.png" class="btn-type" @click="protypeClick('19000026')">
-                  <img src="../../../assets/images/release-self1.png" class="btn-type" @click="protypeClick('19000023')">
-              </div>
+            <div v-if="status.dealType === '19000026'">
+              <img src="../../../assets/images/release-pay.png" class="btn-type" @click="protypeClick('19000026')">
+              <img src="../../../assets/images/release-self.png" class="btn-type" @click="protypeClick('19000023')">
+            </div>
+            <div v-else>
+              <img src="../../../assets/images/release-pay1.png" class="btn-type" @click="protypeClick('19000026')">
+              <img src="../../../assets/images/release-self1.png" class="btn-type" @click="protypeClick('19000023')">
+            </div>
           </van-col>
           <van-col span="2">
-            <van-icon name="arrow" class="m-t-2" size="16px"/>
+            <van-icon name="arrow" class="m-t-2" size="16px" />
           </van-col>
         </van-row>
       </div>
@@ -169,41 +148,32 @@
         </van-cell>
       </van-cell-group> -->
     </div>
-    <div class="div-btn1 m-t-20">
+    <div class="div-btn1 m-t-20" v-if="isBtn=== false">
       <van-button size="large" type="save" @click="savePublish">确定发布</van-button>
     </div>
+    <div class="div-btn1 m-t-20" v-else>
+      <van-button size="large" type="save" @click="upPublish">保存</van-button>
+    </div>
     <van-popup v-model="typeShow" position="bottom">
-      <van-picker
-        show-toolbar
-        title="分类"
-        :columns="columns"
-        @cancel="onCancel"
-        @confirm="onConfirm"
-      />
+      <van-picker show-toolbar title="分类" :columns="columns" @cancel="onCancel" @confirm="onConfirm" />
     </van-popup>
     <van-popup v-model="timeShow" position="bottom">
-      <van-picker
-        show-toolbar
-        title="时间"
-        :columns="columnsTime"
-        @cancel="onTimeCancel"
-        @confirm="onTimeConfirm"
-      />
+      <van-picker show-toolbar title="时间" :columns="columnsTime" @cancel="onTimeCancel" @confirm="onTimeConfirm" />
     </van-popup>
   </div>
 </template>
 <style lang="less">
-.list-input{
+.list-input {
   background: white;
   padding: 0 15px;
-  .van-row{
-    padding:10px 0;
+  .van-row {
+    padding: 10px 0;
     line-height: 24px;
     border-bottom: 1px solid #f5f5f5;
   }
-   .m-t-2{
+  .m-t-2 {
     margin: 5px;
-   }
+  }
 }
 .list-content {
   text-align: left;

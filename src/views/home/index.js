@@ -213,6 +213,7 @@ export default {
       const c = res => {
         console.log(res)
         that.menuList = res.dataObj
+        localStorage.setItem("menuList",JSON.stringify(res.dataObj))
       }
       const param = {
         parentDicNo: '19000002'

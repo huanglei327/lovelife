@@ -7,6 +7,7 @@ export default {
       list: [],
       loading: false,
       finished: false,
+      upId: 0,
       status: {
         offset: 1,
         limit: 20
@@ -19,23 +20,41 @@ export default {
   mounted() {
     //个人发布历史查询
     this.query = this.$route.query
-    // if (this.query.searchType === 'personal') {
-    //   this.getProductList()
-    // }
-    // else {
-    //   //首页查询
-    //   this.productHomeList()
-    // }
     this.onLoad()
   },
   methods: {
+    clickb(item) {
+      this.upId = item.id
+    },
+    onClose(clickPosition, instance) {
+      const that = this
+      switch (clickPosition) {
+        case 'left':
+        case 'cell':
+        case 'right':
+          // this.$dialog.confirm({
+          //   message: '确定删除吗？'
+          // }).then(() => {
+          //   instance.close();
+          // });
+          this.$router.push({
+            //你需要接受路由的参数再跳转
+            path: '/Publish',
+            query: {
+              prdId: that.upId,
+              type: 'up'
+            }
+          })
+          break;
+      }
+    },
     onLoad() {
       const that = this
       that.loading = true
       // 异步更新数据
       setTimeout(() => {
         if (this.query.searchType === 'personal') {
-          that.getProductList()        
+          that.getProductList()
         }
         else {
           that.productHomeList()
@@ -66,7 +85,7 @@ export default {
             that.historyList.push(item)
           });
           that.loading = false
-        
+
           if (parseInt(that.status.offset * that.status.limit) >= res.dataObj.total)
             that.finished = true
           else
@@ -97,9 +116,8 @@ export default {
             that.historyList.push(item)
           });
           that.loading = false
-        
-          if (parseInt(that.status.offset * that.status.limit) >= res.dataObj.total)
-          {
+
+          if (parseInt(that.status.offset * that.status.limit) >= res.dataObj.total) {
             that.finished = true
           }
           else

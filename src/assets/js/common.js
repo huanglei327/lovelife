@@ -1,6 +1,6 @@
 
 
-export function applicationUrl(){
+export function applicationUrl() {
     return `http://slls-img.dsunyun.com`
 }
 
@@ -13,17 +13,17 @@ export function count_time(time1, time2) {
 }
 
 export function DateClculate(time) {
-    var myData=new Date(); //获取当前时间
+    var myData = new Date(); //获取当前时间
     var endTime = new Date(time) //设定倒计时结束时间
-    var lefttime=(endTime.getTime()-myData.getTime())/(24*60*60*1000); //结束时间-当前时间=剩下时间（毫秒数）把得到的数字转化成毫秒数(得到差的毫秒数/一天的毫秒数=天数)
+    var lefttime = (endTime.getTime() - myData.getTime()) / (24 * 60 * 60 * 1000); //结束时间-当前时间=剩下时间（毫秒数）把得到的数字转化成毫秒数(得到差的毫秒数/一天的毫秒数=天数)
     //一天=24小时 1小时=60分钟 1分钟=60秒 1秒=1000毫秒
-    lefttime=Math.ceil(lefttime) //对得到的毫秒数进行四舍五入
+    lefttime = Math.ceil(lefttime) //对得到的毫秒数进行四舍五入
 
-    var leftHMS=parseInt((endTime.getTime()-myData.getTime())/1000); //得到剩余的毫秒数
-    var ds=parseInt(leftHMS/(24*60*60)); //换算成天
-    var xs=parseInt(leftHMS/(60*60)%24); //得到小时 取模24小时
-    var fz=parseInt(leftHMS/60%60); //得到分钟
-    var mz=parseInt(leftHMS%60); //得到秒数
+    var leftHMS = parseInt((endTime.getTime() - myData.getTime()) / 1000); //得到剩余的毫秒数
+    var ds = parseInt(leftHMS / (24 * 60 * 60)); //换算成天
+    var xs = parseInt(leftHMS / (60 * 60) % 24); //得到小时 取模24小时
+    var fz = parseInt(leftHMS / 60 % 60); //得到分钟
+    var mz = parseInt(leftHMS % 60); //得到秒数
 
     //打印出倒计时天数
     return ds + '天' + xs + '小时' + fz + '分钟' + mz + '秒';
@@ -164,19 +164,19 @@ export function getUserInfo(key) {
     }
 }
 
-export function Skip(that,url){
-  that.$router.push({
-    //你需要接受路由的参数再跳转
-    path: url
-  })
+export function Skip(that, url) {
+    that.$router.push({
+        //你需要接受路由的参数再跳转
+        path: url
+    })
 }
 
-export function skipIsHome(that,url){
-    if(url.indexOf('UserIndex')>-1 || url.indexOf('ReleaseIndex')>-1 || url==='/'){
+export function skipIsHome(that, url) {
+    if (url.indexOf('UserIndex') > -1 || url.indexOf('ReleaseIndex') > -1 || url === '/') {
 
     }
-    else{
-       url = '/'
+    else {
+        url = '/'
     }
     that.$router.push({
         //你需要接受路由的参数再跳转
@@ -219,3 +219,15 @@ function p(s) {
 
 
 
+export function getMenuNameById(id) {
+    let name = ''
+    let obj = JSON.parse(localStorage.getItem("menuList"))
+    if (obj) {
+       for(let i = 0 ;i<obj.length;i++){
+        if(obj[i].dicNo === id)
+         name = obj[i].dicDesc
+         break;
+       }
+    }
+    return name
+}

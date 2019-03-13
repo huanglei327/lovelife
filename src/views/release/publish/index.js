@@ -1,4 +1,11 @@
-import { dictionariesListApi, saveProductApi, saveFileApi, getLocationValueApi } from '@/utils/httpUtils/api.js'
+import {
+  dictionariesListApi,
+  saveProductApi,
+  saveFileApi,
+  getLocationValueApi,
+  productDetailsApi,
+  upProductApi
+} from '@/utils/httpUtils/api.js'
 import { ImagePreview } from 'vant';
 export default {
   data() {
@@ -19,12 +26,13 @@ export default {
         }
       ],
       status: {
+        id:'',
         proName: '',
         proDesc: '',
         proAddr: '',
-        loveDiscounts:'',
-        city:'',  //城市
-        district:'',   //地区
+        loveDisCounts: '',
+        city: '',  //城市
+        district: '',   //地区
         proOpenTime: ' ',
         mobile: '',
         proTypeNo: '',
@@ -32,13 +40,35 @@ export default {
         dealType: '19000023',
         proPrice: '0',
         filesPath: '',
-      }
+      },
+      query: {},
+      isBtn: false
     }
   },
   mounted() {
+    this.query = this.$route.query
+    if (this.query.type === 'up')
+      this.isBtn = true
     this.getMenuList()
   },
   methods: {
+    productDetailsLoad() {
+      const that = this
+      const c = res => {
+        that.status = res.dataObj
+        let imgArr = that.status.proImgAddr.split(',')
+        for(let i = 0 ;i<imgArr.length-1;i++){
+          that.imglist.push(imgArr[i])
+        }
+        //that.imglist = imgArr
+        that.status.filesPath = that.status.proImgAddr
+        that.status.proTypeName = that.$common.getMenuNameById(that.status.proTypeNo)
+      }
+      const param = {
+        prdId: that.query.prdId
+      }
+      productDetailsApi(param).then(c)
+    },
     clearImg(item) {
       const that = this;
       for (var i = 0; i < that.imglist.length; i++) {
@@ -71,9 +101,34 @@ export default {
           proTypeNo: that.status.proTypeNo,
           mobile: that.status.mobile,
           filesPath: that.status.filesPath,
-          loveDisCounts:that.status.loveDiscounts
+          loveDisCounts: that.status.loveDisCounts
         }
         saveProductApi(param).then(c)
+      }
+    },
+    upPublish(){
+      const that = this
+      if (this.checkSaveInput()) {
+        const c = res => {
+          if (res.resCode == 1) {
+            that.$toast.success('保存成功');
+            that.$router.go(-1);
+          }
+        }
+        const param = {
+          id:that.status.id,
+          proName: that.status.proName,
+          proDesc: that.status.proDesc,
+          proAddr: that.status.proAddr,
+          proOpenTime: that.status.proOpenTime,
+          dealType: that.status.dealType,
+          proPrice: that.status.proPrice,
+          proTypeNo: that.status.proTypeNo,
+          mobile: that.status.mobile,
+          filesPath: that.status.filesPath,
+          loveDisCounts: that.status.loveDisCounts
+        }
+        upProductApi(param).then(c)
       }
     },
     checkSaveInput() {
@@ -134,7 +189,6 @@ export default {
         // }
         const c = res => {
           if (res.resCode == 1) {
-            console.log(res)
             that.$toast.clear()
             that.$toast.success({
               message: "上传成功",
@@ -171,6 +225,7 @@ export default {
         that.columns = menuArr
         //获取定位
         //that.getLocation()
+        that.productDetailsLoad()
       }
       const param = {
         parentDicNo: '19000002'

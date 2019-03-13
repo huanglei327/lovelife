@@ -107,3 +107,8 @@ export function getConfigApi() {
   const apiName = 'http://dsunyun.com/www/chcp.json'
   return get(apiName)
 }
+
+export function upProductApi(param){
+  const apiName = 'prdInfo/modify'
+  return post(apiName,param)
+}

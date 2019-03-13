@@ -56,7 +56,7 @@
       </div>
       
       <div class="d-advertising">
-        <!-- <img src="../../../assets/images/advertising.jpg" height="100"/> -->
+        <img src="../../../assets/images/advertising.jpg" @mouseenter="download" @mouseleave="upDown"/>
       </div>
     </div>
   </div>
@@ -82,10 +82,11 @@
   }
 }
 .d-advertising{
-  width: 100%;
-  height: 180px;
-  background: url(../../../assets/images/advertising.jpg) no-repeat;
-  background-size: cover;    
+  img{
+    width:100%;
+  }
+  // background: url(../../../assets/images/advertising.jpg) no-repeat;
+  // background-size: cover;    
 }
 .d-list {
   text-align: left;

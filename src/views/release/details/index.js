@@ -13,7 +13,6 @@ export default {
      this.productDetailsLoad()
   },
   methods: {
-
     productDetailsLoad() {
       const that = this
       const c = res => {
@@ -34,6 +33,12 @@ export default {
     },
     goShare() {
       this.$toast('点击了分享');
+    },
+    download(){
+      this.$toast('download');
+    },
+    upDown(){
+      this.$toast('upDown');
     }
   }
 }
