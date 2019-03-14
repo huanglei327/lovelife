@@ -10,7 +10,7 @@
       @click-right="onClickRight"
     />
     <router-view/>
-    <van-tabbar v-model="active" @change="tabChange" v-show="bshow">
+    <van-tabbar v-model="tabbarActive" @change="tabChange" v-show="bshow">
       <van-tabbar-item>
         <span slot-scope="props" :class="props.active ? 'tabColor' : 'tabColorh'">首页</span>
         <img slot="icon" slot-scope="props" :src="props.active ? icon.home1 : icon.home">
@@ -65,7 +65,7 @@ export default {
   name: "App",
   data() {
     return {
-      active: 0,
+      active: this.tabbarActive,
       icon: {
         my: my,
         my1: my1,
@@ -89,7 +89,7 @@ export default {
   },
   mounted() {},
   computed: {
-    ...mapGetters(["navtitle", "left_arrow", "left_text", "tshow", "bshow"])
+    ...mapGetters(["navtitle", "left_arrow", "left_text", "tshow", "bshow","tabbarActive"])
   },
   methods: {
     onClickLeft: function() {
@@ -101,7 +101,6 @@ export default {
     tabActive() {
       const that = this;
       let v = that.$route.path;
-
       switch (v) {
         case "/":
           that.active = 0;
@@ -115,7 +114,6 @@ export default {
       }
     },
     tabChange(event) {
-      console.log(event);
       let url = "";
       switch (event) {
         case 0:
@@ -157,7 +155,7 @@ export default {
 .main {
   position: relative;
   margin-bottom: 50px;
-  height: calc(100vh - 60px);
+  height: calc(100vh - 50px);
   .van-popup {
     background-color: transparent;
   }

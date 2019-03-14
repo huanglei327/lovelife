@@ -4,5 +4,6 @@ const state = {
   left_text: '',
   bshow: true,
   tshow: true,
+  tabbarActive:0
 }
 export default state;

@@ -20,7 +20,6 @@ export default {
     },
     btnExit() {
       const c = res => {
-        console.log(res)
         if (res.resCode == 1) {
           localStorage.clear()
           this.$common.Skip(this, '/')

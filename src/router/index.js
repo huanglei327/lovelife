@@ -48,7 +48,8 @@ export default new Router({
         title:'首页',
         tshow:false,
         bshow:true,
-        requireAuth:false
+        requireAuth:false,
+        tabbarActive:0
       }
     },
     {
@@ -59,7 +60,8 @@ export default new Router({
         title:'首页',
         tshow:false,
         bshow:true,
-        requireAuth:false
+        requireAuth:false,
+        tabbarActive:0
       }
     },
     {
@@ -70,7 +72,8 @@ export default new Router({
         title:'个人信息',
         tshow:false,
         bshow:true,
-        requireAuth:true
+        requireAuth:true,
+        tabbarActive:5
       }
     },
     {
@@ -111,7 +114,8 @@ export default new Router({
         title:'朋友圈',
         tshow:false,
         bshow:true,
-        requireAuth:true
+        requireAuth:true,
+        tabbarActive:4
       }
     },
     {
@@ -122,7 +126,8 @@ export default new Router({
         title:'视频',
         tshow:false,
         bshow:true,
-        requireAuth:true
+        requireAuth:true,
+        tabbarActive:2
       }
     },
     {
@@ -133,7 +138,8 @@ export default new Router({
         title:'语音',
         tshow:false,
         bshow:true,
-        requireAuth:true
+        requireAuth:true,
+        tabbarActive:3
       }
     },
     {
@@ -144,7 +150,8 @@ export default new Router({
         title:'发布',
         tshow:false,
         bshow:true,
-        requireAuth:true
+        requireAuth:true,
+        tabbarActive:1
       }
     },
     {
@@ -177,7 +184,7 @@ export default new Router({
         title:'发布详情',
         tshow:false,
         bshow:false,
-        requireAuth:true
+        requireAuth:false
       }
     },
     {

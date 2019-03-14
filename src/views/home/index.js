@@ -21,7 +21,7 @@ export default {
       popheight: 60,
       menuHeight: 110,
       active: 0,
-      leftShow: false,
+      leftShow: true,
       upShow: false,
       downList: {
         sliderValue: 0,

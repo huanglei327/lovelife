@@ -47,7 +47,6 @@ export default {
     },
     onClickRight() {
       //this.$common.Skip(this, '/Register')
-      console.log(this.obj)
     },
   }
 }

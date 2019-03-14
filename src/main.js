@@ -95,10 +95,9 @@ router.beforeEach((to, from, next) => {
 
 })
 router.afterEach((to, from, next) => {
-  // if (to.name === "Index" && from.name !== null) {
-  //   to.query.access_token = to.query.remindtype
-  //   to.query.remindtype = ""
-  // }
+  console.log(to)
+  store.commit('getTabbarActive',to.meta.tabbarActive)
+  console.log(store.state)
   if (to.path === '/') {
     store.commit('getNavList',
       { 'navtitle': to.meta.title, 'left_text': '', 'left_arrow': false, 'bshow': to.meta.bshow, 'tshow': to.meta.tshow })
@@ -107,7 +106,6 @@ router.afterEach((to, from, next) => {
     store.commit('getNavList',
       { 'navtitle': to.meta.title, 'left_text': '', 'left_arrow': true, 'bshow': to.meta.bshow, 'tshow': to.meta.tshow })
   }
-
 })
 /* eslint-disable no-new */
 new Vue({

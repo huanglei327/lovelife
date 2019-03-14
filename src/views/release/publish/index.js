@@ -213,7 +213,6 @@ export default {
     getMenuList() {
       const that = this
       const c = res => {
-        console.log(res)
         that.menuList = res.dataObj
         let menuArr = []
         res.dataObj.forEach(item => {

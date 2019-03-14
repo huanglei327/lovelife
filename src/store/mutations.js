@@ -9,3 +9,8 @@ export const getNavList = (state, navObj) => {
   state.tshow = navObj.tshow;
   state.bshow = navObj.bshow;
 }
+
+
+export const getTabbarActive = (state, v) => {
+  state.tabbarActive = v
+}
