@@ -198,6 +198,12 @@ export default {
           item.proImgAddr = imgArr[0]
           that.bxList.push(item)
         });
+        //普通广告位
+        res.dataObj.commonAdvert.list.forEach(item => {
+          let imgArr = item.proImgAddr.split(',')
+          item.proImgAddr = imgArr[0]
+          that.bxList.push(item)
+        });
         console.log(that.bxList)
       }
       const param = {

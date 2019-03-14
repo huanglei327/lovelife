@@ -1,16 +1,8 @@
 <template>
   <div id="app">
-    <van-nav-bar
-      v-show="tshow"
-      :title="navtitle"
-      :left-text="left_text"
-      :left-arrow="left_arrow"
-      fixed
-      @click-left="onClickLeft"
-      @click-right="onClickRight"
-    />
+    <van-nav-bar v-show="tshow" :title="navtitle" :left-text="left_text" :left-arrow="left_arrow" fixed @click-left="onClickLeft" @click-right="onClickRight" />
     <router-view/>
-    <van-tabbar v-model="tabbarActive" @change="tabChange" v-show="bshow">
+    <van-tabbar v-model="activea.tabbarActive" @change="tabChange" v-show="bshow">
       <van-tabbar-item>
         <span slot-scope="props" :class="props.active ? 'tabColor' : 'tabColorh'">首页</span>
         <img slot="icon" slot-scope="props" :src="props.active ? icon.home1 : icon.home">
@@ -29,11 +21,7 @@
       </van-tabbar-item>
       <van-tabbar-item>
         <span slot-scope="props" :class="props.active ? 'tabColor' : 'tabColorh'">人脉</span>
-        <img
-          slot="icon"
-          slot-scope="props"
-          :src="props.active ? icon.connections1 : icon.connections"
-        >
+        <img slot="icon" slot-scope="props" :src="props.active ? icon.connections1 : icon.connections">
       </van-tabbar-item>
       <van-tabbar-item>
         <span slot-scope="props" :class="props.active ? 'tabColor' : 'tabColorh'">我的</span>
@@ -44,28 +32,27 @@
 </template>
 
 <script>
-import "./assets/css/common.css";
-import "./assets/css/login.css";
-import my from "./assets/images/my.png";
-import my1 from "./assets/images/my1.png";
-import home from "./assets/images/home.png";
-import home1 from "./assets/images/home1.png";
-import video from "./assets/images/video.png";
-import video1 from "./assets/images/video1.png";
-import voice from "./assets/images/voice.png";
-import voice1 from "./assets/images/voice1.png";
-import release from "./assets/images/release.png";
-import release1 from "./assets/images/release1.png";
-import connections from "./assets/images/connections.png";
-import connections1 from "./assets/images/connections1.png";
-import iconright from "./assets/images/icon-right.png";
+import './assets/css/common.css'
+import './assets/css/login.css'
+import my from './assets/images/my.png'
+import my1 from './assets/images/my1.png'
+import home from './assets/images/home.png'
+import home1 from './assets/images/home1.png'
+import video from './assets/images/video.png'
+import video1 from './assets/images/video1.png'
+import voice from './assets/images/voice.png'
+import voice1 from './assets/images/voice1.png'
+import release from './assets/images/release.png'
+import release1 from './assets/images/release1.png'
+import connections from './assets/images/connections.png'
+import connections1 from './assets/images/connections1.png'
+import iconright from './assets/images/icon-right.png'
 
-import { mapGetters, mapActions } from "vuex";
+import { mapGetters, mapActions, mapState } from 'vuex'
 export default {
-  name: "App",
+  name: 'App',
   data() {
     return {
-      active: this.tabbarActive,
       icon: {
         my: my,
         my1: my1,
@@ -82,71 +69,81 @@ export default {
       },
       activeShow: true,
       titleShow: false
-    };
+    }
   },
   created() {
-    this.tabActive();
+    this.tabActive()
   },
   mounted() {},
   computed: {
-    ...mapGetters(["navtitle", "left_arrow", "left_text", "tshow", "bshow","tabbarActive"])
+    ...mapGetters([
+      'navtitle',
+      'left_arrow',
+      'left_text',
+      'tshow',
+      'bshow',
+      'tabbarActive'
+    ]),
+    ...mapState({
+      activea: state => state
+    })
   },
   methods: {
     onClickLeft: function() {
-      this.$router.go(-1);
+      this.$router.go(-1)
     },
     onClickRight: function() {
-      console.log("onClickRight-");
+      console.log('onClickRight-')
     },
     tabActive() {
-      const that = this;
-      let v = that.$route.path;
+      const that = this
+      let v = that.$route.path
       switch (v) {
-        case "/":
-          that.active = 0;
-          break;
-        case "/ReleaseIndex":
-          that.active = 1;
-          break;
-        case "/UserIndex":
-          that.active = 5;
-          break;
+        case '/':
+          that.active = 0
+          break
+        case '/ReleaseIndex':
+          that.active = 1
+          break
+        case '/UserIndex':
+          that.active = 5
+          break
       }
     },
     tabChange(event) {
-      let url = "";
+      let url = ''
       switch (event) {
         case 0:
-          url = "/";
-          break;
+          url = '/'
+          break
         case 1:
-          url = "/ReleaseIndex";
-          break;
+          url = '/ReleaseIndex'
+          break
         case 2:
-          url = "/videoIndex";
-          break;
+          url = '/videoIndex'
+          break
         case 3:
-          url = "/voiceIndex";
-          break;
+          url = '/voiceIndex'
+          break
         case 4:
-          url = "/friendCircleIndex";
-          break;
+          url = '/friendCircleIndex'
+          break
         case 5:
-          url = "/UserIndex";
-          break;
+          url = '/UserIndex'
+          break
       }
       this.$router.push({
         //你需要接受路由的参数再跳转
         path: url
-      });
+      })
     }
   }
-};
+}
 </script>
 
 <style lang="less">
 #app {
-  font-family: "Microsoft YaHei", Helvetica, Arial, sans-serif;
+  font-family: 'Microsoft YaHei', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -249,7 +246,7 @@ export default {
   line-height: 43px;
 }
 .icon-arrow {
-  background-image: url("./assets/images/icon-left.png");
+  background-image: url('./assets/images/icon-left.png');
 }
 .van-button--login {
   color: #fff;
@@ -274,7 +271,7 @@ export default {
 .van-nav-bar__arrow {
   font-size: 20px;
 }
-.van-swipe-cell__right{
+.van-swipe-cell__right {
   background: rgb(97, 168, 250);
   color: white;
   line-height: 134px;

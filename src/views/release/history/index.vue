@@ -11,8 +11,9 @@
                 </div>
                 <div class="m-right">
                   <div class="r-1 color45">{{item.proName}}</div>
-                  <div class="r-2"><img src="../../../assets/images/release_history_select.png">
-                    <span class="m-l-5">到店</span>
+                  <div class="r-2">
+                    <!-- <img src="../../../assets/images/release_history_select.png"> -->
+                    <!-- <span class="m-l-5">到店</span> -->
                   </div>
                   <div class="r-3">
                     <span>免费预约</span>

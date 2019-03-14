@@ -95,9 +95,12 @@ router.beforeEach((to, from, next) => {
 
 })
 router.afterEach((to, from, next) => {
-  console.log(to)
-  store.commit('getTabbarActive',to.meta.tabbarActive)
-  console.log(store.state)
+   console.log(to.meta.tabbarActive)
+  if(typeof(to.meta.tabbarActive) !== 'undefined')
+  {
+    store.commit('getTabbarActive',to.meta.tabbarActive)
+  }
+  
   if (to.path === '/') {
     store.commit('getNavList',
       { 'navtitle': to.meta.title, 'left_text': '', 'left_arrow': false, 'bshow': to.meta.bshow, 'tshow': to.meta.tshow })

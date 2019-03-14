@@ -52,7 +52,7 @@
           </div>
           <div class="right">
             <div class="r-1">{{item.proName}}</div>
-            <div class="r-2">{{item.proDesc}}</div>
+            <!-- <div class="r-2">{{item.proDesc}}</div> -->
             <div class="r-3">{{item.createTime}}</div>
           </div>
         </div>
