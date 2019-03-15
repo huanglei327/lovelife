@@ -6,7 +6,7 @@
       </van-cell>
       <van-cell title="身份验证" is-link >
          <template>
-              <div>刘试试  <span class="d-yrz">已认证</span></div>
+              <div>  <span class="d-yrz">未认证</span></div>
           </template>
       </van-cell>
       <van-cell title="账户安全" is-link  @click="goSafety"/>

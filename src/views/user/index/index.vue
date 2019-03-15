@@ -5,7 +5,7 @@
         <img src="../../../assets/images/myhead.png">
       </div>
       <div class="u-title">
-        <div class="u-name">上海市嘉定区早教益智远洋中心馆</div>
+        <div class="u-name">未认证</div>
         <div>
           <div class="u-qd">每日签到>
           </div>

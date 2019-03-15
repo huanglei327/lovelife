@@ -224,7 +224,8 @@ export default {
         that.columns = menuArr
         //获取定位
         //that.getLocation()
-        that.productDetailsLoad()
+        if (that.query.type === 'up')
+          that.productDetailsLoad()
       }
       const param = {
         parentDicNo: '19000002'
@@ -248,6 +249,7 @@ export default {
       this.typeShow = false
     },
     showMenu() {
+      console.log('----')
       this.typeShow = true
     },
     showTime() {
