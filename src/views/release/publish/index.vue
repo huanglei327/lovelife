@@ -12,7 +12,7 @@
         <ul class="up-img-ul">
           <li>
             <div>
-              <van-uploader :after-read="onRead" accept multiple :disabled="imgdisabled">
+              <van-uploader :after-read="onRead" accept="image/gif, image/jpeg, image/png, image/jpg" multiple :disabled="imgdisabled">
                 <img src="../../../assets/images/release-add.png" class="img-item">
               </van-uploader>
             </div>

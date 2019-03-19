@@ -66,7 +66,7 @@ export default {
         return
       that.phone.code = true
       const c = res => {
-        if (res.dataObj === '已注册') {
+        if (res.dataObj.isRegister === '已注册') {
           that.$toast.fail('已注册,请直接登陆！')
         }
         else {

@@ -180,13 +180,13 @@ export default {
           message: '上传中...',
           duration: 5000
         });
-        // if (file.file.size > 1024 * 100 * 5) {
-        //   toast1.clear();
-        //   that.$dialog.alert({
-        //     message: '请上传小于5MB的图片'
-        //   });
-        //   return
-        // }
+        if (file.file.size > 1024 * 100 * 5) {
+          toast1.clear();
+          that.$dialog.alert({
+            message: '请上传小于5MB的图片'
+          });
+          return
+        }
         const c = res => {
           if (res.resCode == 1) {
             that.$toast.clear()

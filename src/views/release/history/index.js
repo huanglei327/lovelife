@@ -74,7 +74,7 @@ export default {
     productHomeList() {
       const that = this
       const c = res => {
-        if (res.resCode == 1) {
+        if (res.resCode == 1 &&  res.dataObj) {
           that.status.offset += 1
           if (that.status.offset == 1) {
             that.historyList = []
@@ -92,8 +92,8 @@ export default {
             that.finished = false
         }
         else {
-          that.finishedy = true
-          that.loadingy = false
+          that.finished = true
+          that.loading = false
         }
       }
       const param = {
@@ -106,7 +106,7 @@ export default {
     getProductList() {
       const that = this
       const c = res => {
-        if (res.resCode == 1) {
+        if (res.resCode == 1 && res.dataObj) {
           if (that.status.offset == 1) {
             that.historyList = []
           }
@@ -127,7 +127,7 @@ export default {
         }
         else {
           that.finished = true
-          that.loadingy = false
+          that.loading = false
         }
       }
       const param = {
