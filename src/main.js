@@ -95,7 +95,6 @@ router.beforeEach((to, from, next) => {
 
 })
 router.afterEach((to, from, next) => {
-   console.log(to.meta.tabbarActive)
   if(typeof(to.meta.tabbarActive) !== 'undefined')
   {
     store.commit('getTabbarActive',to.meta.tabbarActive)

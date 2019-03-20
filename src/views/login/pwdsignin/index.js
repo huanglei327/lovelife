@@ -57,6 +57,8 @@ export default {
           // }
           // else
           //   this.$common.Skip(this, '/')
+          if(!that.redirect)
+            that.redirect='/'     
           that.$common.skipIsHome(this,that.redirect)
         }
         else{

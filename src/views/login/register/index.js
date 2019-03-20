@@ -31,6 +31,7 @@ export default {
   methods: {
     goRegister() {
       const that = this
+
       if (!that.$checkVal.checkPhone(that.status.phoneNo)) {
         return
       }
@@ -93,7 +94,6 @@ export default {
                 that.phone.name = '获取验证码'
               }
             }, 1000);
-            localStorage.setItem("userInfo", JSON.stringify(res.dataObj))
           }
           else {
             that.phone.code = false

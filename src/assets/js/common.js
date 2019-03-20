@@ -172,7 +172,7 @@ export function Skip(that, url) {
 }
 
 export function skipIsHome(that, url) {
-    if (url.indexOf('UserIndex') > -1 || url.indexOf('ReleaseIndex') > -1 || url === '/') {
+    if (url && ( url.indexOf('UserIndex') > -1 || url.indexOf('ReleaseIndex') > -1 || url === '/')) {
 
     }
     else {
