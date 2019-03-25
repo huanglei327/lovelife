@@ -35,6 +35,7 @@ import voiceIndex from '../views/voice/index/index.vue'
 //视频首页
 import videoIndex from '../views/video/index/index.vue'
 
+
 Vue.use(Router)
 
 export default new Router({

@@ -161,15 +161,20 @@
   margin-top: 10px;
   .l-content {
     width: 100%;
+    margin-bottom: 15px;
     display: flex;
-    margin-bottom: 20px;
     .left {
-      width: 50%;
-      height: 110px;
+      width: 110px;
+      height: 80px;
       margin-left: 10px;
+      border:1px solid #f5f5f5;
+      display: table-cell;
+      text-align: center;
+      vertical-align: middle;
       img {
         max-width: 100%;
-        max-height: 110px;
+        max-height: 80px;
+        vertical-align: middle;
       }
     }
     .right {
@@ -179,8 +184,8 @@
       .r-1 {
         color: #2d2d2d;
         font-size: 16px;
-        height: 35px;
-        line-height: 35px;
+        height: 60px;
+        line-height: 25px;
       }
       .r-2 {
         color: #9e9e9e;
