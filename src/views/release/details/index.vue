@@ -15,7 +15,9 @@
 
     <div class="main2 bgf5">
       <div class="head-img">
-        <img :src="obj.proImgAddr">
+        <div class="h-r-b-t">{{imgNum}}
+        </div>
+        <img :src="obj.proImgAddr" @click="imgPreview()">
       </div>
       <div class="d-list">
         <div class="menu-title font16">{{obj.proName}}</div>
@@ -76,6 +78,17 @@
 }
 .head-img {
   background: white;
+  position: relative;
+  .h-r-b-t{
+    position:absolute;
+    right: 10px;
+    bottom: 10px;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 3px 15px;
+    border-radius: 10px;
+    font-size: 12px;
+  }
   img {
     width: 100%;
     height: 260px;

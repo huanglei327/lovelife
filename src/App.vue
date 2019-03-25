@@ -160,13 +160,16 @@ export default {
   //   top: 51.5%;
   // }
 }
+.van-nav-bar__left{
+  min-width: 30px;
+}
 .van-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0.6);
 }
 .icon-title {
   width: 20px;
