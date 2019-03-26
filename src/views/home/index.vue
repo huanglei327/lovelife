@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="main">
     <div class="h-top">
       <van-row>
         <van-col span="3" class="h-t-content c-84">
@@ -91,7 +91,7 @@
 </template>
 
 
-<style lang="less">
+<style  lang="less">
 .h-t-content {
   font-size: 12px;
   .h-t-img {

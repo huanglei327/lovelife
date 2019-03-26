@@ -1,7 +1,7 @@
 <!-- 这个图片剪裁插件，兼容ios与安卓 -->
  
 <template>
-  <div class="vue-box">
+  <div class="vue-box" v-if="isShow">
     <!-- <img :src="imgHL"/>
     <input type="file" class="file"  accept="image/png,image/jpg,image/jpeg" @change="change($event)">-->
   </div>
@@ -26,7 +26,8 @@ export default {
   // },
   data() {
     return {
-      imgHL: ""
+      imgHL: "",
+      isShow:false
     };
   },
   watch: {
@@ -44,6 +45,7 @@ export default {
   methods: {
     change(event) {
       //let image = document.getElementById('img'); //预览对象
+      this.isShow = true
       this.clip(event, {
         resultObj: null,
         aspectWithRatio: Number(1),
@@ -82,8 +84,6 @@ export default {
         center: false,
         toggleDragModeOnDblclick: false,
         ready: function() {
-          // console.log(self.cropper.rotate(90))
-          console.log("------------------");
           if (opt.aspectRatio == "Free") {
             let cropBox = self.cropper.cropBox;
             cropBox.querySelector("span.cropper-view-box").style.outline =
@@ -113,26 +113,25 @@ export default {
       //添加创建好的DOM元素
       body.appendChild(this.reagion);
       this.preview = document.getElementById("clip_image");
-
-      console.log(document.getElementsByTagName("body")[0]);
       //绑定一些方法
       setTimeout(() => {
         this.initFunction();
-      }, 1000);
+      }, 500);
     },
     //初始化一些函数绑定
     initFunction() {
       let self = this;
       this.clickBtn = document.getElementById("clip_button");
       this.cancelBtn = document.getElementById("cancel_clip");
-      console.log(this.clickBtn);
       //确定事件
       this.addEvent(this.clickBtn, "click", function() {
         self.crop();
+        self.isShow = false
       });
       //取消事件
       this.addEvent(this.cancelBtn, "click", function() {
         self.destoried();
+        self.isShow = false 
       });
       //清空input的值
       // this.addEvent(this.fileObj, "click", function() {
@@ -141,15 +140,10 @@ export default {
     },
     //外部接口，用于input['file']对象change时的调用
     clip(e, opt) {
-      let self = this;
-
-      this.fileObj = e.srcElement;
-
-      //let files = e.target.files || e.dataTransfer.files;
+      let self = this;      
       let files = e;
-      console.log(files);
+      this.fileObj = e.srcElement;
       //if (!files.file.size) return false; //不是图片直接返回
-
       //调用初始化方法
       this.initilize(opt);
       //获取图片文件资源
@@ -161,10 +155,8 @@ export default {
       //   console.log(self.Orientation)
       // });
 
-      // console.log(files.file.file)
       //调用方法转成url格式
       this.originUrl = this.getObjectURL(files);
-      console.log(this.originUrl);
       //每次替换图片要重新得到新的url
       if (this.cropper) {
         this.cropper.replace(this.originUrl);
@@ -215,7 +207,6 @@ export default {
 
             //self.resultObj.src = data;
             self.imgHL = data;
-            console.log(self.imgHL, "onload");
             //图片上传
             self.postImg(data);
           };
@@ -257,12 +248,16 @@ export default {
     },
     //图片上传
     postImg(imageData) {
-      //console.log(imageData)
-      // console.log(imageData)
-      // this.$emit('callback', imageData)
+      const that = this
+      let value = that.imgData.fileName
+      let index = value.lastIndexOf('.')
+      value = value.substring(0,index)+'.png'
+      this.$emit('UploadImg', {
+        'base64Value': imageData,
+        'fileName' : value
+      })
       //这边写图片的上传
       let self = this;
-      console.log('-----------------------------')
       self.destoried();
 
       // window.setTimeout( function () {
@@ -461,13 +456,13 @@ a {
 }
 </style>
 <style>
-#app {
+/* #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  
 }
 
 * {
@@ -480,7 +475,7 @@ a {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   box-sizing: border-box;
-}
+} */
 
 img {
   /*display: block;*/

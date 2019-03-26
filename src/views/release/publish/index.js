@@ -16,8 +16,7 @@ export default {
     return {
       imgData:{
         file:{},
-        imgURL:'',
-        jqURL:''
+        fileName:'',
       },
       imgdisabled: false,
       imglist: [],
@@ -58,7 +57,7 @@ export default {
     this.query = this.$route.query
     if (this.query.type === 'up')
       this.isBtn = true
-    this.getMenuList()
+    this.getMenuList()   
   },
   methods: {
     productDetailsLoad() {
@@ -182,49 +181,49 @@ export default {
     onRead(file) {
       const that = this;
       //数组
-      let url = ''
-    
-      url = window.URL.createObjectURL(file.file);
-      that.imgData.file = file.file
-      //url = window.URL.createObjectURL(file);
-      //url = window.webkitURL.createObjectURL(file);
-      return;
       if (Array.isArray(file)) {
       } else {
-        const toast1 = that.$toast.loading({
-          mask: false,
-          message: '上传中...',
-          duration: 5000
-        });
-        if (file.file.size > 1024 * 100 * 5) {
-          toast1.clear();
-          that.$dialog.alert({
-            message: '请上传小于5MB的图片'
-          });
-          return
-        }
-        const c = res => {
-          if (res.resCode == 1) {
-            that.$toast.clear()
-            that.$toast.success({
-              message: "上传成功",
-              duration: 1500
-            });
-            that.imglist.push(that.$common.applicationUrl() + res.dataObj.imgUrl);
-            //that.status.filesPath = res.dataObj.imgUrl+','
-            that.status.filesPath = ''
-            that.imglist.forEach(item => {
-              that.status.filesPath += item + ','
-            });
-          }
-          else {
-            that.$toast.fail("上传失败" + res.errorMsg)
-          }
-        }
-        var formData = new FormData();
-        formData.append("file", that.dataURLtoBlob(file.content), file.file.name);
-        saveFileApi(formData).then(c)
+       
+        // if (file.file.size > 1024 * 100 * 5) {
+        //   toast1.clear();
+        //   that.$dialog.alert({
+        //     message: '请上传小于5MB的图片'
+        //   });
+        //   return
+        // }
+       // url = window.URL.createObjectURL(file.file);
+        that.imgData.file = file.file
+        that.imgData.fileName = file.file.name
       }
+    },
+    UpImg(imgData){
+      const that = this
+      // const toast1 = that.$toast.loading({
+      //   mask: false,
+      //   message: '上传中...',
+      //   duration: 5000
+      // });
+      const c = res => {
+        if (res.resCode == 1) {
+          that.$toast.clear()
+          that.$toast.success({
+            message: "上传成功",
+            duration: 1500
+          });
+          that.imglist.push(that.$common.applicationUrl() + res.dataObj.imgUrl);
+          //that.status.filesPath = res.dataObj.imgUrl+','
+          that.status.filesPath = ''
+          that.imglist.forEach(item => {
+            that.status.filesPath += item + ','
+          });
+        }
+        else {
+          that.$toast.fail("上传失败" + res.errorMsg)
+        }
+      }
+      var formData = new FormData();
+      formData.append("file", that.dataURLtoBlob(imgData.base64Value), imgData.fileName);
+      saveFileApi(formData).then(c)
     },
     getMenuList() {
       const that = this

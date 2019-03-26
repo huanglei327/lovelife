@@ -153,6 +153,7 @@ export default {
   position: relative;
   margin-bottom: 50px;
   height: calc(100vh - 50px);
+  margin-top:0;
   .van-popup {
     background-color: transparent;
   }

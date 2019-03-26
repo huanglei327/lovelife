@@ -19,7 +19,7 @@ export default {
     return {
       msg: '224324',
       popheight: 60,
-      menuHeight: 110,
+      menuHeight: 108,
       active: 0,
       leftShow: true,
       upShow: false,
@@ -97,8 +97,8 @@ export default {
     setTimeout(() => {
       //this.judgeDown()
       this.getLocation()
-      this.getConfigApi()
-    }, 3000);
+      this.getConfig()
+    }, 500);
   },
   methods: {
     init() {
@@ -117,7 +117,7 @@ export default {
       }
       LoginApi(param).then(c)
     },
-    getConfigApi() {
+    getConfig() {
       const that =this
       document.addEventListener('deviceready', () => {
         const c = res => {
@@ -286,7 +286,6 @@ export default {
     downloadA() {
       const that = this
       that.downList.downBtn = false
-      alert('downloadA')
       var fileTransfer = new FileTransfer();
       fileTransfer.onprogress = function (e) {
         if (e.lengthComputable) {
@@ -310,7 +309,8 @@ export default {
                 alert('Error status: ' + e.status + ' - Error message: ' + e.message);
               },
               success: function () {
-                alert('file opened successfully');
+                //alert(entry.toURL())
+                //alert('file opened successfully');
               }
             }
           );

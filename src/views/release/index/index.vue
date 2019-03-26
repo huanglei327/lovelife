@@ -18,7 +18,7 @@
 </template>
 
  
-<style  lang="less">
+<style scoped lang="less">
 .r-list {
   position: absolute;
   bottom: 52px;

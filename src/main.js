@@ -108,6 +108,7 @@ router.afterEach((to, from, next) => {
     store.commit('getNavList',
       { 'navtitle': to.meta.title, 'left_text': '', 'left_arrow': true, 'bshow': to.meta.bshow, 'tshow': to.meta.tshow })
   }
+  window.scrollTo(0,0);
 })
 /* eslint-disable no-new */
 new Vue({

@@ -64,14 +64,14 @@
   background: white;
   margin-bottom: 10px;
   .m-left {
-    padding: 15px;
+    padding:5px 15px 10px 15px;
     img {
       width: 100px;
       height: 100px;
     }
   }
   .m-right {
-    padding: 15px 15px 15px 0;
+    padding: 5px 15px 10px 0;
     width: 100%;
     text-align: left;
     .r-1 {
