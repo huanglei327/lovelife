@@ -6,10 +6,19 @@ import {
   productDetailsApi,
   upProductApi
 } from '@/utils/httpUtils/api.js'
+import imgTailor from '@/components/imgtailor.vue'
 import { ImagePreview } from 'vant';
 export default {
+  components:{
+    imgTailor
+  },
   data() {
     return {
+      imgData:{
+        file:{},
+        imgURL:'',
+        jqURL:''
+      },
       imgdisabled: false,
       imglist: [],
       typeShow: false,
@@ -173,6 +182,13 @@ export default {
     onRead(file) {
       const that = this;
       //数组
+      let url = ''
+    
+      url = window.URL.createObjectURL(file.file);
+      that.imgData.file = file.file
+      //url = window.URL.createObjectURL(file);
+      //url = window.webkitURL.createObjectURL(file);
+      return;
       if (Array.isArray(file)) {
       } else {
         const toast1 = that.$toast.loading({

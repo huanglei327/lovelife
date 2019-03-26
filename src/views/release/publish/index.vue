@@ -160,6 +160,7 @@
     <van-popup v-model="timeShow" position="bottom">
       <van-picker show-toolbar title="时间" :columns="columnsTime" @cancel="onTimeCancel" @confirm="onTimeConfirm" />
     </van-popup>
+    <img-tailor :imgData="imgData"></img-tailor>
   </div>
 </template>
 <style lang="less">
