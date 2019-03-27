@@ -251,7 +251,7 @@ export default {
       const that = this
       let value = that.imgData.fileName
       let index = value.lastIndexOf('.')
-      value = value.substring(0,index)+'.png'
+      value = value.substring(0,index)+'.jpeg'
       this.$emit('UploadImg', {
         'base64Value': imageData,
         'fileName' : value
@@ -387,8 +387,8 @@ export default {
         }
       }
       //进行最小压缩
-      // let ndata = canvas.toDataURL( 'image/jpeg' , 0.1);
-      let ndata = canvas.toDataURL("image/png", 0.1);
+       let ndata = canvas.toDataURL( 'image/jpeg' , 0.5);
+      //let ndata = canvas.toDataURL("image/png", 0.1);
       console.log("压缩前：" + initSize);
       console.log("压缩后：" + ndata.length);
       console.log(
