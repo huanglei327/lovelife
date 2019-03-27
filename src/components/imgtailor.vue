@@ -61,7 +61,7 @@ export default {
       this.resultObj = opt.resultObj;
       //初始化裁剪对象
       this.cropper = new Cropper(this.preview, {
-        aspectRatio: 1 / 0.72,
+        aspectRatio: 1 / 0.636,
         // aspectRatio: 1/1,
         autoCropArea: 1,
         viewMode: 1,

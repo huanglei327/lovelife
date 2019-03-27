@@ -305,10 +305,12 @@ export default {
             'application/vnd.android.package-archive',
             {
               error: function (e) {
-                alert(entry.toURL())
-                alert('Error status: ' + e.status + ' - Error message: ' + e.message);
+               // alert('error')
+                alert('更新出错!请扫码下载最新版本！');
+                this.upShow = false
               },
               success: function () {
+                //alert('success')
                 //alert(entry.toURL())
                 //alert('file opened successfully');
               }
@@ -316,6 +318,8 @@ export default {
           );
         },
         function (error) {
+          alert('更新出错!请扫码下载最新版本！');
+          this.upShow = false
         },
         false,
         {

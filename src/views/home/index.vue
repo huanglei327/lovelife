@@ -37,11 +37,7 @@
             <img :src="item.proImgAddr" @click="goDetails(item)" v-lazy="item.proImgAddr">
           </van-swipe-item>
           <div class="van-swipe__indicators" slot="indicator">
-            <div
-              :class="current === index?'indicator active':'indicator'"
-              v-for="(item,index) in imgList"
-              :key="index"
-            ></div>
+            <div :class="current === index?'indicator active':'indicator'" v-for="(item,index) in imgList" :key="index"></div>
           </div>
         </van-swipe>
       </div>
@@ -58,19 +54,14 @@
         </div>
       </div>
       <div style="height:50px;width:100%;"></div>
-      <van-popup v-model="leftShow" position="left" overlay-class="menu-overlay">
+      <van-popup v-model="leftShow" position="left" overlay-class="menu-overlay" style="z-index:2001;">
         <div :style="{ height: popheight+'px' }"></div>
         <div class="h-menu" :style="{ height:'calc(100vh - '+ menuHeight +'px)' }">
-          <div
-            :class="item.dicNo === status.dicNo ?'item active':'item'"
-            v-for="(item,index) in menuList"
-            :key="index"
-            @click="goHomeType(item,index)"
-          >{{item.dicDesc}}</div>
+          <div :class="item.dicNo === status.dicNo ?'item active':'item'" v-for="(item,index) in menuList" :key="index" @click="goHomeType(item,index)">{{item.dicDesc}}</div>
         </div>
         <div style="height:50px;"></div>
       </van-popup>
-      <van-popup v-model="upShow" style="width:100%;" :close-on-click-overlay="false">
+      <!-- <van-popup v-model="upShow" style="width:100%;z-index:2005;" :close-on-click-overlay="false">
         <div class="up-popup">
           <div class="up-title"></div>
           <div class="up-content">
@@ -78,20 +69,60 @@
             <div class="u1">更新时间:{{configObj.release}}</div>
           </div>
           <div class="up-slider">
-            <van-progress :percentage="downList.sliderValue"/>
+            <van-progress :percentage="downList.sliderValue" />
           </div>
           <div class="up-btn" v-if="downList.downBtn">
             <div id="nextbtn" @click="nextbtn">下次再说</div>
             <div id="downloadA" @click="downloadA">安装</div>
           </div>
         </div>
-      </van-popup>
+      </van-popup> -->
+      <div class="popMain" v-if="upShow">
+        <div class="popList">
+           <div class="up-popup">
+          <div class="up-title"></div>
+          <div class="up-content">
+            <div class="u1">版本:{{configObj.version_a}}</div>
+            <div class="u1">更新时间:{{configObj.release}}</div>
+          </div>
+          <div class="up-slider">
+            <van-progress :percentage="downList.sliderValue" />
+          </div>
+          <div class="up-btn" >
+            <div id="nextbtn" v-if="downList.downBtn" @click="nextbtn">下次再说</div>
+            <div id="downloadA" v-if="downList.downBtn" @click="downloadA">安装</div>
+          </div>
+        </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 
 <style  lang="less">
+.popMain{
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    .popList{
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      max-height: 100%;
+      overflow-y: auto;
+      // background-color: #fff;
+      -webkit-transition: .3s ease-out;
+      transition: .3s ease-out;
+      -webkit-overflow-scrolling: touch;
+      -webkit-transform: translate3d(-50%,-50%,0);
+      transform: translate3d(-50%,-50%,0);
+    }
+}
 .h-t-content {
   font-size: 12px;
   .h-t-img {
@@ -123,12 +154,12 @@
   }
 }
 .h-top {
-    height: 50px;
-    position: fixed;
-    z-index: 99;
-    width: 100%;
-    background: white;
-    padding-top: 10px;
+  height: 50px;
+  position: fixed;
+  z-index: 99;
+  width: 100%;
+  background: white;
+  padding-top: 10px;
 }
 .h-swiper {
   margin-top: 8px;
@@ -165,27 +196,35 @@
     display: flex;
     .left {
       width: 110px;
-      height: 80px;
+      height: 70px;
       margin-left: 10px;
-      border:1px solid #f5f5f5;
-      display: table-cell;
-      text-align: center;
-      vertical-align: middle;
+      border: 1px solid #f5f5f5;
+      // display: table-cell;
+      // text-align: center;
+      // vertical-align: middle;
+       border-radius: 3px;
       img {
         max-width: 100%;
-        max-height: 80px;
+        max-height: 70px;
+        border-radius: 3px;
         vertical-align: middle;
       }
     }
     .right {
-      width: 50%;
+      // width: 50%;
       margin-left: 10px;
       text-align: left;
+      flex: 1;
+      padding-right:10px;
       .r-1 {
         color: #2d2d2d;
-        font-size: 16px;
-        height: 60px;
-        line-height: 25px;
+        font-size: 14px;
+        height: 46px;
+        line-height: 23px;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        overflow: hidden;
       }
       .r-2 {
         color: #9e9e9e;
@@ -196,6 +235,7 @@
         color: #9e9e9e;
         height: 20px;
         line-height: 20px;
+        padding-top: 5px;
       }
     }
   }
@@ -219,12 +259,12 @@
   background-color: rgba(0, 0, 0, 0);
 }
 .up-popup {
-  width: 60%;
+  min-width:200px;
   margin: 0 auto;
   background: white;
   text-align: left;
   padding: 0 20px;
-  background: url("../../assets/images/upgrade.png") no-repeat;
+  background: url('../../assets/images/upgrade.png') no-repeat;
   background-size: cover;
   .up-title {
     width: 100%;
@@ -266,7 +306,7 @@
       border: 1px solid #999;
       text-align: center;
       margin: 0 10px 0 0;
-      padding: 3px;
+      // padding: 3px;
       font-size: 13px;
       border-radius: 2px;
     }
