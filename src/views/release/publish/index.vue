@@ -102,7 +102,7 @@
         <van-row>
           <van-col span="8">电话</van-col>
           <van-col span="14">
-            <input type="text" v-model="status.mobile" maxlength="11" placeholder="请输入电话" class="van-field__control">
+            <input type="text" v-model="status.mobile" maxlength="13" placeholder="请输入电话" class="van-field__control">
           </van-col>
           <van-col span="2">
             <van-icon name="arrow" class="m-t-2" size="16px" />

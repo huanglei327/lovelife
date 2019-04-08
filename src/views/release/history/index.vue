@@ -28,7 +28,6 @@
             </van-cell-group>
             <div slot="right" @click="clickb(item)">修改</div>
           </van-swipe-cell>
-
         </div>
       </div>
     </van-list>
@@ -105,10 +104,10 @@
     }
     .r-4 {
       display: flex;
-      height: 20px;
+      min-height: 20px;
       color: #565656;
       font-size: 12px;
-      line-height: 20px;
+      line-height: 18px;
       margin-top: 5px;
       .r-4-1 {
         background: #cea860;

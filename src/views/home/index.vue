@@ -42,16 +42,18 @@
         </van-swipe>
       </div>
       <div class="h-list">
-        <div class="l-content" v-for="(item,index) in bxList" :key="index" @click="goDetails(item)">
-          <div class="left">
-            <img :src="item.proImgAddr" v-lazy="item.proImgAddr">
+        <van-list v-model="loading" :finished="finished" :finished-text="finishedText" :offset="300" @load="onLoad">
+          <div class="l-content" v-for="(item,index) in bxList" :key="index" @click="goDetails(item)">
+            <div class="left">
+              <img :src="item.proImgAddr" v-lazy="item.proImgAddr">
+            </div>
+            <div class="right">
+              <div class="r-1">{{item.proName}}</div>
+              <!-- <div class="r-2">{{item.proDesc}}</div> -->
+              <div class="r-3">{{item.createTime}}</div>
+            </div>
           </div>
-          <div class="right">
-            <div class="r-1">{{item.proName}}</div>
-            <!-- <div class="r-2">{{item.proDesc}}</div> -->
-            <div class="r-3">{{item.createTime}}</div>
-          </div>
-        </div>
+        </van-list>
       </div>
       <div style="height:50px;width:100%;"></div>
       <van-popup v-model="leftShow" position="left" overlay-class="menu-overlay" style="z-index:2001;">
@@ -79,20 +81,20 @@
       </van-popup> -->
       <div class="popMain" v-if="upShow">
         <div class="popList">
-           <div class="up-popup">
-          <div class="up-title"></div>
-          <div class="up-content">
-            <div class="u1">版本:{{configObj.version_a}}</div>
-            <div class="u1">更新时间:{{configObj.release}}</div>
+          <div class="up-popup">
+            <div class="up-title"></div>
+            <div class="up-content">
+              <div class="u1">版本:{{configObj.version_a}}</div>
+              <div class="u1">更新时间:{{configObj.release}}</div>
+            </div>
+            <div class="up-slider">
+              <van-progress :percentage="downList.sliderValue" />
+            </div>
+            <div class="up-btn">
+              <div id="nextbtn" v-if="downList.downBtn" @click="nextbtn">下次再说</div>
+              <div id="downloadA" v-if="downList.downBtn" @click="downloadA">安装</div>
+            </div>
           </div>
-          <div class="up-slider">
-            <van-progress :percentage="downList.sliderValue" />
-          </div>
-          <div class="up-btn" >
-            <div id="nextbtn" v-if="downList.downBtn" @click="nextbtn">下次再说</div>
-            <div id="downloadA" v-if="downList.downBtn" @click="downloadA">安装</div>
-          </div>
-        </div>
         </div>
       </div>
     </div>
@@ -101,27 +103,27 @@
 
 
 <style  lang="less">
-.popMain{
+.popMain {
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  .popList {
     position: fixed;
-    z-index: 9999;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.6);
-    .popList{
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      max-height: 100%;
-      overflow-y: auto;
-      // background-color: #fff;
-      -webkit-transition: .3s ease-out;
-      transition: .3s ease-out;
-      -webkit-overflow-scrolling: touch;
-      -webkit-transform: translate3d(-50%,-50%,0);
-      transform: translate3d(-50%,-50%,0);
-    }
+    top: 50%;
+    left: 50%;
+    max-height: 100%;
+    overflow-y: auto;
+    // background-color: #fff;
+    -webkit-transition: 0.3s ease-out;
+    transition: 0.3s ease-out;
+    -webkit-overflow-scrolling: touch;
+    -webkit-transform: translate3d(-50%, -50%, 0);
+    transform: translate3d(-50%, -50%, 0);
+  }
 }
 .h-t-content {
   font-size: 12px;
@@ -202,7 +204,7 @@
       // display: table-cell;
       // text-align: center;
       // vertical-align: middle;
-       border-radius: 3px;
+      border-radius: 3px;
       img {
         max-width: 100%;
         max-height: 70px;
@@ -215,7 +217,7 @@
       margin-left: 10px;
       text-align: left;
       flex: 1;
-      padding-right:10px;
+      padding-right: 10px;
       .r-1 {
         color: #2d2d2d;
         font-size: 14px;
@@ -259,7 +261,7 @@
   background-color: rgba(0, 0, 0, 0);
 }
 .up-popup {
-  min-width:200px;
+  min-width: 200px;
   margin: 0 auto;
   background: white;
   text-align: left;

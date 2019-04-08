@@ -172,7 +172,7 @@ export function Skip(that, url) {
 }
 
 export function skipIsHome(that, url) {
-    if (url && ( url.indexOf('UserIndex') > -1 || url.indexOf('ReleaseIndex') > -1 || url === '/')) {
+    if (url && (url.indexOf('UserIndex') > -1 || url.indexOf('ReleaseIndex') > -1 || url === '/')) {
 
     }
     else {
@@ -223,11 +223,12 @@ export function getMenuNameById(id) {
     let name = ''
     let obj = JSON.parse(localStorage.getItem("menuList"))
     if (obj) {
-       for(let i = 0 ;i<obj.length;i++){
-        if(obj[i].dicNo === id)
-         name = obj[i].dicDesc
-         break;
-       }
+        for (let i = 0; i < obj.length; i++) {
+            if (obj[i].dicNo === id) {
+                name = obj[i].dicDesc
+                break;
+            }
+        }
     }
     return name
 }

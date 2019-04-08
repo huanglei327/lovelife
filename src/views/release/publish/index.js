@@ -70,6 +70,7 @@ export default {
         }
         //that.imglist = imgArr
         that.status.filesPath = that.status.proImgAddr
+        console.log(that.status.proTypeNo)
         that.status.proTypeName = that.$common.getMenuNameById(that.status.proTypeNo)
       }
       const param = {

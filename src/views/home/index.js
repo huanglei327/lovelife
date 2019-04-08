@@ -28,60 +28,24 @@ export default {
         size: 0,
         downBtn: true
       },
+      loading: false,
+      finished: false,
+      finishedText: '',
       status: {
         offset: 1,
         limit: 20,
         dicNo: ''
       },
-      versions:{
-        version:'',
-        time:''
+      versions: {
+        version: '',
+        time: ''
       },
-      configObj:{},
+      configObj: {},
       templist: "",
       menuList: [],
-      imgList: [
-        // {
-        //   id: 1,
-        //   name: bj
-        // },
-        // {
-        //   id: 2,
-        //   name: bj1
-        // },
-        // {
-        //   id: 3,
-        //   name: bj2
-        // },
-        // {
-        //   id: 4,
-        //   name: bj3
-        // },
-      ],
+      imgList: [],
       current: 0,
-      bxList: [
-        // {
-        //   id: 1,
-        //   img: bj,
-        //   title: '涉水险',
-        //   remark: '全国范围故障车辆免费救援。学的险种配搭',
-        //   time: '2018-12-05 12:02:12'
-        // },
-        // {
-        //   id: 1,
-        //   img: bj1,
-        //   title: '涉水险',
-        //   remark: '全国范围故障车辆免费救援。学的险种配搭',
-        //   time: '2018-12-05 12:02:12'
-        // },
-        // {
-        //   id: 1,
-        //   img: bj2,
-        //   title: '涉水险',
-        //   remark: '全国范围故障车辆免费救援。学的险种配搭',
-        //   time: '2018-12-05 12:02:12'
-        // }
-      ]
+      bxList: []
     }
   },
   created() {
@@ -103,12 +67,13 @@ export default {
   methods: {
     init() {
       this.getMenuList()
-      this.productHomeList()
+      this.onLoad()
+      // this.productHomeList()
     },
-    pwdSignin(){
-      const c = res=>{
-        if(res.resCode == 1)
-          localStorage.setItem("userInfo",JSON.stringify(res.dataObj))
+    pwdSignin() {
+      const c = res => {
+        if (res.resCode == 1)
+          localStorage.setItem("userInfo", JSON.stringify(res.dataObj))
       }
       const param = {
         loginAcct: '88888888888',
@@ -118,11 +83,11 @@ export default {
       LoginApi(param).then(c)
     },
     getConfig() {
-      const that =this
+      const that = this
       document.addEventListener('deviceready', () => {
         const c = res => {
           let confirmObj = res
-          that.configObj = res 
+          that.configObj = res
           chcp.getVersionInfo((err, data) => {
             //如果版本号不一样直接下载更新
             if (confirmObj.version_a !== data.appVersion) {
@@ -177,34 +142,67 @@ export default {
     goHomeType(item) {
       this.status.dicNo = item.dicNo
       this.leftShow = false
-      this.productHomeList()
+      this.status.offset = 1
+      this.bxList = []
+      this.finishedText = ''
+      this.onLoad()
+    },
+    onLoad() {
+      const that = this
+      that.loading = true
+      // 异步更新数据
+      setTimeout(() => {
+        console.log('------------')
+        that.productHomeList()
+      }, 500);
     },
     productHomeList() {
       const that = this
       const c = res => {
-        if (that.status.offset == 1) {
-          that.imgList = []
-          that.bxList = []
+        if (res.resCode == 1 && res.dataObj && res.dataObj.paramCarousel) {
+          if (that.status.offset == 1) {
+            that.imgList = []
+            that.bxList = []
+          }
+          //轮播图
+          if (that.status.offset == 1) {
+            res.dataObj.paramCarousel.forEach(item => {
+              let imgArr = item.proImgAddr.split(',')
+              item.proImgAddr = imgArr[0]
+              that.imgList.push(item)
+            });
+            //广告产品
+            res.dataObj.paramTop.forEach(item => {
+              let imgArr = item.proImgAddr.split(',')
+              item.proImgAddr = imgArr[0]
+              that.bxList.push(item)
+            });
+          }
+          //普通广告位
+          if (res.dataObj.commonAdvert) {
+            res.dataObj.commonAdvert.list.forEach(item => {
+              let imgArr = item.proImgAddr.split(',')
+              item.proImgAddr = imgArr[0]
+              that.bxList.push(item)
+            });
+            that.loading = false
+            if (parseInt(that.status.offset * that.status.limit) >= res.dataObj.commonAdvert.total) {
+              that.finished = true
+              //that.finishedText = '没有更多了'
+            }
+            else
+              that.finished = false
+            that.status.offset += 1
+          }
+          else{
+            that.finished = true
+            that.loading = false
+          }
         }
-        //轮播图
-        res.dataObj.paramCarousel.forEach(item => {
-          let imgArr = item.proImgAddr.split(',')
-          item.proImgAddr = imgArr[0]
-          that.imgList.push(item)
-        });
-        //广告产品
-        res.dataObj.paramTop.forEach(item => {
-          let imgArr = item.proImgAddr.split(',')
-          item.proImgAddr = imgArr[0]
-          that.bxList.push(item)
-        });
-        //普通广告位
-        res.dataObj.commonAdvert.list.forEach(item => {
-          let imgArr = item.proImgAddr.split(',')
-          item.proImgAddr = imgArr[0]
-          that.bxList.push(item)
-        });
-        console.log(that.bxList)
+        else {
+          that.finished = true
+          that.loading = false
+        }
       }
       const param = {
         offset: that.status.offset,
@@ -219,7 +217,7 @@ export default {
       const c = res => {
         console.log(res)
         that.menuList = res.dataObj
-        localStorage.setItem("menuList",JSON.stringify(res.dataObj))
+        localStorage.setItem("menuList", JSON.stringify(res.dataObj))
       }
       const param = {
         parentDicNo: '19000002'
@@ -305,7 +303,7 @@ export default {
             'application/vnd.android.package-archive',
             {
               error: function (e) {
-               // alert('error')
+                // alert('error')
                 alert('更新出错!请扫码下载最新版本！');
                 this.upShow = false
               },

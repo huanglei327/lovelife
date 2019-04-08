@@ -74,8 +74,8 @@ export default {
     productHomeList() {
       const that = this
       const c = res => {
-        if (res.resCode == 1 &&  res.dataObj) {
-          that.status.offset += 1
+        if (res.resCode == 1 && res.dataObj) {
+
           if (that.status.offset == 1) {
             that.historyList = []
           }
@@ -90,6 +90,7 @@ export default {
             that.finished = true
           else
             that.finished = false
+          that.status.offset += 1
         }
         else {
           that.finished = true
