@@ -50,7 +50,9 @@ export default new Router({
         tshow:false,
         bshow:true,
         requireAuth:false,
-        tabbarActive:0
+        tabbarActive:0,
+        scrollTop:true,
+        keepAlive:true
       }
     },
     {
@@ -62,7 +64,9 @@ export default new Router({
         tshow:false,
         bshow:true,
         requireAuth:false,
-        tabbarActive:0
+        tabbarActive:0,
+        scrollTop:true,
+        keepAlive:true
       }
     },
     {
@@ -163,7 +167,8 @@ export default new Router({
         title:'发布历史',
         tshow:true,
         bshow:false,
-        requireAuth:true
+        requireAuth:true,
+        keepAlive:true,
       }
     },
     {

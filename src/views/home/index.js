@@ -17,9 +17,11 @@ import {
 export default {
   data() {
     return {
+     // scrollTop:0,
       msg: '224324',
       popheight: 60,
       menuHeight: 108,
+      isLoading: false,
       active: 0,
       leftShow: true,
       upShow: false,
@@ -49,15 +51,19 @@ export default {
     }
   },
   created() {
-
+    console.log('111')
+  },
+  activated() {
+    //this.$refs.templista.scrollTop = 400
   },
   mounted() {
+    console.log('mounted')
     const that = this
     that.init()
-    window.onscroll = function () {
-      // that.popheight = 60 - that.getScrollTop()
-      // that.menuHeight = 110 - (60 - that.popheight)
-    }
+    // window.onscroll = function () {
+    //   that.scrollTop = that.getScrollTop()
+    //   that.$refs.templista.scrollTop = that.scrollTop
+    // }
     setTimeout(() => {
       //this.judgeDown()
       this.getLocation()
@@ -65,6 +71,13 @@ export default {
     }, 500);
   },
   methods: {
+    onRefresh() {
+      setTimeout(() => {
+       // this.$toast('刷新成功');
+        this.isLoading = false;
+        //this.count++;
+      }, 500);
+    },
     init() {
       this.getMenuList()
       this.onLoad()
