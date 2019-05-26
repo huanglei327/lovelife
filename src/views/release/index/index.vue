@@ -1,5 +1,9 @@
 <template>
-  <div class="main">
+  <div class="main bg9ae5f8">
+     
+      <div class="d-advertising">
+        <img src="../../../assets/images/bgreamrk.jpg" />
+    </div>
     <div class="r-list">
       <div class="left" @click="goPublish">
         <div>
@@ -19,9 +23,26 @@
 
  
 <style scoped lang="less">
-.r-list {
+.ggremark{
+  padding: 20px 10px;
+  text-align: left;
+  h3{
+    margin: 10px;
+  }
+  div{
+    padding-top: 2px;
+  }
+}
+.d-advertising{
   position: absolute;
-  bottom: 52px;
+  bottom: 150px;
+  img{
+    width:100%;
+  }
+  // background: url(../../../assets/images/advertising.jpg) no-repeat;
+  // background-size: cover;    
+}
+.r-list {
   position: absolute;
   bottom: 52px;
   display: -webkit-box;

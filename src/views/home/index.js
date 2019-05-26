@@ -51,13 +51,11 @@ export default {
     }
   },
   created() {
-    console.log('111')
   },
   activated() {
     //this.$refs.templista.scrollTop = 400
   },
   mounted() {
-    console.log('mounted')
     const that = this
     that.init()
     // window.onscroll = function () {
@@ -71,6 +69,11 @@ export default {
     }, 500);
   },
   methods: {
+    goSearch(){
+      this.$router.push({
+        path: '/SearchInfo'
+      })
+    },
     onRefresh() {
       setTimeout(() => {
        // this.$toast('刷新成功');
@@ -165,7 +168,6 @@ export default {
       that.loading = true
       // 异步更新数据
       setTimeout(() => {
-        console.log('------------')
         that.productHomeList()
       }, 500);
     },

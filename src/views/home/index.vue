@@ -9,7 +9,7 @@
             <div @click="leftShow = !leftShow">分类</div>
           </van-col>
           <van-col span="15" class="h-t-content">
-            <div class="h-t-s">
+            <div class="h-t-s" @click="goSearch">
               <div class="title">
                 <img src="../../assets/images/search.png"> 花桥爱生活、特惠中
               </div>

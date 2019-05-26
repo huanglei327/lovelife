@@ -18,6 +18,10 @@ import History from '../views/release/history/index.vue'
 import Publish from '../views/release/publish/index.vue'
 //发布详情
 import Details from '../views/release/details/index.vue'
+//搜索
+import SearchInfo from '../views/release/search/index.vue'
+//搜索LIST
+import SearchList from '../views/release/searchlist/index.vue'
 //个人信息
 import MySelf from '../views/user/myself/index.vue'
 //个人中心
@@ -34,6 +38,7 @@ import friendCircleIndex from '../views/friendcircle/index/index.vue'
 import voiceIndex from '../views/voice/index/index.vue'
 //视频首页
 import videoIndex from '../views/video/index/index.vue'
+
 
 
 Vue.use(Router)
@@ -145,6 +150,30 @@ export default new Router({
         bshow:true,
         requireAuth:true,
         tabbarActive:3
+      }
+    },
+    {
+      path: '/SearchInfo',
+      name: 'SearchInfo',
+      component: SearchInfo,
+      meta:{
+        title:'搜索',
+        tshow:true,
+        bshow:false,
+        requireAuth:false,
+        keepAlive:true,
+      }
+    },
+    {
+      path: '/SearchList',
+      name: 'SearchList',
+      component: SearchList,
+      meta:{
+        title:'产品列表',
+        tshow:true,
+        bshow:false,
+        requireAuth:false,
+        keepAlive:true,
       }
     },
     {

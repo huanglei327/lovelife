@@ -58,7 +58,7 @@
       </div>
       
       <div class="d-advertising">
-        <img src="../../../assets/images/advertising.jpg" @mouseenter="download" @mouseleave="upDown"/>
+        <img src="../../../assets/images/advertising.jpg" />
       </div>
     </div>
   </div>

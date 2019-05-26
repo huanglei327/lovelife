@@ -1,6 +1,6 @@
 <template> 
   <div class="main9">
-    <exploiting></exploiting>
+    <exploiting imgType="video"></exploiting>
   </div>
 </template>
 

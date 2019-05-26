@@ -12,12 +12,13 @@
     <navigation>
       <router-view/>
     </navigation>
+     <!-- <router-view/> -->
     <!-- <keep-alive>
       <router-view v-if="$route.meta.keepAlive"/>
     </keep-alive>
     <router-view v-if="!$route.meta.keepAlive"/> -->
 
-    <van-tabbar v-model="activea.tabbarActive" @change="tabChange" v-show="bshow">
+    <van-tabbar v-model="activea.tabbarActive" @change="tabChange" v-show="bshow" style="z-index:3000;">
       <van-tabbar-item>
         <span slot-scope="props" :class="props.active ? 'tabColor' : 'tabColorh'">首页</span>
         <img slot="icon" slot-scope="props" :src="props.active ? icon.home1 : icon.home">
@@ -233,6 +234,9 @@ export default {
 }
 .bgwhite {
   background: white;
+}
+.bg9ae5f8{
+  background: #9ae5f8;
 }
 .van-tabbar-item__icon img {
   height: 20px;

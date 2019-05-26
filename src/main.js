@@ -7,7 +7,7 @@ import store from './store/index'
 import utilt from './utils/util'
 import * as validate_ from './utils/validate'//引用文件
 import * as common_ from './assets/js/common'
-import Navigation from '../dist/vue-navigation.esm'
+import Navigation from 'vue-navigation'
 
 
 

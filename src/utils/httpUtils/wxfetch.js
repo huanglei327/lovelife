@@ -7,7 +7,6 @@ export function post(apiname, parameters) {
             .then(res => {
                 resolve(res.data);
             }).catch(err => {
-                console.log(err);
                 reject(err)
             })
     })
@@ -18,7 +17,6 @@ export function get(apiname) {
             .then(res => {
                 resolve(res.data);
             }).catch(err => {
-                console.log(err);
                 reject(err)
             })
     })

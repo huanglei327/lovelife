@@ -7,7 +7,6 @@ export function post(apiname, parameters) {
             .then(res => {
                 resolve(res.data);
             }).catch(err => {
-                console.log(err);
                 reject(err)
             })
     })
@@ -20,7 +19,6 @@ export function post2(apiname, parameters) {
           .then(res => {
               resolve(res.data);
           }).catch(err => {
-              console.log(err);
               reject(err)
           })
   })
@@ -32,7 +30,6 @@ export function getByNoUrl(parameters){
             .then(res => {
                 resolve(res.data);
             }).catch(err => {
-                console.log(err);
                 reject(err)
             })
     })

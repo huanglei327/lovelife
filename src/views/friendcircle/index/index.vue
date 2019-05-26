@@ -1,6 +1,6 @@
 <template> 
   <div class="main9">
-    <exploiting></exploiting>
+    <exploiting imgType="friendcircle"></exploiting>
   </div>
 </template>
 
@@ -9,7 +9,7 @@ import exploiting from '../../../components/exploiting.vue'
 export default {
   data(){
     return {
-
+      
     }
   },
   components:{
