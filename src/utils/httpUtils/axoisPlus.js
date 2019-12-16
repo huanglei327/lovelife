@@ -18,10 +18,10 @@ axios.interceptors.request.use(
   config => {
     const userInfo = JSON.parse(localStorage.getItem("userInfo"))
     if (config.method === 'post') {
-      Toast.loading({
-        mask: true,
-        message: '加载中...'
-      });
+      // Toast.loading({
+      //   mask: true,
+      //   message: '加载中...'
+      // });
       if (userInfo && config.url.indexOf('memberInfo/login') <= -1) {
         config.headers.Authorization = userInfo.Authorization
         config.headers.slls_login_user = userInfo.slls_login_user

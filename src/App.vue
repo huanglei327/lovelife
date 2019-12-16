@@ -18,7 +18,7 @@
     </keep-alive>
     <router-view v-if="!$route.meta.keepAlive"/> -->
 
-    <van-tabbar v-model="activea.tabbarActive" @change="tabChange" v-show="bshow" style="z-index:3000;">
+     <van-tabbar v-model="tabbarActive" @change="tabChange" v-show="bshow" style="z-index:3000;">
       <van-tabbar-item>
         <span slot-scope="props" :class="props.active ? 'tabColor' : 'tabColorh'">首页</span>
         <img slot="icon" slot-scope="props" :src="props.active ? icon.home1 : icon.home">
@@ -47,7 +47,7 @@
         <span slot-scope="props" :class="props.active ? 'tabColor' : 'tabColorh'">我的</span>
         <img slot="icon" slot-scope="props" :src="props.active ? icon.my1 : icon.my">
       </van-tabbar-item>
-    </van-tabbar>
+    </van-tabbar> 
   </div>
 </template>
 
@@ -97,17 +97,44 @@ export default {
   },
   mounted() {},
   computed: {
-    ...mapGetters([
-      "navtitle",
-      "left_arrow",
-      "left_text",
-      "tshow",
-      "bshow",
-      "tabbarActive"
-    ]),
-    ...mapState({
-      activea: state => state
-    })
+    // ...mapGetters([
+    //   "navtitle",
+    //   "left_arrow",
+    //   "left_text",
+    //   "tshow",
+    //   "bshow",
+    //   "tabbarActive"
+    // ]),
+    // ...mapState({
+    //   activea: state => state
+    // })
+    activea:function(){
+      return this.$store.state.activea
+    },
+    navtitle:function(){
+      return this.$store.state.navtitle
+    },
+    left_arrow:function(){
+      return this.$store.state.left_arrow
+    },
+    left_text:function(){
+      return this.$store.state.left_text
+    },
+    tshow:function(){
+      return this.$store.state.tshow
+    },
+    activea:function(){
+      return this.$store.state.activea
+    },
+    bshow:function(){
+      return this.$store.state.bshow
+    }, 
+     tabbarActive:{
+      get(){ return this.$store.state.tabbarActive},
+      set(val){
+          this.$store.commit('getTabbarActive', val)
+      }
+    },
   },
   methods: {
     onClickLeft: function() {
@@ -131,6 +158,7 @@ export default {
           that.active = 5;
           break;
       }
+      this.$store.commit('getTabbarActive', that.active)
     },
     tabChange(event) {
       let url = "";
@@ -314,7 +342,7 @@ export default {
   letter-spacing: 2px;
 }
 .van-nav-bar .van-icon {
-  color: #656565;
+  color: #656565 !important;
 }
 .van-nav-bar__arrow {
   font-size: 20px;

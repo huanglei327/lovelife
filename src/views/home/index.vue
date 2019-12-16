@@ -35,7 +35,7 @@
         <div class="h-swiper">
           <van-swipe indicator-color="#e33125" :loop="true" :autoplay="3000" @change="onChange">
             <van-swipe-item v-for="(item,index) in imgList" :key="index">
-              <img :src="item.proImgAddr" @click="goDetails(item)" v-lazy="item.proImgAddr">
+              <img :src="item.proImgAddr" @click="goDetails(item)" >
             </van-swipe-item>
             <div class="van-swipe__indicators" slot="indicator">
               <div
@@ -62,7 +62,7 @@
               @click="goDetails(item)"
             >
               <div class="left">
-                <img :src="item.proImgAddr" v-lazy="item.proImgAddr">
+                <img :src="item.proImgAddr"  >
               </div>
               <div class="right">
                 <div class="r-1">{{item.proName}}</div>
@@ -285,7 +285,7 @@
   }
 }
 .menu-overlay {
-  background-color: rgba(0, 0, 0, 0);
+  background-color: rgba(0, 0, 0, 0) !important;
 }
 .up-popup {
   min-width: 200px;
