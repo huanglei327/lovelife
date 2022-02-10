@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
-    "node-sass": "^4.11.0",
+    "node-sass": "^7.0.0",
     "vant": "^2.2.14",
     "vue": "^2.5.2",
     "vue-cropper": "^0.4.9",
